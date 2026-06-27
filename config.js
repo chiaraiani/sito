@@ -180,9 +180,9 @@ const SITE_CONFIG = {
 
   // ─────────────────────────────────────────────
   //  PROGETTI FOTOGRAFICI ARTISTICI
-   Struttura a tendina (accordion): ogni voce qui diventa un pannello
-    apribile/chiudibile nella sezione "Artistiche" della pagina Attrice.
-  Ogni progetto ha: anno, fotografo, luogo, e un array di foto
+  // Struttura a tendina (accordion): ogni voce qui diventa un pannello
+   // apribile/chiudibile nella sezione "Artistiche" della pagina Attrice.
+ // Ogni progetto ha: anno, fotografo, luogo, e un array di foto
   // ─────────────────────────────────────────────
   artProjects: [
     // Esempio — decommenta e modifica:
