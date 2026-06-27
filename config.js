@@ -156,10 +156,10 @@ const SITE_CONFIG = {
   //  objectPosition: punto focale dell'immagine nel riquadro (es. 'center top', '30% 20%')
   // ─────────────────────────────────────────────
   bookPhotos: [
-    // Esempi — decommenta e modifica:
-    // { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782592428/L1072124_copia_nkf7fc.jpg', label: 'Ritratto', objectPosition: 'center top' },
+    // Esempi - decommenta e modifica:
+    { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782592428/L1072124_copia_nkf7fc.jpg' },
     // { src: 'foto/book2.jpg', label: 'Primo piano', objectPosition: '50% 20%' },
-  ],
+],
 
   // ─────────────────────────────────────────────
   //  PROGETTI FOTOGRAFICI ARTISTICI
