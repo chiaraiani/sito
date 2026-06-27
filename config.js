@@ -20,52 +20,49 @@ const SITE_CONFIG = {
     // Pannello sinistro (Attrice)
     homeActressEyebrow: 'Portfolio',
     homeActressTitle:   'Attrice',
-    homeActressSub:     'Book fotografico · Foto artistiche\nLavori & produzioni',
+    homeActressSub:     'Book fotografico · Foto artistiche · Lavori · Contatti',
 
     // Pannello destro (Videomaker)
     homeVmEyebrow: 'Servizi',
     homeVmTitle:   'Videomaker',
-    homeVmSub:     'Regia · Montaggio · Produzione\nPrenota una collaborazione',
+    homeVmSub:     'Montaggio · Produzione · Contatti',
 
     // ─── SEZIONE ATTRICE ───
     actressName:          'Chiara Aiani',
-    actressBookCaption:   'Fotografie del book professionale',
-    actressArtCaption:    'Scatti artistici e di scena organizzati per progetto',
+    actressBookCaption:   'Book professionale',
+    actressArtCaption:    'Foto artistiche',
     actressVideoCaption:  'Produzioni e lavori realizzati',
 
     // ─── SEZIONE VIDEOMAKER ───
-    vmTitle:   'Regia & Produzione',
-
-    // Frase in corsivo (bio breve)
-    vmBio:     'Videomaker e regista con uno sguardo narrativo nato dal teatro e dalla recitazione. Racconto storie visive che sanno emozionare.',
+    vmTitle:   'Servizi',
 
     // Paragrafo esteso (biografia completa)
-    vmBioExt:  'Qui puoi inserire la tua biografia completa, la tua formazione, i tuoi riferimenti artistici e il tipo di lavoro che ami fare.',
+    vmBioExt:  'Ciao! Sono attrice e videomaker. Ho studiato videomaking a Milano e Arte Drammatica a Venezia e ora ho unito queste arti per poter produrre avere una maggiore visione dell'ambiente artistico del settore. Livello EQF5 in digital videomaking',
 
     // Tag competenze separati da virgola
-    vmTags: 'Regia,Montaggio,Riprese,Documentario,Narrativa,Corporate',
+    vmTags: 'Idee,Riprese,Reel,Documentario,Narrativa,Corporate',
 
     // Statistiche (lascia num vuoto per nascondere la terza)
-    stat1Num: '5+',  stat1Lbl: 'Anni',
-    stat2Num: '30+', stat2Lbl: 'Progetti',
-    stat3Num: '',    stat3Lbl: '',         // ← lascia vuoti per non mostrarlo
+    stat1Num: 'Serietà',  
+    stat2Num: 'Confronto',
+    stat3Num: 'Puntualità',
 
     // ─── PAGINA LAVORI (tab Videomaker) ───
     worksEyebrow:  'Selezione lavori',
     worksHeading:  'Portfolio videomaker',
-    worksSubtext:  'Una selezione di progetti realizzati — documentari, fiction, corporate e contenuti social.',
+    worksSubtext:  'I miei progetti',
 
     // ─── CONTATTI & FOOTER ───
-    contactEmail:    'chiara@gmail.com',
-    contactCity:     'Milano',
+    contactEmail:    'chiara.aiani1@gmail.com',
+    contactCity:     'Busto Arsizio/Milano',
     instagramHandle: '@chiaraiani',
     instagramUrl:    'https://instagram.com/chiaraiani',
 
     // Nota sotto il pulsante "Invia messaggio"
-    formReplyNote: 'Riceverai una risposta entro 48 ore alla tua email',
+    formReplyNote: 'Riceverai una risposta entro 24 ore alla tua email',
 
     // Testo mostrato dopo l\'invio del form
-    successText: 'Grazie! Ti rispondo entro 48 ore.\nControlla la tua casella Gmail.',
+    successText: 'Grazie! Ti rispondo entro 24 ore.\nControlla la tua casella Gmail.',
 
     // Nota in fondo alla tabella tariffe
     ratesNote: 'Le tariffe sono orientative. Ogni progetto viene valutato singolarmente. Contattami per un preventivo personalizzato.',
@@ -78,8 +75,6 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   worksFilters: [
     { label: 'Tutti',            icon: 'ti-layout-grid', filterVal: 'all',       isAll: true  },
-    { label: 'Narrativa',        icon: 'ti-movie',       filterVal: 'narrativa', isAll: false },
-    { label: 'Doc & Corporate',  icon: 'ti-camera',      filterVal: 'corporate', isAll: false },
   ],
 
   // ─────────────────────────────────────────────
@@ -113,10 +108,9 @@ const SITE_CONFIG = {
   //  TARIFFE GIORNALIERE
   // ─────────────────────────────────────────────
   rates: [
-    { name: 'Riprese — mezza giornata', sub: 'Fino a 4 ore · operatore singolo', price: '€ 250',      note: '+ iva'  },
-    { name: 'Riprese — giornata intera', sub: 'Fino a 8 ore · operatore singolo', price: '€ 450',     note: '+ iva'  },
-    { name: 'Montaggio',                 sub: 'Per ora lavorata',                 price: '€ 40',       note: '/ ora'  },
-    { name: 'Regia progetto',            sub: 'Sviluppo completo',                price: 'Su richiesta', note: ''     },
+    { name: 'Riprese — mezza giornata', sub: 'Fino a 4 ore · operatore singolo', price: '€ 300',      note: '+ iva'  },
+    { name: 'Riprese — giornata intera', sub: 'Fino a 8 ore · operatore singolo', price: '€ 700',     note: '+ iva'  },
+    { name: 'Montaggio reel',                 sub: 'Montaggio e color con clip fornite',                 price: '€ 80',       note: '/ ora'  },
   ],
 
   // ─────────────────────────────────────────────
@@ -126,20 +120,20 @@ const SITE_CONFIG = {
   packages: [
     {
       name:     'Pacchetto Social',
-      price:    '€ 350',
-      desc:     'Riprese mezza giornata + montaggio 5 reel ottimizzati per social',
+      price:    '€ 400',
+      desc:     'Riprese mezza giornata + montaggio 4 reel ottimizzati per social',
       featured: false,
     },
     {
       name:     'Pacchetto Evento',
-      price:    '€ 700',
-      desc:     'Copertura completa evento + highlight video + 3 clip brevi',
+      price:    '€ 900',
+      desc:     'Copertura completa evento + highlight video + 3 reel brevi',
       featured: true,
     },
     {
       name:     'Pacchetto Documentario',
       price:    'Da € 1.200',
-      desc:     'Progetto completo: sviluppo, riprese, post-produzione e consegna finale',
+      desc:     'Progetto: sviluppo, riprese, post-produzione e consegna finale (escluse trasferte e attori)',
       featured: false,
     },
   ],
@@ -163,8 +157,8 @@ const SITE_CONFIG = {
   artProjects: [
     // Esempio — decommenta e modifica:
     // {
-    //   year:         '2024',
-    //   photographer: 'Nome Fotografo',
+    //   year:         '2026',
+    //   photographer: 'Marco Ragaini',
     //   location:     'Milano',
     //   photos: [
     //     { src: 'https://esempio.com/art1.jpg', label: 'Scatto di scena' },
