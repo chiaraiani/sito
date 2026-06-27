@@ -3,12 +3,19 @@
 //  Modifica questo file con qualsiasi editor di testo (Notepad, VSCode, ecc.)
 //  Poi salva e ricarica index.html nel browser per vedere le modifiche.
 //
+//  IMPORTANTE: questo file deve stare nella stessa cartella dell'HTML.
+//
 //  REGOLE DI SINTASSI:
 //  • Le stringhe di testo vanno tra apici singoli: 'testo qui'
-//  • Se il testo contiene un apice (es. un apostrofo), usa il backslash: 'l\'attrice'
+//  • Se il testo contiene un apostrofo, usa il backslash: 'l\'attrice'
 //  • true/false (senza apici) per i valori vero/falso
 //  • Ogni voce finisce con una virgola, tranne l'ultima del suo gruppo
 //  • NON toccare le righe con solo { } [ ] o le parole come "texts:", "media:" ecc.
+//
+//  NOTA SUL PANNELLO ADMIN:
+//  Se hai già salvato dati tramite il pannello Admin (tasto "Salva modifiche"),
+//  quei dati hanno la precedenza su questo file. Per far rileggere config.js,
+//  vai in Admin → Impostazioni → "Reset dati salvati".
 // =============================================================================
 
 const SITE_CONFIG = {
@@ -36,21 +43,25 @@ const SITE_CONFIG = {
     // ─── SEZIONE VIDEOMAKER ───
     vmTitle:   'Servizi',
 
+    // Frase in corsivo (bio breve) — lascia vuoto per nasconderla
+    vmBio: '',
+
     // Paragrafo esteso (biografia completa)
-    vmBioExt:  "Ciao! Sono attrice e videomaker. Ho studiato videomaking a Milano e Arte Drammatica a Venezia e ora ho unito queste arti per poter produrre avere una maggiore visione dell'ambiente artistico del settore. Livello EQF5 in digital videomaking",
+    vmBioExt: 'Ciao! Sono attrice e videomaker. Ho studiato videomaking a Milano e Arte Drammatica a Venezia e ora ho unito queste arti per poter produrre e avere una maggiore visione dell\'ambiente artistico del settore. Livello EQF5 in digital videomaking.',
 
     // Tag competenze separati da virgola
     vmTags: 'Idee,Riprese,Reel,Documentario,Narrativa,Corporate',
 
-    // Statistiche (lascia num vuoto per nascondere la terza)
-    stat1Num: 'Serietà',  
-    stat2Num: 'Confronto',
-    stat3Num: 'Puntualità',
+    // Statistiche — inserisci testo nella chiave "Num", etichetta in "Lbl"
+    // Lascia stat3Num e stat3Lbl vuoti per nascondere la terza statistica
+    stat1Num: 'Serietà',   stat1Lbl: '',
+    stat2Num: 'Confronto', stat2Lbl: '',
+    stat3Num: 'Puntualità',stat3Lbl: '',
 
     // ─── PAGINA LAVORI (tab Videomaker) ───
-    worksEyebrow:  'Selezione lavori',
-    worksHeading:  'Portfolio videomaker',
-    worksSubtext:  'I miei progetti',
+    worksEyebrow: 'Selezione lavori',
+    worksHeading: 'Portfolio videomaker',
+    worksSubtext: 'I miei progetti',
 
     // ─── CONTATTI & FOOTER ───
     contactEmail:    'chiara.aiani1@gmail.com',
@@ -71,10 +82,10 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   //  FILTRI SEZIONE LAVORI
   //  isAll: true  → mostra tutti i video (non filtra per categoria)
-  //  isAll: false → filtra i video che hanno filterVal corrispondente
+  //  isAll: false → filtra i video con filterVal corrispondente
   // ─────────────────────────────────────────────
   worksFilters: [
-    { label: 'Tutti',            icon: 'ti-layout-grid', filterVal: 'all',       isAll: true  },
+    { label: 'Tutti', icon: 'ti-layout-grid', filterVal: 'all', isAll: true },
   ],
 
   // ─────────────────────────────────────────────
@@ -108,9 +119,9 @@ const SITE_CONFIG = {
   //  TARIFFE GIORNALIERE
   // ─────────────────────────────────────────────
   rates: [
-    { name: 'Riprese — mezza giornata', sub: 'Fino a 4 ore · operatore singolo', price: '€ 300',      note: '+ iva'  },
-    { name: 'Riprese — giornata intera', sub: 'Fino a 8 ore · operatore singolo', price: '€ 700',     note: '+ iva'  },
-    { name: 'Montaggio reel',                 sub: 'Montaggio e color con clip fornite',                 price: '€ 80',       note: '/ ora'  },
+    { name: 'Riprese — mezza giornata', sub: 'Fino a 4 ore · operatore singolo', price: '€ 300', note: '+ iva' },
+    { name: 'Riprese — giornata intera', sub: 'Fino a 8 ore · operatore singolo', price: '€ 700', note: '+ iva' },
+    { name: 'Montaggio reel', sub: 'Montaggio e color con clip fornite', price: '€ 80', note: '/ ora' },
   ],
 
   // ─────────────────────────────────────────────
@@ -145,9 +156,9 @@ const SITE_CONFIG = {
   //  objectPosition: punto focale dell'immagine nel riquadro (es. 'center top', '30% 20%')
   // ─────────────────────────────────────────────
   bookPhotos: [
-    // Esempi — sostituisci con le tue foto:
+    // Esempi — decommenta e modifica:
     // { src: 'https://esempio.com/foto1.jpg', label: 'Ritratto', objectPosition: 'center top' },
-    // { src: 'foto/book2.jpg',                label: 'Primo piano', objectPosition: '50% 20%' },
+    // { src: 'foto/book2.jpg', label: 'Primo piano', objectPosition: '50% 20%' },
   ],
 
   // ─────────────────────────────────────────────
@@ -157,12 +168,12 @@ const SITE_CONFIG = {
   artProjects: [
     // Esempio — decommenta e modifica:
     // {
-    //   year:         '2026',
+    //   year: '2026',
     //   photographer: 'Marco Ragaini',
-    //   location:     'Milano',
+    //   location: 'Milano',
     //   photos: [
     //     { src: 'https://esempio.com/art1.jpg', label: 'Scatto di scena' },
-    //     { src: 'foto/art2.jpg',                label: 'Backstage'        },
+    //     { src: 'foto/art2.jpg', label: 'Backstage' },
     //   ],
     // },
   ],
@@ -182,7 +193,7 @@ const SITE_CONFIG = {
   //  filterVal: deve corrispondere esattamente al filterVal nei worksFilters sopra
   // ─────────────────────────────────────────────
   vmVideos: [
-    // { title: 'Titolo lavoro', url: 'https://youtube.com/watch?v=XXXX', meta: 'Documentario · 2024', thumb: '', filterVal: 'corporate' },
+    // { title: 'Titolo lavoro', url: 'https://youtube.com/watch?v=XXXX', meta: 'Documentario · 2024', thumb: '', filterVal: 'all' },
   ],
 
   // ─────────────────────────────────────────────
