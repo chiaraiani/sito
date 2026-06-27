@@ -159,6 +159,7 @@ const SITE_CONFIG = {
     // Esempi - decommenta e modifica:
     { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782592428/L1072124_copia_nkf7fc.jpg', label: 'Primo piano', objectPosition: '50% 20%' },
     { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782592428/L1072203_copia_ar04do.jpg', label: 'Primo piano', objectPosition: '50% 20%' },
+    { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782592427/L1072173_copia_m8w2op.jpg', label: 'Primo piano', objectPosition: '50% 20%' },
 ],
 
   // ─────────────────────────────────────────────
