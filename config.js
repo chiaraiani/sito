@@ -151,8 +151,8 @@ const SITE_CONFIG = {
 
   // ─────────────────────────────────────────────
   //  FOTO BOOK
-  //  src: URL dell'immagine (https://...) oppure percorso relativo (es. 'foto/book1.jpg')
-  //  label: didascalia visibile nel lightbox
+  //  src: 'https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg'
+  //  label: Primo piano
   //  objectPosition: punto focale dell'immagine nel riquadro (es. 'center top', '30% 20%')
   // ─────────────────────────────────────────────
   bookPhotos: [
