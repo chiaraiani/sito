@@ -381,6 +381,90 @@ textarea.adm-input { resize:vertical; min-height:70px; }
 /* Export */
 .adm-export-btn { width:100%; padding:11px; background:var(--notte); color:var(--white); border:none; font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:background 0.2s; display:flex; align-items:center; justify-content:center; gap:8px; }
 .adm-export-btn:hover { background:var(--notte-mid); }
+
+/* ===================== RESPONSIVE MOBILE ===================== */
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav { padding:0 1rem; height:auto; min-height:54px; flex-wrap:wrap; gap:.5rem; padding-top:.5rem; padding-bottom:.5rem; }
+  .nav-logo { font-size:15px; letter-spacing:2px; }
+  .nav-links { gap:.75rem; flex-wrap:wrap; }
+  .nav-link { font-size:9px; letter-spacing:1px; }
+  .nav-cv-btn { font-size:8px; padding:4px 8px; }
+  .nav-admin-btn { font-size:8px; padding:3px 8px; }
+
+  /* HOME — pannelli uno sopra l'altro */
+  .home-split { grid-template-columns:1fr; min-height:auto; }
+  .home-panel { min-height:55vh; }
+  .panel-divider { display:none; }
+  .panel-title { font-size:38px; }
+  .panel-num { font-size:80px; }
+  .panel-sub { font-size:10px; }
+  .cta { padding:10px 20px; font-size:9px; }
+
+  /* SECTION HEADER */
+  .sec-header { padding:1.5rem 1.25rem 1rem; flex-direction:column; align-items:flex-start; gap:1rem; }
+  .sec-title { font-size:28px; }
+  .sec-tabs { flex-wrap:wrap; }
+  .sec-tab { font-size:9px; padding:6px 12px; }
+
+  /* CONTENT */
+  .content { padding:1.25rem; }
+
+  /* PHOTO GRID */
+  .photo-grid { grid-template-columns:repeat(2,1fr); }
+  .photo-grid-2 { grid-template-columns:1fr; }
+  .photo-item.span2 { grid-row:span 1; }
+
+  /* VIDEO GRID */
+  .video-grid { grid-template-columns:1fr; }
+
+  /* VM LAYOUT — colonne una sopra l'altra */
+  .vm-grid { grid-template-columns:1fr; }
+  .vm-col { padding:1.5rem 1.25rem; border-right:none !important; border-bottom:1px solid var(--border); }
+  .vm-col:last-child { border-bottom:none; }
+
+  /* BIO */
+  .bio-text { font-size:16px; }
+  .stats-row { grid-template-columns:repeat(3,1fr); }
+  .stat-num { font-size:22px; }
+
+  /* WORKS CATS */
+  .works-cats { grid-template-columns:1fr; }
+
+  /* TARIFFE */
+  .tariffa { flex-direction:column; gap:.5rem; padding:.875rem 1.125rem; }
+  .tariffa-price { margin-left:0; }
+
+  /* BOOKING / CALENDARIO */
+  #vt-book > div { grid-template-columns:1fr !important; }
+  #vt-book > div > div { border-right:none !important; border-bottom:1px solid var(--border); padding:1.5rem 1.25rem; }
+  #vt-book > div > div:last-child { border-bottom:none; }
+
+  /* RATES LAYOUT */
+  #vt-rates .vm-grid { grid-template-columns:1fr; }
+
+  /* FOOTER */
+  .sec-footer { padding:1rem 1.25rem; flex-direction:column; gap:.625rem; align-items:flex-start; }
+
+  /* LIGHTBOX BUTTONS */
+  .lbx-prev { left:.5rem; }
+  .lbx-next { right:.5rem; }
+  .lbx-btn { width:36px; height:36px; font-size:15px; }
+
+  /* ADMIN PANEL */
+  .admin-panel { width:100vw; }
+  .adm-tabs { gap:2px; }
+  .adm-tab { font-size:8px; padding:6px 10px; }
+}
+
+@media (max-width: 480px) {
+  .panel-title { font-size:30px; }
+  .photo-grid { grid-template-columns:1fr; }
+  .stats-row { grid-template-columns:1fr; }
+  .sec-tabs { gap:0; }
+  .sec-tab { flex:1; text-align:center; }
+}
 </style>
 </head>
 <body>
