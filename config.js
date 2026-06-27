@@ -184,15 +184,19 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   artProjects: [
     // Esempio — decommenta e modifica:
-    // {
-    //   year: '2026',
-    //   photographer: 'Marco Ragaini',
-    //   location: 'Milano',
-    //   photos: [
-    //     { src: 'https://esempio.com/art1.jpg', label: 'Scatto di scena' },
-    //     { src: 'foto/art2.jpg', label: 'Backstage' },
-    //   ],
-    // },
+     {
+       year: '2026',
+       photographer: 'Marco Ragaini',
+       location: 'Milano',
+       photos: [
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782595619/B0027288_qabn0a.jpg'},
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782595619/B0027316_yejtiu.jpg'},
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782595622/L1072168_lnxck5.jpg'},
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782595618/B0027297-2_hm3nxw.jpg'},
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782595618/B0027257_vy8yit.jpg'},
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782595618/B0027232_iwwcny.jpg'},
+       ],
+     },
   ],
 
   // ─────────────────────────────────────────────
