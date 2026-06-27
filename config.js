@@ -18,14 +18,14 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   texts: {
     // Pannello sinistro (Attrice)
-    homeActressEyebrow: 'Portfolio',
-    homeActressTitle:   'Attrice',
-    homeActressSub:     'Book fotografico · Foto artistiche · Lavori · Contatti',
+    homeLeftEyebrow: 'Portfolio',
+    homeLeftTitle:   'Attrice',
+    homeLeftSub:     'Book fotografico · Foto artistiche · Lavori · Contatti',
 
     // Pannello destro (Videomaker)
-    homeVmEyebrow: 'Servizi',
-    homeVmTitle:   'Videomaker',
-    homeVmSub:     'Montaggio · Produzione · Contatti',
+    homeRightEyebrow: 'Servizi',
+    homeRightTitle:   'Videomaker',
+    homeRightSub:     'Montaggio · Produzione · Contatti',
 
     // ─── SEZIONE ATTRICE ───
     actressName:          'Chiara Aiani',
