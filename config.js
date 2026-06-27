@@ -37,7 +37,7 @@ const SITE_CONFIG = {
     vmTitle:   'Servizi',
 
     // Paragrafo esteso (biografia completa)
-    vmBioExt:  'Ciao! Sono attrice e videomaker. Ho studiato videomaking a Milano e Arte Drammatica a Venezia e ora ho unito queste arti per poter produrre avere una maggiore visione dell\'ambiente artistico del settore. Livello EQF5 in digital videomaking',
+    vmBioExt:  "Ciao! Sono attrice e videomaker. Ho studiato videomaking a Milano e Arte Drammatica a Venezia e ora ho unito queste arti per poter produrre avere una maggiore visione dell'ambiente artistico del settore. Livello EQF5 in digital videomaking",
 
     // Tag competenze separati da virgola
     vmTags: 'Idee,Riprese,Reel,Documentario,Narrativa,Corporate',
