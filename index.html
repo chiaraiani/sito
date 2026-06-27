@@ -1,7 +1,1552 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<meta charset="UTF-8"><!DOCTYPE html>
+<html lang="it">
+<head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chiara Aiani</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:#E8F4F8; --bg-mid:#D4ECF4; --nav-bg:#7BB8C9; --nav-text:#1C3A3F;
+  --surface:#C8E4F0; --border:rgba(28,58,63,0.15); --border-md:rgba(28,58,63,0.25);
+  --green:#3E7A70; --green-dk:#2A5A52; --green-lt:#D4EEEA;
+  --aqua:#8BBCB4; --mint:#A8D5C2; --notte:#1C3A3F; --notte-mid:#2E5C60;
+  --text:#1C3A3F; --text-mid:#3A6068; --text-muted:#6A9098; --white:#F4FAFB;
+}
+body { font-family:'Montserrat',sans-serif; background:var(--bg); color:var(--text); min-height:600px; overflow-x:hidden; }
+.page { display:none; min-height:580px; }
+.page.active { display:block; }
+
+nav {
+  position:sticky; top:0; z-index:100;
+  background:var(--nav-bg); border-bottom:1px solid var(--border-md);
+  padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:54px;
+}
+.nav-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; letter-spacing:4px; color:var(--notte); cursor:pointer; }
+.nav-links { display:flex; gap:2rem; align-items:center; }
+.nav-link { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--notte-mid); cursor:pointer; background:none; border:none; font-family:'Montserrat',sans-serif; transition:color 0.2s; padding:4px 0; border-bottom:2px solid transparent; }
+.nav-link:hover,.nav-link.active { color:var(--notte); border-bottom-color:var(--notte); }
+.nav-admin-btn { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--notte-mid); cursor:pointer; background:none; border:1px solid var(--border-md); font-family:'Montserrat',sans-serif; padding:4px 10px; transition:all 0.2s; opacity:0.5; }
+.nav-admin-btn:hover { opacity:1; border-color:var(--green); color:var(--green); }
+.nav-cv-btn { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--notte); font-family:'Montserrat',sans-serif; padding:5px 12px; border:1px solid var(--notte); text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:all 0.2s; white-space:nowrap; }
+.nav-cv-btn:hover { background:var(--notte); color:var(--white); }
+
+/* HOME */
+.home-split { display:grid; grid-template-columns:1fr 1fr; ; min-height:520px; height:-webkit-fill-available}
+.home-panel { position:relative; overflow:hidden; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:background 0.4s; }
+.panel-actress { background:var(--bg); }
+.panel-actress:hover { background:var(--bg-mid); }
+.panel-video { background:var(--notte); }
+.panel-video:hover { background:var(--notte-mid); }
+.panel-divider { position:absolute; top:8%; bottom:8%; right:0; width:1px; background:var(--border-md); }
+.panel-num { font-family:'Cormorant Garamond',serif; font-size:130px; font-weight:300; line-height:1; position:absolute; opacity:.06; user-select:none; }
+.panel-actress .panel-num { color:var(--notte); right:16px; top:50%; transform:translateY(-50%); }
+.panel-video .panel-num  { color:var(--mint); left:16px; top:50%; transform:translateY(-50%); }
+.panel-content { position:relative; z-index:2; text-align:center; padding:2rem; }
+.panel-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; margin-bottom:1rem; }
+.panel-actress .panel-eyebrow { color:var(--green); }
+.panel-video .panel-eyebrow  { color:var(--mint); }
+.panel-title { font-family:'Cormorant Garamond',serif; font-size:54px; font-weight:300; line-height:1.1; margin-bottom:1.25rem; }
+.panel-actress .panel-title { color:var(--notte); }
+.panel-video .panel-title  { color:var(--bg); }
+.panel-sub { font-size:11px; letter-spacing:1px; line-height:2; margin-bottom:2.5rem; }
+.panel-actress .panel-sub { color:var(--text-muted); }
+.panel-video .panel-sub  { color:var(--aqua); }
+.cta { display:inline-flex; align-items:center; gap:10px; border:1px solid; padding:11px 26px; font-size:10px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; background:none; font-family:'Montserrat',sans-serif; transition:all 0.3s; }
+.cta-dark { border-color:var(--green); color:var(--green); }
+.cta-dark:hover { background:var(--green); color:var(--white); }
+.cta-light { border-color:var(--mint); color:var(--mint); }
+.cta-light:hover { background:var(--mint); color:var(--notte); }
+.cta-line { width:36px; height:1px; transition:width 0.3s; display:inline-block; vertical-align:middle; }
+.cta-dark .cta-line { background:var(--green); }
+.cta-light .cta-line { background:var(--mint); }
+.home-panel:hover .cta-line { width:54px; }
+
+/* SECTION HEADER */
+.sec-header { padding:2.5rem 3rem 2rem; border-bottom:1px solid var(--border); display:flex; align-items:flex-end; justify-content:space-between; }
+.sec-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--green); margin-bottom:.5rem; }
+.sec-title { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:300; color:var(--notte); }
+.sec-tabs { display:flex; }
+.sec-tab { padding:8px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; border:1px solid var(--border-md); background:none; color:var(--text-muted); font-family:'Montserrat',sans-serif; transition:all 0.2s; margin-left:-1px; }
+.sec-tab.active,.sec-tab:hover { background:var(--green); color:var(--white); border-color:var(--green); z-index:1; }
+
+/* CONTENT */
+.content { padding:2.5rem 3rem; }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
+/* PHOTO GRID */
+.photo-grid { display:grid; gap:3px; grid-template-columns:repeat(3,1fr); grid-auto-flow:dense; }
+.photo-grid-2 { grid-template-columns:repeat(2,1fr); }
+.photo-item { position:relative; overflow:hidden; aspect-ratio:3/4; background:var(--surface); cursor:zoom-in; }
+.photo-item.span2 { grid-row:span 2; }
+.photo-item img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); }
+.photo-item:hover img { transform:scale(1.07); }
+.photo-ph { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:var(--text-muted); font-size:10px; letter-spacing:1.5px; text-transform:uppercase; }
+.photo-ph i { font-size:26px; color:var(--aqua); }
+.photo-ov { position:absolute; inset:0; background:linear-gradient(to top,rgba(28,58,63,0.75),transparent); opacity:0; transition:opacity 0.3s; display:flex; align-items:flex-end; justify-content:space-between; padding:1rem; }
+.photo-item:hover .photo-ov { opacity:1; }
+.photo-lbl { font-size:10px; letter-spacing:1px; color:var(--mint); }
+.photo-zoom-icon { color:var(--white); font-size:18px; opacity:0.85; }
+
+/* LIGHTBOX */
+.lbx-overlay {
+  display:none; position:fixed; inset:0; z-index:5000;
+  background:rgba(10,22,24,0.96); backdrop-filter:blur(6px);
+  align-items:center; justify-content:center;
+}
+.lbx-overlay.open { display:flex; }
+.lbx-img-wrap {
+  position:relative; max-width:88vw; max-height:88vh;
+  display:flex; align-items:center; justify-content:center;
+}
+.lbx-img {
+  max-width:88vw; max-height:88vh; object-fit:contain;
+  border:1px solid rgba(168,213,194,0.15);
+  box-shadow:0 24px 80px rgba(0,0,0,0.6);
+  transition:opacity 0.2s;
+}
+.lbx-caption {
+  position:absolute; bottom:-2.25rem; left:0; right:0;
+  text-align:center; font-size:10px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--aqua);
+}
+.lbx-btn {
+  position:fixed; top:50%; transform:translateY(-50%);
+  background:none; border:1px solid rgba(255,255,255,0.2);
+  color:var(--white); width:44px; height:44px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:18px; transition:all 0.2s; z-index:5001;
+}
+.lbx-btn:hover { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.5); }
+.lbx-prev { left:1.5rem; }
+.lbx-next { right:1.5rem; }
+.lbx-close {
+  position:fixed; top:1.25rem; right:1.5rem; z-index:5001;
+  background:none; border:1px solid rgba(255,255,255,0.2);
+  color:var(--white); width:38px; height:38px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:16px; transition:all 0.2s;
+}
+.lbx-close:hover { background:rgba(255,255,255,0.1); }
+.lbx-counter {
+  position:fixed; top:1.4rem; left:50%; transform:translateX(-50%);
+  font-size:9px; letter-spacing:3px; color:var(--text-muted); text-transform:uppercase;
+}
+
+/* VIDEO MODAL */
+.vid-modal-overlay {
+  display:none; position:fixed; inset:0; z-index:6000;
+  background:rgba(10,22,24,0.96); backdrop-filter:blur(6px);
+  align-items:center; justify-content:center;
+}
+.vid-modal-overlay.open { display:flex; }
+.vid-modal-wrap { position:relative; width:min(860px,90vw); }
+.vid-modal-close {
+  position:absolute; top:-44px; right:0; z-index:6001;
+  background:none; border:1px solid rgba(255,255,255,0.2);
+  color:#fff; width:38px; height:38px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:16px; transition:all 0.2s;
+}
+.vid-modal-close:hover { background:rgba(255,255,255,0.12); }
+.vid-modal-frame { width:100%; aspect-ratio:16/9; border:none; background:#000; display:block; }
+.vid-modal-video { width:100%; aspect-ratio:16/9; background:#000; display:block; outline:none; }
+.adm-media-item { cursor:grab; user-select:none; }
+.adm-media-item:active { cursor:grabbing; }
+.adm-media-item.sortable-ghost { opacity:0.35; background:var(--green-lt) !important; border-color:var(--green) !important; }
+.adm-media-item.sortable-chosen { box-shadow:0 4px 16px rgba(62,122,112,0.25); }
+.adm-drag-handle { color:var(--text-muted); font-size:14px; cursor:grab; flex-shrink:0; padding:0 4px; }
+.adm-sort-hint { font-size:9px; color:var(--green); letter-spacing:1px; text-align:center; padding:5px 0 0; opacity:0.8; }
+
+/* VIDEO GRID */
+.video-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
+.video-card { background:var(--surface); border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:border-color 0.25s; }
+.video-card:hover { border-color:var(--green); }
+.video-thumb { aspect-ratio:16/9; background:var(--bg-mid); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.video-thumb img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.play-btn { width:46px; height:46px; border:1px solid var(--green); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--green); font-size:16px; transition:all 0.25s; position:relative; z-index:2; }
+.video-card:hover .play-btn { background:var(--green); color:var(--white); }
+.video-info { padding:.875rem 1.125rem; }
+.video-title { font-size:13px; font-weight:400; color:var(--notte); margin-bottom:3px; }
+.video-meta  { font-size:10px; color:var(--text-muted); letter-spacing:1px; }
+
+/* VM LAYOUT */
+.vm-grid { display:grid; grid-template-columns:1fr 1fr; }
+.vm-col { padding:2.5rem 3rem; }
+.vm-col:first-child { border-right:1px solid var(--border); }
+.bio-text { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:300; line-height:1.85; color:var(--notte); margin-bottom:1.5rem; font-style:italic; }
+.bio-tags { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:2rem; }
+.bio-tag { font-size:9px; letter-spacing:2px; text-transform:uppercase; border:1px solid var(--border-md); padding:4px 11px; color:var(--text-mid); }
+.stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-bottom:2rem; }
+.stat-box { background:var(--bg); padding:1.125rem; text-align:center; }
+.stat-num { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--green); }
+.stat-lbl { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-top:3px; }
+.service-list { display:flex; flex-direction:column; gap:1px; background:var(--border); }
+.service-item { background:var(--bg); padding:.875rem 1.125rem; display:flex; gap:.875rem; align-items:flex-start; }
+.service-item i { font-size:17px; color:var(--green); margin-top:2px; flex-shrink:0; }
+.service-name { font-size:12px; font-weight:500; color:var(--notte); margin-bottom:2px; }
+.service-desc { font-size:11px; color:var(--text-muted); line-height:1.6; }
+
+/* WORKS */
+.works-cats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-bottom:1.5rem; }
+.work-cat { background:var(--bg); padding:1.25rem; cursor:pointer; text-align:center; transition:background 0.2s; }
+.work-cat:hover,.work-cat.active { background:var(--green-lt); }
+.work-cat i { font-size:20px; color:var(--green); margin-bottom:.625rem; display:block; }
+.work-cat-name { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-mid); margin-bottom:3px; }
+.work-cat-num { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:var(--green); }
+
+/* TARIFFE */
+.tariffe-table { display:flex; flex-direction:column; gap:1px; background:var(--border); }
+.tariffa { background:var(--bg); padding:.875rem 0; display:flex; justify-content:space-between; align-items:center; }
+.tariffa-name { font-size:12px; color:var(--notte); }
+.tariffa-sub  { font-size:10px; color:var(--text-muted); margin-top:2px; }
+.tariffa-price { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--green); margin-left:1rem; white-space:nowrap; }
+.tariffa-note { font-size:9px; color:var(--text-muted); text-align:right; margin-top:3px; }
+.pkg-list { display:flex; flex-direction:column; gap:1px; background:var(--border); }
+.pkg { background:var(--bg); padding:1rem 1.125rem; }
+.pkg.featured { background:var(--green-lt); border:1px solid var(--green); }
+.pkg-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:.375rem; }
+.pkg-name { font-size:12px; font-weight:500; color:var(--notte); }
+.pkg-badge { font-size:8px; letter-spacing:1px; background:var(--green); color:var(--white); padding:2px 8px; margin-left:8px; }
+.pkg-price { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--green); }
+.pkg-desc { font-size:10px; color:var(--text-muted); line-height:1.7; }
+
+/* CALENDAR */
+.cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:.875rem; }
+.cal-month { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; color:var(--notte); letter-spacing:2px; }
+.cal-nav { background:none; border:1px solid var(--border-md); color:var(--text-mid); padding:4px 10px; cursor:pointer; font-size:13px; font-family:'Montserrat',sans-serif; transition:all 0.2s; }
+.cal-nav:hover { border-color:var(--green); color:var(--green); }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.cal-dlbl { text-align:center; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); padding:3px 0; }
+.cal-day { aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-size:11px; cursor:pointer; transition:all 0.2s; position:relative; border-radius:2px; }
+.cal-day.avail:hover { background:var(--green-lt); color:var(--green-dk); }
+.cal-day.booked { color:var(--text-muted); text-decoration:line-through; cursor:not-allowed; opacity:.5; }
+.cal-day.empty { cursor:default; }
+.cal-day.selected { background:var(--green); color:var(--white); }
+.cal-day.today { border:1px solid var(--green); }
+.cal-legend { display:flex; gap:1.5rem; margin-top:.625rem; }
+.leg { display:flex; align-items:center; gap:6px; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); }
+.leg-dot { width:8px; height:8px; border-radius:50%; }
+
+/* FORM */
+.form-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--notte); margin-bottom:1.25rem; }
+.date-banner { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--green); padding:7px 12px; border-left:2px solid var(--green); margin-bottom:1.25rem; background:var(--green-lt); }
+.f-group { margin-bottom:1.125rem; }
+.f-label { display:block; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:5px; }
+.f-input { width:100%; background:var(--white); border:1px solid var(--border-md); color:var(--notte); padding:9px 13px; font-family:'Montserrat',sans-serif; font-size:13px; outline:none; transition:border-color 0.2s; }
+.f-input:focus { border-color:var(--green); }
+.f-input::placeholder { color:var(--text-muted); }
+textarea.f-input { resize:vertical; min-height:90px; }
+.f-submit { width:100%; padding:13px; background:var(--green); color:var(--white); border:none; font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:background 0.2s; font-weight:500; }
+.f-submit:hover { background:var(--green-dk); }
+.f-note { font-size:9px; color:var(--text-muted); margin-top:7px; text-align:center; }
+.form-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; gap:.875rem; min-height:280px; }
+.form-placeholder i { font-size:38px; color:var(--aqua); opacity:.5; }
+.form-placeholder p { font-size:11px; color:var(--text-muted); line-height:2; }
+.form-success { display:none; text-align:center; padding:2rem; border:1px solid var(--border); }
+.form-success.show { display:block; }
+.success-icon { font-size:30px; color:var(--green); margin-bottom:.875rem; }
+.success-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--notte); margin-bottom:.5rem; }
+.success-text { font-size:11px; color:var(--text-muted); line-height:2; }
+.booking-form { display:block; }
+.booking-form.show { display:block; }
+
+/* FOOTER */
+.sec-footer { padding:1.25rem 3rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:var(--bg-mid); }
+.footer-name { font-family:'Cormorant Garamond',serif; font-size:13px; font-weight:300; letter-spacing:3px; color:var(--text-mid); }
+.footer-loc { font-size:9px; letter-spacing:2px; color:var(--text-muted); text-transform:uppercase; }
+.footer-insta { font-size:9px; letter-spacing:1px; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:color 0.2s; }
+.footer-insta:hover { color:var(--green-dk); }
+.divider { height:1px; background:var(--border); margin:1.5rem 0; }
+.note-box { padding:.875rem 1.125rem; border-left:2px solid var(--green); background:var(--green-lt); margin-top:.875rem; }
+.note-box p { font-size:10px; color:var(--text-mid); line-height:1.9; }
+
+/* ===================== ADMIN PANEL ===================== */
+.admin-overlay {
+  display:none; position:fixed; inset:0; z-index:9999;
+  background:rgba(28,58,63,0.7); backdrop-filter:blur(3px);
+  align-items:flex-start; justify-content:flex-end;
+}
+.admin-overlay.open { display:flex; }
+.admin-panel {
+  width:520px; max-width:100vw; height:100vh; overflow-y:auto;
+  background:#F4FAFB; border-left:1px solid var(--border-md);
+  display:flex; flex-direction:column;
+  font-family:'Montserrat',sans-serif;
+}
+.adm-topbar {
+  padding:1.25rem 1.5rem; background:var(--notte); display:flex; align-items:center; justify-content:space-between;
+  position:sticky; top:0; z-index:10;
+}
+.adm-topbar-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; letter-spacing:3px; color:var(--white); }
+.adm-close { background:none; border:1px solid rgba(255,255,255,0.2); color:var(--white); padding:5px 12px; cursor:pointer; font-size:12px; font-family:'Montserrat',sans-serif; transition:all 0.2s; }
+.adm-close:hover { background:rgba(255,255,255,0.1); }
+.adm-body { padding:1.5rem; flex:1; }
+.adm-section { margin-bottom:2rem; }
+.adm-sec-title {
+  font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--green);
+  margin-bottom:1rem; padding-bottom:.5rem; border-bottom:1px solid var(--border-md);
+  display:flex; align-items:center; gap:8px;
+}
+.adm-sec-title i { font-size:14px; }
+.adm-row { margin-bottom:1rem; }
+.adm-label { display:block; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:5px; }
+.adm-input {
+  width:100%; background:var(--white); border:1px solid var(--border-md); color:var(--notte);
+  padding:8px 11px; font-family:'Montserrat',sans-serif; font-size:12px; outline:none;
+  transition:border-color 0.2s;
+}
+.adm-input:focus { border-color:var(--green); }
+textarea.adm-input { resize:vertical; min-height:70px; }
+.adm-btn {
+  padding:9px 18px; font-size:9px; letter-spacing:2px; text-transform:uppercase;
+  cursor:pointer; font-family:'Montserrat',sans-serif; transition:all 0.2s; border:1px solid;
+}
+.adm-btn-primary { background:var(--green); color:var(--white); border-color:var(--green); }
+.adm-btn-primary:hover { background:var(--green-dk); }
+.adm-btn-outline { background:none; color:var(--green); border-color:var(--green); }
+.adm-btn-outline:hover { background:var(--green-lt); }
+.adm-btn-danger { background:none; color:#c0392b; border-color:#c0392b; font-size:9px; padding:5px 10px; }
+.adm-btn-danger:hover { background:#fdecea; }
+.adm-btn-sm { padding:5px 12px; font-size:9px; }
+.adm-tabs { display:flex; gap:2px; margin-bottom:1.5rem; flex-wrap:wrap; }
+.adm-tab { padding:7px 14px; font-size:9px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; border:1px solid var(--border-md); background:none; color:var(--text-muted); font-family:'Montserrat',sans-serif; transition:all 0.2s; }
+.adm-tab.active { background:var(--notte); color:var(--white); border-color:var(--notte); }
+.adm-tab-content { display:none; }
+.adm-tab-content.active { display:block; }
+.adm-media-list { display:flex; flex-direction:column; gap:8px; margin-bottom:1rem; max-height:260px; overflow-y:auto; }
+.adm-media-item {
+  display:flex; align-items:center; gap:10px; padding:8px 10px;
+  background:var(--bg); border:1px solid var(--border); border-radius:2px;
+}
+.adm-media-thumb { width:44px; height:44px; object-fit:cover; background:var(--surface); flex-shrink:0; border:1px solid var(--border); }
+.adm-media-thumb-vid { width:44px; height:44px; background:var(--notte); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.adm-media-thumb-vid i { color:var(--mint); font-size:16px; }
+.adm-media-info { flex:1; min-width:0; }
+.adm-media-name { font-size:11px; color:var(--notte); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.adm-media-sub { font-size:9px; color:var(--text-muted); margin-top:2px; }
+.adm-media-actions { display:flex; gap:5px; flex-shrink:0; }
+.adm-add-area {
+  border:1px dashed var(--border-md); padding:1.25rem; text-align:center;
+  background:var(--bg); cursor:pointer; transition:all 0.2s; margin-bottom:.75rem;
+}
+.adm-add-area:hover { border-color:var(--green); background:var(--green-lt); }
+.adm-add-area input[type=file] { display:none; }
+.adm-add-area p { font-size:10px; color:var(--text-muted); margin-top:6px; }
+.adm-add-area i { font-size:22px; color:var(--aqua); }
+.adm-or { text-align:center; font-size:9px; color:var(--text-muted); letter-spacing:2px; text-transform:uppercase; margin:.5rem 0; }
+.adm-url-row { display:flex; gap:6px; }
+.adm-url-row .adm-input { flex:1; }
+.adm-cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; margin-bottom:.75rem; }
+.adm-cal-day { aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-size:10px; cursor:pointer; border-radius:2px; border:1px solid transparent; transition:all 0.15s; }
+.adm-cal-day.past { color:var(--text-muted); opacity:.4; cursor:default; }
+.adm-cal-day.empty { cursor:default; }
+.adm-cal-day.avail { background:var(--bg); border-color:var(--border); color:var(--text); }
+.adm-cal-day.avail:hover { border-color:var(--green); background:var(--green-lt); }
+.adm-cal-day.blocked { background:var(--surface); color:var(--text-muted); text-decoration:line-through; border-color:var(--border-md); }
+.adm-cal-day.blocked:hover { border-color:#c0392b; }
+.adm-cal-dlbl { text-align:center; font-size:9px; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; }
+.adm-save-bar {
+  position:sticky; bottom:0; padding:1rem 1.5rem;
+  background:var(--bg); border-top:1px solid var(--border-md);
+  display:flex; gap:8px; align-items:center; justify-content:flex-end;
+}
+.adm-saved-msg { font-size:9px; color:var(--green); letter-spacing:1px; opacity:0; transition:opacity 0.4s; }
+.adm-saved-msg.show { opacity:1; }
+.adm-color-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:.5rem; }
+.adm-color-swatch { display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; }
+.adm-color-swatch input[type=color] { width:36px; height:36px; border:1px solid var(--border-md); padding:2px; cursor:pointer; background:none; }
+.adm-color-swatch span { font-size:8px; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; }
+
+/* Login overlay */
+.adm-login {
+  display:none; position:fixed; inset:0; z-index:10000;
+  background:rgba(28,58,63,0.85); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center;
+}
+.adm-login.open { display:flex; }
+.adm-login-box {
+  background:var(--white); padding:2.5rem; width:320px;
+  border:1px solid var(--border-md); text-align:center;
+}
+.adm-login-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:var(--notte); margin-bottom:.5rem; }
+.adm-login-sub { font-size:10px; color:var(--text-muted); letter-spacing:1px; margin-bottom:1.5rem; }
+.adm-login-err { font-size:10px; color:#c0392b; margin-top:.5rem; min-height:14px; }
+
+/* Export */
+.adm-export-btn { width:100%; padding:11px; background:var(--notte); color:var(--white); border:none; font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:background 0.2s; display:flex; align-items:center; justify-content:center; gap:8px; }
+.adm-export-btn:hover { background:var(--notte-mid); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div style="display:flex;align-items:center;gap:1.25rem;">
+    <div class="nav-logo" onclick="go('home')">CHIARA AIANI</div>
+    <a id="nav-cv-btn" href="https://drive.google.com/file/d/1znDpKHfJr2v15oBu9pbyFrHkDV1dLjIu/view?usp=sharing" target="_blank" rel="noopener" class="nav-cv-btn">
+      <i class="ti ti-download" style="font-size:10px;vertical-align:-1px;"></i> Scarica CV
+    </a>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link" onclick="go('home')">Home</button>
+    <button class="nav-link" id="nav-actress" onclick="go('actress')">Attrice</button>
+    <button class="nav-link" id="nav-vm" onclick="go('vm')">Videomaker</button>
+    <button class="nav-admin-btn" onclick="openAdmin()"><i class="ti ti-settings" style="font-size:11px;vertical-align:-1px;"></i> Admin</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="home-split">
+    <div class="home-panel panel-actress" onclick="go('actress')">
+      <div class="panel-num">I</div>
+      <div class="panel-content">
+        <div class="panel-eyebrow" id="home-actress-eyebrow">Portfolio</div>
+        <div class="panel-title" id="home-actress-title">Attrice</div>
+        <div class="panel-sub" id="home-actress-sub">Book fotografico · Foto artistiche<br>Lavori & produzioni</div>
+        <button class="cta cta-dark">Esplora <span class="cta-line"></span></button>
+      </div>
+      <div class="panel-divider"></div>
+    </div>
+    <div class="home-panel panel-video" onclick="go('vm')">
+      <div class="panel-num">II</div>
+      <div class="panel-content">
+        <div class="panel-eyebrow" id="home-vm-eyebrow">Servizi</div>
+        <div class="panel-title" id="home-vm-title">Video-<br>maker</div>
+        <div class="panel-sub" id="home-vm-sub">Regia · Montaggio · Produzione<br>Prenota una collaborazione</div>
+        <button class="cta cta-light">Esplora <span class="cta-line"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ATTRICE -->
+<div id="page-actress" class="page">
+  <div class="sec-header">
+    <div>
+      <div class="sec-eyebrow">Portfolio · Attrice</div>
+      <div class="sec-title" id="actress-name">Chiara Aiani</div>
+    </div>
+    <div class="sec-tabs">
+      <button class="sec-tab active" onclick="aTab('book',this)">Book</button>
+      <button class="sec-tab" onclick="aTab('art',this)">Artistiche</button>
+      <button class="sec-tab" onclick="aTab('video',this)">Video</button>
+    </div>
+  </div>
+  <div class="content">
+    <div id="at-book" class="tab-content active">
+      <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-book-caption">Fotografie del book professionale</p>
+      <div class="photo-grid" id="grid-book"></div>
+    </div>
+    <div id="at-art" class="tab-content">
+      <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-art-caption">Scatti artistici e di scena</p>
+      <div class="photo-grid photo-grid-2" id="grid-art"></div>
+    </div>
+    <div id="at-video" class="tab-content">
+      <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-video-caption">Produzioni e lavori realizzati</p>
+      <div class="video-grid" id="grid-actress-video"></div>
+    </div>
+  </div>
+  <div class="sec-footer"><span class="footer-name" id="footer-actress">CHIARA AIANI · ATTRICE</span><a class="footer-insta" href="https://instagram.com/chiaraiani" target="_blank" rel="noopener"><i class="ti ti-brand-instagram" style="font-size:13px;"></i>@chiaraiani</a><span class="footer-loc" id="footer-actress-loc">Milano, Italia</span></div>
+</div>
+
+<!-- VIDEOMAKER -->
+<div id="page-vm" class="page">
+  <div class="sec-header">
+    <div>
+      <div class="sec-eyebrow">Servizi · Videomaker</div>
+      <div class="sec-title" id="vm-title">Regia & Produzione</div>
+    </div>
+    <div class="sec-tabs">
+      <button class="sec-tab active" onclick="vTab('about',this)">Profilo</button>
+      <button class="sec-tab" onclick="vTab('works',this)">Lavori</button>
+      <button class="sec-tab" onclick="vTab('rates',this)">Tariffe</button>
+      <button class="sec-tab" onclick="vTab('book',this)">Contattami</button>
+    </div>
+  </div>
+
+  <div id="vt-about" class="tab-content active">
+    <div class="vm-grid">
+      <div class="vm-col">
+        <div class="sec-eyebrow" style="margin-bottom:.875rem;">Chi sono</div>
+        <p class="bio-text" id="vm-bio">Videomaker e regista con uno sguardo narrativo nato dal teatro e dalla recitazione. Racconto storie visive che sanno emozionare.</p>
+        <p style="font-size:12px;color:var(--text-muted);line-height:2;margin-bottom:1.5rem;" id="vm-bio-ext">Qui puoi inserire la tua biografia completa, la tua formazione, i tuoi riferimenti artistici e il tipo di lavoro che ami fare.</p>
+        <div class="bio-tags" id="vm-tags-container"></div>
+        <div class="stats-row">
+          <div class="stat-box"><div class="stat-num" id="stat1-num">5+</div><div class="stat-lbl" id="stat1-lbl">Anni</div></div>
+          <div class="stat-box"><div class="stat-num" id="stat2-num">30+</div><div class="stat-lbl" id="stat2-lbl">Progetti</div></div>
+          <div class="stat-box"><div class="stat-num" id="stat3-num">∞</div><div class="stat-lbl" id="stat3-lbl">Idee</div></div>
+        </div>
+      </div>
+      <div class="vm-col">
+        <div class="sec-eyebrow" style="margin-bottom:.875rem;">Cosa offro</div>
+        <div class="service-list" id="services-list"></div>
+        <div style="margin-top:1.25rem;">
+          <button class="cta cta-dark" style="width:100%;justify-content:center;" onclick="vTab('book',document.querySelectorAll('#page-vm .sec-tab')[3])">Contattami <span class="cta-line"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="vt-works" class="tab-content">
+    <div class="content">
+      <div style="margin-bottom:1.5rem;">
+        <div class="sec-eyebrow" id="works-eyebrow">Selezione lavori</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--notte);margin-bottom:.375rem;" id="works-heading">Portfolio videomaker</div>
+        <p style="font-size:11px;color:var(--text-muted);line-height:2;" id="works-subtext">Una selezione di progetti realizzati — documentari, fiction, corporate e contenuti social.</p>
+      </div>
+      <div class="works-cats" id="works-cats"></div>
+      <div class="video-grid" id="grid-vm-video"></div>
+    </div>
+  </div>
+
+  <div id="vt-rates" class="tab-content">
+    <div class="vm-grid">
+      <div class="vm-col">
+        <div class="sec-eyebrow" style="margin-bottom:1.25rem;">Tariffe giornaliere</div>
+        <div class="tariffe-table" id="rates-table"></div>
+        <div class="note-box" style="margin-top:.875rem;"><p id="rates-note">Le tariffe sono orientative. Ogni progetto viene valutato singolarmente. Contattami per un preventivo personalizzato.</p></div>
+      </div>
+      <div class="vm-col">
+        <div class="sec-eyebrow" style="margin-bottom:1.25rem;">Pacchetti</div>
+        <div class="pkg-list" id="packages-list"></div>
+        <div style="margin-top:1.25rem;">
+          <button class="cta cta-dark" style="width:100%;justify-content:center;" onclick="vTab('book',document.querySelectorAll('#page-vm .sec-tab')[3])">Contattami <span class="cta-line"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="vt-book" class="tab-content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;">
+      <div style="padding:2.5rem 3rem;border-right:1px solid var(--border);">
+        <div class="sec-eyebrow" style="margin-bottom:1.25rem;">Disponibilità</div>
+        <div class="cal-header">
+          <button class="cal-nav" onclick="chMo(-1)">&#8592;</button>
+          <div class="cal-month" id="cal-title"></div>
+          <button class="cal-nav" onclick="chMo(1)">&#8594;</button>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="cal-legend">
+          <div class="leg"><div class="leg-dot" style="background:var(--green);"></div>Disponibile</div>
+          <div class="leg"><div class="leg-dot" style="background:var(--border-md);"></div>Non disponibile</div>
+        </div>
+        <div class="note-box" style="margin-top:1rem;">
+          <p><i class="ti ti-info-circle" style="font-size:13px;vertical-align:-2px;margin-right:5px;" aria-hidden="true"></i>Puoi selezionare una data dal calendario per indicarla nel messaggio — oppure scrivimi direttamente.</p>
+        </div>
+      </div>
+      <div style="padding:2.5rem 3rem;">
+        <div class="booking-form" id="bform">
+          <div class="form-title">Scrivimi</div>
+          <div class="date-banner" id="date-banner" style="display:none;">Data selezionata: —</div>
+          <div class="f-group"><label class="f-label">Nome e cognome</label><input type="text" class="f-input" placeholder="Il tuo nome" id="fn"></div>
+          <div class="f-group"><label class="f-label">Email</label><input type="email" class="f-input" placeholder="tua@gmail.com" id="fe"></div>
+          <div class="f-group"><label class="f-label">Tipo di progetto</label>
+            <select class="f-input" id="ft" style="cursor:pointer;">
+              <option value="">Seleziona...</option>
+              <option>Cortometraggio / Fiction</option>
+              <option>Documentario</option>
+              <option>Video corporate</option>
+              <option>Evento</option>
+              <option>Video musicale</option>
+              <option>Social content</option>
+              <option>Altro</option>
+            </select>
+          </div>
+          <div class="f-group"><label class="f-label">Messaggio</label><textarea class="f-input" placeholder="Raccontami il tuo progetto..." id="fm"></textarea></div>
+          <button class="f-submit" onclick="submitForm()">Invia messaggio</button>
+          <p class="f-note" id="form-reply-note">Riceverai una risposta entro 48 ore alla tua email</p>
+        </div>
+        <div class="form-success" id="fsuccess">
+          <div class="success-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+          <div class="success-title">Messaggio inviato!</div>
+          <div class="success-text" id="success-text">Grazie! Ti rispondo entro 48 ore.<br>Controlla la tua casella Gmail.</div>
+          <button class="cta cta-dark" style="margin-top:1.25rem;" onclick="resetF()">Nuovo messaggio <span class="cta-line"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-footer"><span class="footer-name" id="footer-vm">CHIARA AIANI · VIDEOMAKER</span><a class="footer-insta" href="https://instagram.com/chiaraiani" target="_blank" rel="noopener"><i class="ti ti-brand-instagram" style="font-size:13px;"></i>@chiaraiani</a><span class="footer-loc" id="footer-vm-loc">chiara@gmail.com · Milano</span></div>
+</div>
+
+<!-- ===================== VIDEO MODAL ===================== -->
+<div class="vid-modal-overlay" id="vid-modal-overlay" onclick="vidModalBgClick(event)">
+  <div class="vid-modal-wrap">
+    <button class="vid-modal-close" onclick="vidModalClose()" aria-label="Chiudi"><i class="ti ti-x"></i></button>
+    <div id="vid-modal-content"></div>
+  </div>
+</div>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lbx-overlay" id="lbx-overlay" onclick="lbxBgClick(event)">
+  <button class="lbx-close" onclick="lbxClose()" aria-label="Chiudi"><i class="ti ti-x"></i></button>
+  <div class="lbx-counter" id="lbx-counter"></div>
+  <button class="lbx-btn lbx-prev" onclick="lbxNav(-1)" aria-label="Precedente"><i class="ti ti-chevron-left"></i></button>
+  <div class="lbx-img-wrap">
+    <img class="lbx-img" id="lbx-img" src="" alt="">
+    <div class="lbx-caption" id="lbx-caption"></div>
+  </div>
+  <button class="lbx-btn lbx-next" onclick="lbxNav(1)" aria-label="Successiva"><i class="ti ti-chevron-right"></i></button>
+</div>
+
+<!-- ===================== LOGIN OVERLAY ===================== -->
+<div class="adm-login" id="adm-login">
+  <div class="adm-login-box">
+    <div class="adm-login-title">Admin</div>
+    <div class="adm-login-sub">Inserisci la password per accedere al pannello</div>
+    <input type="password" class="adm-input" id="adm-pw" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()" style="text-align:center;letter-spacing:4px;font-size:16px;">
+    <div class="adm-login-err" id="adm-pw-err"></div>
+    <div style="display:flex;gap:8px;margin-top:1rem;">
+      <button class="adm-btn adm-btn-primary" style="flex:1;" onclick="checkPw()">Accedi</button>
+      <button class="adm-btn adm-btn-outline" onclick="closeAdmin()">Annulla</button>
+    </div>
+    <p style="font-size:9px;color:var(--text-muted);margin-top:1.25rem;letter-spacing:1px;">Password predefinita: <strong>chiara2025</strong><br>Cambiarla nella sezione Impostazioni</p>
+  </div>
+</div>
+
+<!-- ===================== ADMIN PANEL ===================== -->
+<div class="admin-overlay" id="admin-overlay">
+<div class="admin-panel">
+  <div class="adm-topbar">
+    <div class="adm-topbar-title">Pannello Admin</div>
+    <button class="adm-close" onclick="closeAdminPanel()">✕ Chiudi</button>
+  </div>
+  <div class="adm-body">
+
+    <!-- TABS -->
+    <div class="adm-tabs">
+      <button class="adm-tab active" onclick="admTab('testi',this)">Testi</button>
+      <button class="adm-tab" onclick="admTab('foto',this)">Foto</button>
+      <button class="adm-tab" onclick="admTab('video',this)">Video</button>
+      <button class="adm-tab" onclick="admTab('tariffe',this)">Tariffe</button>
+      <button class="adm-tab" onclick="admTab('calendario',this)">Calendario</button>
+      <button class="adm-tab" onclick="admTab('impostazioni',this)">Impost.</button>
+    </div>
+
+    <!-- TAB: TESTI -->
+    <div class="adm-tab-content active" id="admt-testi">
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-home"></i> Home</div>
+        <div class="adm-row"><label class="adm-label">Titolo pannello Attrice</label><input class="adm-input" id="e-home-actress-title" value="Attrice"></div>
+        <div class="adm-row"><label class="adm-label">Sottotitolo Attrice</label><input class="adm-input" id="e-home-actress-sub" value="Book fotografico · Foto artistiche&#10;Lavori & produzioni"></div>
+        <div class="adm-row"><label class="adm-label">Titolo pannello Videomaker</label><input class="adm-input" id="e-home-vm-title" value="Video-maker"></div>
+        <div class="adm-row"><label class="adm-label">Sottotitolo Videomaker</label><input class="adm-input" id="e-home-vm-sub" value="Regia · Montaggio · Produzione&#10;Prenota una collaborazione"></div>
+      </div>
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-user"></i> Sezione Attrice</div>
+        <div class="adm-row"><label class="adm-label">Nome (intestazione)</label><input class="adm-input" id="e-actress-name" value="Chiara Aiani"></div>
+        <div class="adm-row"><label class="adm-label">Didascalia Book</label><input class="adm-input" id="e-actress-book-caption" value="Fotografie del book professionale"></div>
+        <div class="adm-row"><label class="adm-label">Didascalia Artistiche</label><input class="adm-input" id="e-actress-art-caption" value="Scatti artistici e di scena"></div>
+        <div class="adm-row"><label class="adm-label">Didascalia Video</label><input class="adm-input" id="e-actress-video-caption" value="Produzioni e lavori realizzati"></div>
+      </div>
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-video"></i> Sezione Videomaker</div>
+        <div class="adm-row"><label class="adm-label">Titolo sezione</label><input class="adm-input" id="e-vm-title" value="Regia & Produzione"></div>
+        <div class="adm-row"><label class="adm-label">Bio (frase corsivo)</label><textarea class="adm-input" id="e-vm-bio">Videomaker e regista con uno sguardo narrativo nato dal teatro e dalla recitazione. Racconto storie visive che sanno emozionare.</textarea></div>
+        <div class="adm-row"><label class="adm-label">Bio estesa (paragrafo)</label><textarea class="adm-input" id="e-vm-bio-ext">Qui puoi inserire la tua biografia completa, la tua formazione, i tuoi riferimenti artistici e il tipo di lavoro che ami fare.</textarea></div>
+        <div class="adm-row"><label class="adm-label">Tag competenze (separati da virgola)</label><input class="adm-input" id="e-vm-tags" value="Regia,Montaggio,Riprese,Documentario,Narrativa,Corporate"></div>
+        <div class="adm-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div><label class="adm-label">Stat 1</label><input class="adm-input" id="e-stat1-num" value="5+"><input class="adm-input" id="e-stat1-lbl" value="Anni" style="margin-top:4px;"></div>
+          <div><label class="adm-label">Stat 2</label><input class="adm-input" id="e-stat2-num" value="30+"><input class="adm-input" id="e-stat2-lbl" value="Progetti" style="margin-top:4px;"></div>
+        </div>
+        <div class="adm-row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div><label class="adm-label">Stat 3 <span style="font-size:8px;opacity:.7;">(opzionale — lascia vuoto per nasconderlo)</span></label><input class="adm-input" id="e-stat3-num" value="" placeholder="es. ∞"><input class="adm-input" id="e-stat3-lbl" value="" placeholder="es. Idee" style="margin-top:4px;"></div>
+        </div>
+      </div>
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-tools"></i> Servizi offerti</div>
+        <div id="services-editor"></div>
+        <button class="adm-btn adm-btn-outline adm-btn-sm" onclick="addService()">+ Aggiungi servizio</button>
+      </div>
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-layout-grid"></i> Pagina Lavori (tab "Lavori")</div>
+        <div class="adm-row"><label class="adm-label">Occhiello (eyebrow)</label><input class="adm-input" id="e-works-eyebrow" value="Selezione lavori"></div>
+        <div class="adm-row"><label class="adm-label">Titolo principale</label><input class="adm-input" id="e-works-heading" value="Portfolio videomaker"></div>
+        <div class="adm-row"><label class="adm-label">Testo descrittivo</label><textarea class="adm-input" id="e-works-subtext">Una selezione di progetti realizzati — documentari, fiction, corporate e contenuti social.</textarea></div>
+      </div>
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-mail"></i> Contatti & Footer</div>
+        <div class="adm-row"><label class="adm-label">Email di contatto</label><input class="adm-input" id="e-contact-email" value="chiara@gmail.com"></div>
+        <div class="adm-row"><label class="adm-label">Città</label><input class="adm-input" id="e-contact-city" value="Milano"></div>
+        <div class="adm-row"><label class="adm-label">Handle Instagram (es. @chiaraiani)</label><input class="adm-input" id="e-instagram-handle" value="@chiaraiani"></div>
+        <div class="adm-row"><label class="adm-label">URL Instagram</label><input class="adm-input" id="e-instagram-url" value="https://instagram.com/chiaraiani"></div>
+        <div class="adm-row"><label class="adm-label">Nota risposta nel form contatti</label><input class="adm-input" id="e-form-reply-note" value="Riceverai una risposta entro 48 ore alla tua email"></div>
+        <div class="adm-row"><label class="adm-label">Testo conferma invio messaggio</label><textarea class="adm-input" id="e-success-text">Grazie! Ti rispondo entro 48 ore.
+Controlla la tua casella Gmail.</textarea></div>
+      </div>
+    </div>
+
+    <!-- TAB: FOTO -->
+    <div class="adm-tab-content" id="admt-foto">
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-photo"></i> Foto Book</div>
+        <div class="adm-media-list" id="adm-list-book"></div>
+        <div class="adm-add-area" onclick="document.getElementById('upload-book').click()">
+          <input type="file" id="upload-book" accept="image/*" multiple onchange="handleUpload(event,'book')">
+          <i class="ti ti-upload"></i>
+          <p>Clicca per caricare foto dal tuo computer<br><span style="font-size:8px;">(JPG, PNG, WEBP · Più file in una volta)</span></p>
+        </div>
+        <div class="adm-or">oppure</div>
+        <div class="adm-url-row">
+          <input class="adm-input" id="url-book" placeholder="Incolla URL foto (https://...)">
+          <button class="adm-btn adm-btn-outline adm-btn-sm" onclick="addMediaUrl('book')">Aggiungi</button>
+        </div>
+      </div>
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-palette"></i> Foto Artistiche</div>
+        <div class="adm-media-list" id="adm-list-art"></div>
+        <div class="adm-add-area" onclick="document.getElementById('upload-art').click()">
+          <input type="file" id="upload-art" accept="image/*" multiple onchange="handleUpload(event,'art')">
+          <i class="ti ti-upload"></i>
+          <p>Clicca per caricare foto dal tuo computer</p>
+        </div>
+        <div class="adm-or">oppure</div>
+        <div class="adm-url-row">
+          <input class="adm-input" id="url-art" placeholder="Incolla URL foto (https://...)">
+          <button class="adm-btn adm-btn-outline adm-btn-sm" onclick="addMediaUrl('art')">Aggiungi</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: VIDEO -->
+    <div class="adm-tab-content" id="admt-video">
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-movie"></i> Video Attrice</div>
+        <div class="adm-media-list" id="adm-list-actress-video"></div>
+        <div style="background:var(--bg);border:1px solid var(--border);padding:.875rem;margin-bottom:.5rem;">
+          <div class="adm-row"><label class="adm-label">Titolo</label><input class="adm-input" id="vadd-actress-title" placeholder="Titolo del video"></div>
+          <div class="adm-row"><label class="adm-label">URL (YouTube, Vimeo, MP4...)</label><input class="adm-input" id="vadd-actress-url" placeholder="https://youtube.com/watch?v=..."></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;" class="adm-row">
+            <div><label class="adm-label">Tipo · Anno</label><input class="adm-input" id="vadd-actress-meta" placeholder="Cortometraggio · 2024"></div>
+            <div><label class="adm-label">URL Thumbnail (opz.)</label><input class="adm-input" id="vadd-actress-thumb" placeholder="https://..."></div>
+          </div>
+          <button class="adm-btn adm-btn-outline adm-btn-sm" onclick="addVideoEntry('actressVideo')">+ Aggiungi video</button>
+        </div>
+      </div>
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-device-tv"></i> Lavori Videomaker</div>
+        <div class="adm-media-list" id="adm-list-vm-video"></div>
+        <div style="background:var(--bg);border:1px solid var(--border);padding:.875rem;margin-bottom:.5rem;">
+          <div class="adm-row"><label class="adm-label">Titolo</label><input class="adm-input" id="vadd-vm-title" placeholder="Titolo del video"></div>
+          <div class="adm-row"><label class="adm-label">URL (YouTube, Vimeo, MP4...)</label><input class="adm-input" id="vadd-vm-url" placeholder="https://youtube.com/watch?v=..."></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;" class="adm-row">
+            <div><label class="adm-label">Tipo · Anno</label><input class="adm-input" id="vadd-vm-meta" placeholder="Documentario · 2024"></div>
+            <div><label class="adm-label">URL Thumbnail (opz.)</label><input class="adm-input" id="vadd-vm-thumb" placeholder="https://..."></div>
+          </div>
+          <button class="adm-btn adm-btn-outline adm-btn-sm" onclick="addVideoEntry('vmVideo')">+ Aggiungi video</button>
+        </div>
+      </div>
+      <div class="note-box" style="margin-top:1rem;">
+        <p>Per i video puoi usare link YouTube, Vimeo o un URL diretto a file MP4. I link YouTube/Vimeo vengono incorporati automaticamente nella pagina con il player nativo.</p>
+      </div>
+    </div>
+
+    <!-- TAB: TARIFFE -->
+    <div class="adm-tab-content" id="admt-tariffe">
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-currency-euro"></i> Tariffe giornaliere</div>
+        <div id="rates-editor"></div>
+        <button class="adm-btn adm-btn-outline adm-btn-sm" onclick="addRate()">+ Aggiungi tariffa</button>
+      </div>
+      <div class="adm-section" style="margin-top:1.5rem;">
+        <div class="adm-sec-title"><i class="ti ti-package"></i> Pacchetti</div>
+        <div id="packages-editor"></div>
+        <button class="adm-btn adm-btn-outline adm-btn-sm" onclick="addPackage()">+ Aggiungi pacchetto</button>
+      </div>
+      <div class="adm-section" style="margin-top:1.5rem;">
+        <div class="adm-sec-title"><i class="ti ti-note"></i> Nota tariffe</div>
+        <textarea class="adm-input" id="e-rates-note">Le tariffe sono orientative. Ogni progetto viene valutato singolarmente. Contattami per un preventivo personalizzato.</textarea>
+      </div>
+    </div>
+
+    <!-- TAB: CALENDARIO -->
+    <div class="adm-tab-content" id="admt-calendario">
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-calendar"></i> Gestione disponibilità</div>
+        <p style="font-size:10px;color:var(--text-muted);margin-bottom:1rem;line-height:1.8;">Clicca sui giorni per segnarli come <strong>non disponibili</strong> (barrati). Clicca di nuovo per renderli di nuovo disponibili. Le date passate vengono ignorate automaticamente.</p>
+        <div class="cal-header">
+          <button class="cal-nav" onclick="admChMo(-1)">&#8592;</button>
+          <div class="cal-month" id="adm-cal-title"></div>
+          <button class="cal-nav" onclick="admChMo(1)">&#8594;</button>
+        </div>
+        <div class="adm-cal-grid" id="adm-cal-grid"></div>
+        <div style="display:flex;gap:1rem;margin-top:.75rem;">
+          <div class="leg"><div class="leg-dot" style="background:var(--green);border:1px solid var(--border-md);"></div>Disponibile</div>
+          <div class="leg"><div class="leg-dot" style="background:var(--surface);border:1px solid var(--border-md);"></div>Non disponibile</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: IMPOSTAZIONI -->
+    <div class="adm-tab-content" id="admt-impostazioni">
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-lock"></i> Sicurezza</div>
+        <div class="adm-row"><label class="adm-label">Password attuale</label><input type="password" class="adm-input" id="pw-current" placeholder="••••••••"></div>
+        <div class="adm-row"><label class="adm-label">Nuova password</label><input type="password" class="adm-input" id="pw-new" placeholder="Minimo 6 caratteri"></div>
+        <div class="adm-row"><label class="adm-label">Conferma nuova password</label><input type="password" class="adm-input" id="pw-confirm" placeholder="Ripeti la password"></div>
+        <div id="pw-msg" style="font-size:10px;min-height:16px;margin-bottom:.5rem;"></div>
+        <button class="adm-btn adm-btn-primary adm-btn-sm" onclick="changePw()">Cambia password</button>
+      </div>
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-download"></i> Esporta sito</div>
+        <p style="font-size:10px;color:var(--text-muted);margin-bottom:1rem;line-height:1.8;">Genera e scarica il file HTML aggiornato con tutte le tue modifiche. Questo è il file da caricare sul tuo hosting.</p>
+        <button class="adm-export-btn" onclick="exportSite()"><i class="ti ti-download"></i> Scarica sito aggiornato (.html)</button>
+      </div>
+      <div class="adm-section">
+        <div class="adm-sec-title"><i class="ti ti-trash"></i> Dati</div>
+        <button class="adm-btn adm-btn-danger" onclick="if(confirm('Cancellare tutti i dati salvati e tornare al default?'))resetAll()">Reset dati salvati</button>
+      </div>
+    </div>
+
+  </div><!-- /.adm-body -->
+
+  <div class="adm-save-bar">
+    <span class="adm-saved-msg" id="adm-saved-msg">✓ Salvato</span>
+    <button class="adm-btn adm-btn-outline" onclick="closeAdminPanel()">Chiudi</button>
+    <button class="adm-btn adm-btn-primary" onclick="saveAll()">Salva modifiche</button>
+  </div>
+</div>
+</div>
+
+<script>
+// ===================== DATA MODEL =====================
+
+// Converte SITE_CONFIG (config.js) nel formato interno usato dal sito.
+// Se config.js non è caricato, usa valori di fallback incorporati.
+function buildDefaultFromConfig() {
+  const C = (typeof SITE_CONFIG !== 'undefined') ? SITE_CONFIG : null;
+  const T = C ? C.texts : {};
+
+  // Helper: legge da SITE_CONFIG o usa il fallback
+  function t(key, fallback){ return (T && T[key] !== undefined) ? T[key] : fallback; }
+
+  return {
+    pw: 'chiara2025',
+    texts: {
+      homeActressTitle:  t('homeLeftTitle',    'Attrice'),
+      homeActressSub:    t('homeLeftSub',      'Book fotografico · Foto artistiche\nLavori & produzioni'),
+      homeActressEyebrow:t('homeLeftEyebrow',  'Portfolio'),
+      homeVmTitle:       t('homeRightTitle',   'Video-\nmaker'),
+      homeVmSub:         t('homeRightSub',     'Regia · Montaggio · Produzione\nPrenota una collaborazione'),
+      homeVmEyebrow:     t('homeRightEyebrow', 'Servizi'),
+      actressName:       t('actressName',      'Chiara Aiani'),
+      actressBookCaption:t('actressBookCaption','Fotografie del book professionale'),
+      actressArtCaption: t('actressArtCaption','Scatti artistici e di scena'),
+      actressVideoCaption:t('actressVideoCaption','Produzioni e lavori realizzati'),
+      vmTitle:           t('vmTitle',          'Regia & Produzione'),
+      vmBio:             t('vmBio',            'Videomaker e regista con uno sguardo narrativo nato dal teatro e dalla recitazione. Racconto storie visive che sanno emozionare.'),
+      vmBioExt:          t('vmBioExt',         'Qui puoi inserire la tua biografia completa, la tua formazione, i tuoi riferimenti artistici e il tipo di lavoro che ami fare.'),
+      vmTags:            t('vmTags',           'Regia,Montaggio,Riprese,Documentario,Narrativa,Corporate'),
+      stat1Num:          t('stat1Num',         '5+'),
+      stat1Lbl:          t('stat1Lbl',         'Anni'),
+      stat2Num:          t('stat2Num',         '30+'),
+      stat2Lbl:          t('stat2Lbl',         'Progetti'),
+      stat3Num:          t('stat3Num',         ''),
+      stat3Lbl:          t('stat3Lbl',         ''),
+      contactEmail:      t('contactEmail',     'chiara@gmail.com'),
+      contactCity:       t('contactCity',      'Milano'),
+      formReplyNote:     t('formReplyNote',    'Riceverai una risposta entro 48 ore alla tua email'),
+      successText:       t('successText',      'Grazie! Ti rispondo entro 48 ore.\nControlla la tua casella Gmail.'),
+      instagramHandle:   t('instagramHandle',  '@chiaraiani'),
+      instagramUrl:      t('instagramUrl',     'https://instagram.com/chiaraiani'),
+      ratesNote:         t('ratesNote',        'Le tariffe sono orientative. Ogni progetto viene valutato singolarmente. Contattami per un preventivo personalizzato.'),
+      worksEyebrow:      t('worksEyebrow',     'Selezione lavori'),
+      worksHeading:      t('worksHeading',     'Portfolio videomaker'),
+      worksSubtext:      t('worksSubtext',     'Una selezione di progetti realizzati — documentari, fiction, corporate e contenuti social.'),
+    },
+    services: (C && C.services && C.services.length) ? C.services : [
+      {icon:'ti-video',   name:'Riprese & Regia',             desc:'Gestione completa del set, direzione attori, scelta location.'},
+      {icon:'ti-cut',     name:'Montaggio & Post-produzione', desc:'Color grading, sound design, effetti visivi e finalizzazione.'},
+      {icon:'ti-writing', name:'Sviluppo del progetto',       desc:'Dall\'idea alla sceneggiatura, storyboard e pre-produzione.'},
+      {icon:'ti-building',name:'Video corporate & eventi',    desc:'Contenuti per brand, eventi aziendali, documentari istituzionali.'}
+    ],
+    rates: (C && C.rates && C.rates.length) ? C.rates : [
+      {name:'Riprese — mezza giornata', sub:'Fino a 4 ore · operatore singolo', price:'€ 250', note:'+ iva'},
+      {name:'Riprese — giornata intera',sub:'Fino a 8 ore · operatore singolo', price:'€ 450', note:'+ iva'},
+      {name:'Montaggio',                sub:'Per ora lavorata',                 price:'€ 40',  note:'/ ora'},
+      {name:'Regia progetto',           sub:'Sviluppo completo',                price:'Su richiesta', note:''}
+    ],
+    packages: (C && C.packages && C.packages.length) ? C.packages : [
+      {name:'Pacchetto Social',       price:'€ 350',      desc:'Riprese mezza giornata + montaggio 5 reel ottimizzati per social', featured:false},
+      {name:'Pacchetto Evento',       price:'€ 700',      desc:'Copertura completa evento + highlight video + 3 clip brevi',       featured:true},
+      {name:'Pacchetto Documentario', price:'Da € 1.200', desc:'Progetto completo: sviluppo, riprese, post-produzione e consegna finale', featured:false}
+    ],
+    media: {
+      book:         (C && C.bookPhotos)    ? C.bookPhotos.map(p=>({src:p.src, label:p.label||'', objectPosition:p.objectPosition||'center top'})) : [],
+      art:          (C && C.artProjects)   ? C.artProjects.flatMap(proj=>proj.photos.map(p=>({src:p.src, label:p.label||''}))) : [],
+      actressVideo: (C && C.actressVideos) ? C.actressVideos.map(v=>({title:v.title, url:v.url, meta:v.meta||'', thumb:v.thumb||''})) : [],
+      vmVideo:      (C && C.vmVideos)      ? C.vmVideos.map(v=>({title:v.title, url:v.url, meta:v.meta||'', thumb:v.thumb||'', filterVal:v.filterVal||''})) : [],
+    },
+    blocked: (C && C.blocked) ? C.blocked : {}
+  };
+}
+
+const DEFAULT_DATA = buildDefaultFromConfig();
+
+// Se c'è una sessione salvata nel localStorage, usala.
+// Ma se la sessione è più vecchia della versione di config.js, aggiorna i dati testuali
+// senza cancellare le modifiche fatte dall'Admin (media, blocked, pw).
+let D = JSON.parse(JSON.stringify(DEFAULT_DATA));
+try {
+  const s = localStorage.getItem('chiara_data');
+  if(s) {
+    const saved = JSON.parse(s);
+    // Merge: mantieni i dati salvati ma aggiorna con config.js se l'utente ha
+    // usato "Reset dati" o se la sessione è fresca.
+    D = saved;
+  }
+} catch(e){}
+
+function save(){
+  try { localStorage.setItem('chiara_data', JSON.stringify(D)); } catch(e){}
+  const msg=document.getElementById('adm-saved-msg');
+  msg.classList.add('show');
+  setTimeout(()=>msg.classList.remove('show'),2000);
+}
+
+// ===================== NAVIGATION =====================
+const MI=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+const DI=['L','M','M','G','V','S','D'];
+let cy=2026, cm=new Date().getMonth(), sel=null;
+
+function go(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(x=>x.classList.remove('active'));
+  if(p==='actress') document.getElementById('nav-actress').classList.add('active');
+  if(p==='vm') document.getElementById('nav-vm').classList.add('active');
+}
+function aTab(t,el){ document.querySelectorAll('#page-actress .tab-content').forEach(x=>x.classList.remove('active')); document.getElementById('at-'+t).classList.add('active'); document.querySelectorAll('#page-actress .sec-tab').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
+function vTab(t,el){ document.querySelectorAll('#page-vm .tab-content').forEach(x=>x.classList.remove('active')); document.getElementById('vt-'+t).classList.add('active'); document.querySelectorAll('#page-vm .sec-tab').forEach(x=>x.classList.remove('active')); if(el) el.classList.add('active'); }
+function filterW(el){ document.querySelectorAll('.work-cat').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
+
+// ===================== RENDER SITE =====================
+function renderSite(){
+  const T=D.texts;
+  // Home
+  setText('home-actress-title', T.homeActressTitle);
+  setText('home-actress-sub', T.homeActressSub);
+  setText('home-actress-eyebrow', T.homeActressEyebrow);
+  setText('home-vm-eyebrow', T.homeVmEyebrow);
+  document.getElementById('home-vm-title').innerHTML = T.homeVmTitle.replace('\n','<br>');
+  setText('home-vm-sub', T.homeVmSub);
+  // Attrice
+  setText('actress-name', T.actressName);
+  setText('actress-book-caption', T.actressBookCaption);
+  setText('actress-art-caption', T.actressArtCaption);
+  setText('actress-video-caption', T.actressVideoCaption);
+  // VM
+  setText('vm-title', T.vmTitle);
+  setText('vm-bio', T.vmBio);
+  setText('vm-bio-ext', T.vmBioExt);
+  setText('stat1-num', T.stat1Num); setText('stat1-lbl', T.stat1Lbl);
+  setText('stat2-num', T.stat2Num); setText('stat2-lbl', T.stat2Lbl);
+  // Stat 3 is optional — render nothing if both num and lbl are empty
+  const s3num = T.stat3Num||''; const s3lbl = T.stat3Lbl||'';
+  const s3box = document.querySelector('.stats-row .stat-box:nth-child(3)');
+  if(s3box){
+    if(!s3num && !s3lbl){ s3box.style.display='none'; } else { s3box.style.display=''; setText('stat3-num', s3num); setText('stat3-lbl', s3lbl); }
+  } else { setText('stat3-num', s3num); setText('stat3-lbl', s3lbl); }
+  setText('rates-note', T.ratesNote);
+  setText('works-eyebrow', T.worksEyebrow||'Selezione lavori');
+  setText('works-heading', T.worksHeading||'Portfolio videomaker');
+  setText('works-subtext', T.worksSubtext||'');
+  setText('footer-actress-loc', T.contactCity+', Italia');
+  setText('footer-vm-loc', T.contactEmail+' · '+T.contactCity);
+  // Instagram links
+  const igHandle = T.instagramHandle||'@chiaraiani';
+  const igUrl = T.instagramUrl||'https://instagram.com/chiaraiani';
+  document.querySelectorAll('.footer-insta').forEach(a=>{ a.href=igUrl; a.querySelector('i').nextSibling ? (a.childNodes[a.childNodes.length-1].textContent=igHandle) : a.appendChild(document.createTextNode(igHandle)); });
+  // Form notes
+  const frn=document.getElementById('form-reply-note'); if(frn) frn.textContent=T.formReplyNote||'Riceverai una risposta entro 48 ore alla tua email';
+  const sct=document.getElementById('success-text'); if(sct) sct.innerHTML=(T.successText||'Grazie! Ti rispondo entro 48 ore.\nControlla la tua casella Gmail.').replace(/\n/g,'<br>');
+  // Tags
+  const tc=document.getElementById('vm-tags-container'); tc.innerHTML='';
+  T.vmTags.split(',').forEach(t=>{ const s=document.createElement('span'); s.className='bio-tag'; s.textContent=t.trim(); tc.appendChild(s); });
+  // Services
+  const sl=document.getElementById('services-list'); sl.innerHTML='';
+  D.services.forEach(sv=>{ sl.innerHTML+=`<div class="service-item"><i class="ti ${sv.icon}" aria-hidden="true"></i><div><div class="service-name">${sv.name}</div><div class="service-desc">${sv.desc}</div></div></div>`; });
+  // Works cats — usa worksFilters da config.js se disponibile
+  const wc=document.getElementById('works-cats'); wc.innerHTML='';
+  const filters = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.worksFilters && SITE_CONFIG.worksFilters.length)
+    ? SITE_CONFIG.worksFilters
+    : [{label:'Tutti', icon:'ti-layout-grid', filterVal:'all', isAll:true},
+       {label:'Narrativa', icon:'ti-movie', filterVal:'narrativa', isAll:false},
+       {label:'Doc & Corporate', icon:'ti-camera', filterVal:'corporate', isAll:false}];
+  filters.forEach((f,fi)=>{
+    const count = f.isAll ? (D.media.vmVideo.length||0) : D.media.vmVideo.filter(v=>v.filterVal===f.filterVal).length;
+    const div = document.createElement('div');
+    div.className = 'work-cat' + (fi===0?' active':'');
+    div.onclick = function(){ filterW(this); };
+    div.innerHTML = `<i class="ti ${f.icon}"></i><div class="work-cat-name">${f.label}</div><div class="work-cat-num">${count||'—'}</div>`;
+    wc.appendChild(div);
+  });
+  // Rates
+  const rt=document.getElementById('rates-table'); rt.innerHTML='';
+  D.rates.forEach(r=>{ rt.innerHTML+=`<div class="tariffa"><div><div class="tariffa-name">${r.name}</div><div class="tariffa-sub">${r.sub}</div></div><div><div class="tariffa-price">${r.price}</div><div class="tariffa-note">${r.note}</div></div></div>`; });
+  // Packages
+  const pl=document.getElementById('packages-list'); pl.innerHTML='';
+  D.packages.forEach(p=>{ pl.innerHTML+=`<div class="pkg${p.featured?' featured':''}"><div class="pkg-head"><div><div class="pkg-name">${p.name}${p.featured?'<span class="pkg-badge">Più richiesto</span>':''}</div></div><div class="pkg-price">${p.price}</div></div><div class="pkg-desc">${p.desc}</div></div>`; });
+  // Media grids
+  renderPhotoGrid('grid-book', D.media.book, 'book');
+  renderPhotoGrid('grid-art', D.media.art, 'art');
+  renderVideoGrid('grid-actress-video', D.media.actressVideo);
+  renderVideoGrid('grid-vm-video', D.media.vmVideo);
+  renderCal();
+}
+function setText(id, val){ const el=document.getElementById(id); if(el) el.textContent=val; }
+
+function renderPhotoGrid(gridId, items, type){
+  const g=document.getElementById(gridId); g.innerHTML='';
+  if(!items.length){
+    const placeholders = type==='book' ? [
+      {label:'Ritratto principale'},{label:'Primo piano'},{label:'Mezzo busto'},
+      {label:'Character'},{label:'Figura intera'},{label:'Dettaglio'}
+    ] : [
+      {label:'Scatto di scena'},{label:'Set teatrale'},{label:'Espressione'},
+      {label:'Cinematografico'},{label:'Backstage'}
+    ];
+    placeholders.forEach(p=>{ g.innerHTML+=`<div class="photo-item"><div class="photo-ph"><i class="ti ti-photo"></i>${p.label}</div><div class="photo-ov"><span class="photo-lbl">${p.label}</span></div></div>`; });
+    return;
+  }
+  const ctxKey = gridId;
+  const total = items.length;
+  items.forEach((item,i)=>{
+    // Only apply span2 to the first item of 'book' if there are enough items to fill the row without leaving a blank
+    // A span2 item takes 1 col-span but 2 row-span. With 3 columns: first item span2 leaves 2 spots in row1 and 3 in row2.
+    // Safe to span if total >= 3 (fills at least the 2 adjacent cells in same row).
+    const useSpan = (i===0 && type==='book' && total>=3);
+    const el = document.createElement('div');
+    el.className = 'photo-item' + (useSpan?' span2':'');
+    const pos = item.objectPosition || 'center top';
+    el.innerHTML = `<img src="${item.src}" alt="${item.label||''}" style="object-position:${pos};"><div class="photo-ov"><span class="photo-lbl">${item.label||''}</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div>`;
+    el.addEventListener('click', ()=>lbxOpen(ctxKey, i));
+    g.appendChild(el);
+  });
+}
+
+function renderVideoGrid(gridId, items){
+  const g=document.getElementById(gridId); g.innerHTML='';
+  if(!items.length){
+    for(let i=0;i<4;i++) g.innerHTML+=`<div class="video-card"><div class="video-thumb"><div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">Titolo produzione</div><div class="video-meta">Tipo · Anno</div></div></div>`;
+    return;
+  }
+  items.forEach(v=>{
+    const embedSrc = getEmbedSrc(v.url);
+    const isYTVimeo = !!embedSrc;
+    let thumbHtml = '';
+    if(v.thumb){
+      thumbHtml = `<img src="${v.thumb}" alt="">`;
+    } else if(isYTVimeo){
+      // Auto-generate YouTube thumbnail if possible
+      const ytMatch = v.url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/);
+      if(ytMatch) thumbHtml = `<img src="https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg" alt="" onerror="this.style.display='none'">`;
+    }
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.innerHTML = `<div class="video-thumb">${thumbHtml}<div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-meta">${v.meta}</div></div>`;
+    card.addEventListener('click', ()=>openVideo(v.url, v.title));
+    g.appendChild(card);
+  });
+}
+
+function getEmbedSrc(url){
+  if(!url) return null;
+  const yt = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/);
+  if(yt) return 'https://www.youtube.com/embed/'+yt[1]+'?autoplay=1&rel=0';
+  const vi = url.match(/vimeo\.com\/(\d+)/);
+  if(vi) return 'https://player.vimeo.com/video/'+vi[1]+'?autoplay=1';
+  return null;
+}
+
+function openVideo(url, title){
+  if(!url) return;
+  const embedSrc = getEmbedSrc(url);
+  const c = document.getElementById('vid-modal-content');
+  if(embedSrc){
+    c.innerHTML = `<iframe class="vid-modal-frame" src="${embedSrc}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title||'Video'}"></iframe>`;
+  } else {
+    // Direct file (mp4 etc)
+    c.innerHTML = `<video class="vid-modal-video" src="${url}" controls autoplay playsinline></video>`;
+  }
+  document.getElementById('vid-modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function vidModalClose(){
+  document.getElementById('vid-modal-overlay').classList.remove('open');
+  document.getElementById('vid-modal-content').innerHTML='';
+  document.body.style.overflow='';
+}
+
+function vidModalBgClick(e){
+  if(e.target===document.getElementById('vid-modal-overlay')) vidModalClose();
+}
+
+// ===================== CALENDAR =====================
+function renderCal(){
+  const key=cy+'-'+(cm+1);
+  const blocked=D.blocked[key]||[];
+  document.getElementById('cal-title').textContent=MI[cm]+' '+cy;
+  const g=document.getElementById('cal-grid'); g.innerHTML='';
+  DI.forEach(d=>{const e=document.createElement('div');e.className='cal-dlbl';e.textContent=d;g.appendChild(e);});
+  const fd=new Date(cy,cm,1).getDay(), off=fd===0?6:fd-1;
+  for(let i=0;i<off;i++){const e=document.createElement('div');e.className='cal-day empty';g.appendChild(e);}
+  const dim=new Date(cy,cm+1,0).getDate(), td=new Date();
+  for(let d=1;d<=dim;d++){
+    const e=document.createElement('div');
+    const isB=blocked.includes(d), isP=new Date(cy,cm,d)<new Date(td.getFullYear(),td.getMonth(),td.getDate());
+    const isT=d===td.getDate()&&cm===td.getMonth()&&cy===td.getFullYear();
+    const isS=sel&&sel.d===d&&sel.m===cm&&sel.y===cy;
+    e.className='cal-day '+(isS?'selected':isB||isP?'booked':'avail')+(isT&&!isS?' today':'');
+    e.textContent=d;
+    if(!isB&&!isP) e.onclick=()=>pickDate(d,cm,cy);
+    g.appendChild(e);
+  }
+}
+function pickDate(d,m,y){
+  sel={d,m,y}; renderCal();
+  const lbl=d+' '+MI[m]+' '+y;
+  const banner=document.getElementById('date-banner');
+  banner.textContent='Data selezionata: '+lbl;
+  banner.style.display='block';
+}
+function chMo(dir){ cm+=dir; if(cm<0){cm=11;cy--;} if(cm>11){cm=0;cy++;} renderCal(); }
+function submitForm(){
+  const n=document.getElementById('fn').value.trim(), e=document.getElementById('fe').value.trim(), m=document.getElementById('fm').value.trim(), t=document.getElementById('ft').value;
+  const bannerEl=document.getElementById('date-banner');
+  const dl=bannerEl.style.display!=='none' ? bannerEl.textContent.replace('Data selezionata: ','') : '';
+  if(!n||!e||!m) return;
+  const subj=dl ? 'Richiesta collaborazione — '+dl : 'Richiesta collaborazione';
+  const body='Nome: '+n+'\nEmail: '+e+(dl?'\nData: '+dl:'')+'\nProgetto: '+(t||'—')+'\n\n'+m;
+  const mailto='mailto:'+D.texts.contactEmail+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.location.href=mailto;
+  document.getElementById('bform').style.display='none';
+  document.getElementById('fsuccess').classList.add('show');
+}
+function resetF(){
+  sel=null;
+  ['fn','fe','fm'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('ft').value='';
+  const banner=document.getElementById('date-banner');
+  banner.style.display='none'; banner.textContent='';
+  document.getElementById('bform').style.display='block';
+  document.getElementById('fsuccess').classList.remove('show');
+  renderCal();
+}
+
+// ===================== ADMIN CALENDAR =====================
+let acy=new Date().getFullYear(), acm=new Date().getMonth();
+function renderAdmCal(){
+  document.getElementById('adm-cal-title').textContent=MI[acm]+' '+acy;
+  const g=document.getElementById('adm-cal-grid'); g.innerHTML='';
+  DI.forEach(d=>{const e=document.createElement('div');e.className='adm-cal-dlbl';e.textContent=d;g.appendChild(e);});
+  const fd=new Date(acy,acm,1).getDay(), off=fd===0?6:fd-1;
+  for(let i=0;i<off;i++){const e=document.createElement('div');e.className='adm-cal-day empty';g.appendChild(e);}
+  const dim=new Date(acy,acm+1,0).getDate(), td=new Date();
+  const key=acy+'-'+(acm+1), blocked=D.blocked[key]||[];
+  for(let d=1;d<=dim;d++){
+    const e=document.createElement('div');
+    const isPast=new Date(acy,acm,d)<new Date(td.getFullYear(),td.getMonth(),td.getDate());
+    const isBlocked=blocked.includes(d);
+    e.className='adm-cal-day '+(isPast?'past':isBlocked?'blocked':'avail');
+    e.textContent=d;
+    if(!isPast) e.onclick=()=>toggleBlock(d,acm,acy);
+    g.appendChild(e);
+  }
+}
+function toggleBlock(d,m,y){
+  const key=y+'-'+(m+1);
+  if(!D.blocked[key]) D.blocked[key]=[];
+  const idx=D.blocked[key].indexOf(d);
+  if(idx>=0) D.blocked[key].splice(idx,1); else D.blocked[key].push(d);
+  renderAdmCal(); renderCal();
+}
+function admChMo(dir){ acm+=dir; if(acm<0){acm=11;acy--;} if(acm>11){acm=0;acy++;} renderAdmCal(); }
+
+// ===================== ADMIN OPEN/CLOSE =====================
+function openAdmin(){ document.getElementById('adm-login').classList.add('open'); document.getElementById('adm-pw').value=''; document.getElementById('adm-pw-err').textContent=''; setTimeout(()=>document.getElementById('adm-pw').focus(),100); }
+function closeAdmin(){ document.getElementById('adm-login').classList.remove('open'); }
+function checkPw(){
+  const v=document.getElementById('adm-pw').value;
+  if(v===D.pw){ closeAdmin(); openAdminPanel(); }
+  else { document.getElementById('adm-pw-err').textContent='Password errata. Riprova.'; }
+}
+function openAdminPanel(){
+  document.getElementById('admin-overlay').classList.add('open');
+  populateAdminFields();
+  renderServicesEditor();
+  renderRatesEditor();
+  renderPackagesEditor();
+  renderAdmMediaLists();
+  renderAdmCal();
+}
+function closeAdminPanel(){ document.getElementById('admin-overlay').classList.remove('open'); }
+function admTab(t,el){
+  document.querySelectorAll('.adm-tab-content').forEach(x=>x.classList.remove('active'));
+  document.getElementById('admt-'+t).classList.add('active');
+  document.querySelectorAll('.adm-tab').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ===================== ADMIN: POPULATE FIELDS =====================
+function populateAdminFields(){
+  const T=D.texts;
+  setVal('e-home-actress-title',T.homeActressTitle);
+  setVal('e-home-actress-sub',T.homeActressSub);
+  setVal('e-home-vm-title',T.homeVmTitle);
+  setVal('e-home-vm-sub',T.homeVmSub);
+  setVal('e-actress-name',T.actressName);
+  setVal('e-actress-book-caption',T.actressBookCaption);
+  setVal('e-actress-art-caption',T.actressArtCaption);
+  setVal('e-actress-video-caption',T.actressVideoCaption);
+  setVal('e-vm-title',T.vmTitle);
+  setVal('e-vm-bio',T.vmBio);
+  setVal('e-vm-bio-ext',T.vmBioExt);
+  setVal('e-vm-tags',T.vmTags);
+  setVal('e-stat1-num',T.stat1Num); setVal('e-stat1-lbl',T.stat1Lbl);
+  setVal('e-stat2-num',T.stat2Num); setVal('e-stat2-lbl',T.stat2Lbl);
+  setVal('e-stat3-num',T.stat3Num||''); setVal('e-stat3-lbl',T.stat3Lbl||'');
+  setVal('e-contact-email',T.contactEmail);
+  setVal('e-contact-city',T.contactCity);
+  setVal('e-instagram-handle',T.instagramHandle||'@chiaraiani');
+  setVal('e-instagram-url',T.instagramUrl||'https://instagram.com/chiaraiani');
+  setVal('e-form-reply-note',T.formReplyNote||'Riceverai una risposta entro 48 ore alla tua email');
+  setVal('e-success-text',T.successText||'Grazie! Ti rispondo entro 48 ore.\nControlla la tua casella Gmail.');
+  setVal('e-rates-note',T.ratesNote);
+  setVal('e-works-eyebrow',T.worksEyebrow||'Selezione lavori');
+  setVal('e-works-heading',T.worksHeading||'Portfolio videomaker');
+  setVal('e-works-subtext',T.worksSubtext||'Una selezione di progetti realizzati — documentari, fiction, corporate e contenuti social.');
+}
+function setVal(id,v){ const el=document.getElementById(id); if(el) el.value=v; }
+
+// ===================== ADMIN: SERVICES EDITOR =====================
+function renderServicesEditor(){
+  const c=document.getElementById('services-editor'); c.innerHTML='';
+  D.services.forEach((sv,i)=>{
+    c.innerHTML+=`<div style="background:var(--bg);border:1px solid var(--border);padding:.75rem;margin-bottom:6px;">
+      <div style="display:flex;gap:6px;margin-bottom:5px;">
+        <input class="adm-input" style="width:30%;" placeholder="Icona (es: ti-video)" value="${sv.icon}" onchange="D.services[${i}].icon=this.value">
+        <input class="adm-input" style="flex:1;" placeholder="Nome servizio" value="${sv.name}" onchange="D.services[${i}].name=this.value">
+        <button class="adm-btn adm-btn-danger" onclick="D.services.splice(${i},1);renderServicesEditor()">✕</button>
+      </div>
+      <input class="adm-input" placeholder="Descrizione" value="${sv.desc}" onchange="D.services[${i}].desc=this.value">
+    </div>`;
+  });
+}
+function addService(){ D.services.push({icon:'ti-star',name:'Nuovo servizio',desc:'Descrizione del servizio.'}); renderServicesEditor(); }
+
+// ===================== ADMIN: RATES EDITOR =====================
+function renderRatesEditor(){
+  const c=document.getElementById('rates-editor'); c.innerHTML='';
+  D.rates.forEach((r,i)=>{
+    c.innerHTML+=`<div style="background:var(--bg);border:1px solid var(--border);padding:.75rem;margin-bottom:6px;">
+      <div style="display:flex;gap:6px;margin-bottom:5px;">
+        <input class="adm-input" style="flex:1;" placeholder="Nome tariffa" value="${r.name}" onchange="D.rates[${i}].name=this.value">
+        <input class="adm-input" style="width:110px;" placeholder="Prezzo" value="${r.price}" onchange="D.rates[${i}].price=this.value">
+        <button class="adm-btn adm-btn-danger" onclick="D.rates.splice(${i},1);renderRatesEditor()">✕</button>
+      </div>
+      <div style="display:flex;gap:6px;">
+        <input class="adm-input" style="flex:1;" placeholder="Sottotitolo" value="${r.sub}" onchange="D.rates[${i}].sub=this.value">
+        <input class="adm-input" style="width:80px;" placeholder="Nota" value="${r.note}" onchange="D.rates[${i}].note=this.value">
+      </div>
+    </div>`;
+  });
+}
+function addRate(){ D.rates.push({name:'Nuova voce',sub:'',price:'€ 0',note:''}); renderRatesEditor(); }
+
+// ===================== ADMIN: PACKAGES EDITOR =====================
+function renderPackagesEditor(){
+  const c=document.getElementById('packages-editor'); c.innerHTML='';
+  D.packages.forEach((p,i)=>{
+    c.innerHTML+=`<div style="background:var(--bg);border:1px solid var(--border);padding:.75rem;margin-bottom:6px;">
+      <div style="display:flex;gap:6px;margin-bottom:5px;">
+        <input class="adm-input" style="flex:1;" placeholder="Nome pacchetto" value="${p.name}" onchange="D.packages[${i}].name=this.value">
+        <input class="adm-input" style="width:110px;" placeholder="Prezzo" value="${p.price}" onchange="D.packages[${i}].price=this.value">
+        <button class="adm-btn adm-btn-danger" onclick="D.packages.splice(${i},1);renderPackagesEditor()">✕</button>
+      </div>
+      <input class="adm-input" placeholder="Descrizione" value="${p.desc}" onchange="D.packages[${i}].desc=this.value" style="margin-bottom:5px;">
+      <label style="font-size:9px;color:var(--text-muted);letter-spacing:1px;display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:4px;">
+        <input type="checkbox" ${p.featured?'checked':''} onchange="D.packages[${i}].featured=this.checked"> 
+        In evidenza ("Più richiesto")
+      </label>
+    </div>`;
+  });
+}
+function addPackage(){ D.packages.push({name:'Nuovo pacchetto',price:'€ 0',desc:'Descrizione del pacchetto.',featured:false}); renderPackagesEditor(); }
+
+// ===================== FOCAL POINT HELPER =====================
+function focalToPercent(pos){
+  // Convert object-position string like "center top" or "40% 25%" to [x%, y%]
+  if(!pos) return [50, 0];
+  const map={'left':0,'center':50,'right':100,'top':0,'bottom':100};
+  const parts = pos.trim().split(/\s+/);
+  const x = parts[0].endsWith('%') ? parseFloat(parts[0]) : (map[parts[0]]!==undefined ? map[parts[0]] : 50);
+  const y = parts[1] ? (parts[1].endsWith('%') ? parseFloat(parts[1]) : (map[parts[1]]!==undefined ? map[parts[1]] : 50)) : 50;
+  return [x, y];
+}
+
+// ===================== ADMIN: MEDIA =====================
+let _sortables = {};
+function renderAdmMediaLists(){
+  renderAdmList('adm-list-book', D.media.book, 'book', 'photo');
+  renderAdmList('adm-list-art', D.media.art, 'art', 'photo');
+  renderAdmList('adm-list-actress-video', D.media.actressVideo, 'actressVideo', 'video');
+  renderAdmList('adm-list-vm-video', D.media.vmVideo, 'vmVideo', 'video');
+}
+function renderAdmList(containerId, items, key, type){
+  const c=document.getElementById(containerId); c.innerHTML='';
+  // Destroy previous Sortable instance if exists
+  if(_sortables[containerId]){ _sortables[containerId].destroy(); delete _sortables[containerId]; }
+  if(!items.length){ c.innerHTML='<p style="font-size:10px;color:var(--text-muted);text-align:center;padding:.75rem;">Nessun elemento. Aggiungine uno qui sotto.</p>'; return; }
+  items.forEach((item,i)=>{
+    const thumb = type==='photo' ? `<img class="adm-media-thumb" src="${item.src}" alt="">` : `<div class="adm-media-thumb-vid"><i class="ti ti-player-play"></i></div>`;
+    const posCtrl = type==='photo' ? `<div class="fp-wrap" id="fp-wrap-${containerId}-${i}" style="position:relative;display:inline-block;margin-top:5px;cursor:crosshair;width:88px;height:66px;overflow:hidden;border:1px solid var(--border-md);flex-shrink:0;" title="Clicca o trascina per scegliere il punto focale">
+      <img src="${item.src}" style="width:100%;height:100%;object-fit:cover;object-position:${item.objectPosition||'center top'};display:block;pointer-events:none;" id="fp-img-${containerId}-${i}">
+      <div class="fp-dot" id="fp-dot-${containerId}-${i}" style="position:absolute;width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.9);border:2px solid var(--green);box-shadow:0 1px 4px rgba(0,0,0,0.4);transform:translate(-50%,-50%);pointer-events:none;left:${focalToPercent(item.objectPosition||'center top')[0]}%;top:${focalToPercent(item.objectPosition||'center top')[1]}%;"></div>
+    </div>` : '';
+    const info = type==='photo'
+      ? `<div class="adm-media-name">${item.label||item.src.substring(0,40)}</div><div style="font-size:9px;color:var(--text-muted);margin-top:2px;">Punto focale: trascina l'anteprima</div>`
+      : `<div class="adm-media-name">${item.title||'Video'}</div><div class="adm-media-sub">${item.meta||''}</div>`;
+    const div = document.createElement('div');
+    div.className = 'adm-media-item';
+    div.dataset.idx = i;
+    if(type==='photo'){
+      div.innerHTML = `<i class="ti ti-grip-vertical adm-drag-handle" title="Trascina per riordinare"></i>${thumb}<div class="adm-media-info">${info}</div>${posCtrl}<div class="adm-media-actions"><button class="adm-btn adm-btn-danger" onclick="removeMedia('${key}',${i})">✕</button></div>`;
+    } else {
+      div.innerHTML = `<i class="ti ti-grip-vertical adm-drag-handle" title="Trascina per riordinare"></i>${thumb}<div class="adm-media-info">${info}</div><div class="adm-media-actions"><button class="adm-btn adm-btn-danger" onclick="removeMedia('${key}',${i})">✕</button></div>`;
+    }
+    c.appendChild(div);
+    // Attach focal-point interaction after DOM insertion (only for photos)
+    if(type==='photo'){
+      (function(itemRef, wrapId, dotId, imgId){
+        requestAnimationFrame(()=>{
+          const wrap = document.getElementById(wrapId);
+          const dot  = document.getElementById(dotId);
+          const img  = document.getElementById(imgId);
+          if(!wrap||!dot) return;
+          let dragging=false;
+          function applyFocal(e){
+            const r=wrap.getBoundingClientRect();
+            const px=Math.min(Math.max((e.clientX-r.left)/r.width,0),1);
+            const py=Math.min(Math.max((e.clientY-r.top)/r.height,0),1);
+            dot.style.left=(px*100)+'%';
+            dot.style.top=(py*100)+'%';
+            const pos=(px*100).toFixed(1)+'% '+(py*100).toFixed(1)+'%';
+            img.style.objectPosition=pos;
+            itemRef.objectPosition=pos;
+            // live-update front-end grid
+            renderSite();
+          }
+          wrap.addEventListener('mousedown',e=>{ dragging=true; applyFocal(e); e.preventDefault(); });
+          window.addEventListener('mousemove',e=>{ if(dragging) applyFocal(e); });
+          window.addEventListener('mouseup',()=>{ dragging=false; });
+          // touch
+          wrap.addEventListener('touchstart',e=>{ dragging=true; applyFocal(e.touches[0]); e.preventDefault(); },{passive:false});
+          window.addEventListener('touchmove',e=>{ if(dragging) applyFocal(e.touches[0]); },{passive:false});
+          window.addEventListener('touchend',()=>{ dragging=false; });
+        });
+      })(item, `fp-wrap-${containerId}-${i}`, `fp-dot-${containerId}-${i}`, `fp-img-${containerId}-${i}`);
+    }
+  });
+  // Hint
+  const hint = document.createElement('p');
+  hint.className = 'adm-sort-hint';
+  hint.innerHTML = '<i class="ti ti-arrows-sort" style="vertical-align:-2px;font-size:11px;"></i> Trascina gli elementi per riordinarli';
+  c.appendChild(hint);
+  // Init SortableJS
+  if(typeof Sortable !== 'undefined'){
+    _sortables[containerId] = Sortable.create(c, {
+      handle: '.adm-drag-handle',
+      animation: 180,
+      ghostClass: 'sortable-ghost',
+      chosenClass: 'sortable-chosen',
+      filter: '.adm-sort-hint',
+      onEnd: function(evt){
+        const from = evt.oldIndex;
+        const to = evt.newIndex;
+        if(from === to) return;
+        const arr = D.media[key];
+        const moved = arr.splice(from, 1)[0];
+        arr.splice(to, 0, moved);
+        // Re-render both admin list and site grid
+        renderAdmMediaLists();
+        renderSite();
+      }
+    });
+  }
+}
+function removeMedia(key,i){ D.media[key].splice(i,1); renderAdmMediaLists(); renderSite(); }
+
+function handleUpload(event, type){
+  const files=Array.from(event.target.files);
+  files.forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      D.media[type].push({src:e.target.result, label:file.name.replace(/\.[^.]+$/,'')});
+      renderAdmMediaLists(); renderSite();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function addMediaUrl(type){
+  const inp=document.getElementById('url-'+type);
+  const url=inp.value.trim();
+  if(!url) return;
+  D.media[type].push({src:url, label:'Foto'});
+  inp.value='';
+  renderAdmMediaLists(); renderSite();
+}
+
+function addVideoEntry(key){
+  // Map key to field prefix
+  const prefix = key==='actressVideo' ? 'actress' : 'vm';
+  const title = document.getElementById('vadd-'+prefix+'-title').value.trim();
+  const url = document.getElementById('vadd-'+prefix+'-url').value.trim();
+  const meta = document.getElementById('vadd-'+prefix+'-meta').value.trim();
+  const thumb = document.getElementById('vadd-'+prefix+'-thumb').value.trim();
+  if(!title||!url){ alert('Inserisci almeno il titolo e l\'URL del video.'); return; }
+  D.media[key].push({title, url, meta, thumb});
+  // Clear fields
+  ['title','url','meta','thumb'].forEach(f=>{ const el=document.getElementById('vadd-'+prefix+'-'+f); if(el) el.value=''; });
+  renderAdmMediaLists(); renderSite();
+}
+
+// ===================== ADMIN: SAVE ALL =====================
+function saveAll(){
+  const T=D.texts;
+  T.homeActressTitle=getVal('e-home-actress-title');
+  T.homeActressSub=getVal('e-home-actress-sub');
+  T.homeVmTitle=getVal('e-home-vm-title');
+  T.homeVmSub=getVal('e-home-vm-sub');
+  T.actressName=getVal('e-actress-name');
+  T.actressBookCaption=getVal('e-actress-book-caption');
+  T.actressArtCaption=getVal('e-actress-art-caption');
+  T.actressVideoCaption=getVal('e-actress-video-caption');
+  T.vmTitle=getVal('e-vm-title');
+  T.vmBio=getVal('e-vm-bio');
+  T.vmBioExt=getVal('e-vm-bio-ext');
+  T.vmTags=getVal('e-vm-tags');
+  T.stat1Num=getVal('e-stat1-num'); T.stat1Lbl=getVal('e-stat1-lbl');
+  T.stat2Num=getVal('e-stat2-num'); T.stat2Lbl=getVal('e-stat2-lbl');
+  T.stat3Num=getVal('e-stat3-num'); T.stat3Lbl=getVal('e-stat3-lbl');
+  T.contactEmail=getVal('e-contact-email');
+  T.contactCity=getVal('e-contact-city');
+  T.instagramHandle=getVal('e-instagram-handle');
+  T.instagramUrl=getVal('e-instagram-url');
+  T.formReplyNote=getVal('e-form-reply-note');
+  T.successText=getVal('e-success-text');
+  T.ratesNote=getVal('e-rates-note');
+  T.worksEyebrow=getVal('e-works-eyebrow');
+  T.worksHeading=getVal('e-works-heading');
+  T.worksSubtext=getVal('e-works-subtext');
+  save(); renderSite();
+}
+function getVal(id){ const el=document.getElementById(id); return el?el.value:''; }
+
+function changePw(){
+  const cur=document.getElementById('pw-current').value;
+  const nw=document.getElementById('pw-new').value;
+  const cf=document.getElementById('pw-confirm').value;
+  const msg=document.getElementById('pw-msg');
+  if(cur!==D.pw){ msg.style.color='#c0392b'; msg.textContent='Password attuale errata.'; return; }
+  if(nw.length<6){ msg.style.color='#c0392b'; msg.textContent='La nuova password deve avere almeno 6 caratteri.'; return; }
+  if(nw!==cf){ msg.style.color='#c0392b'; msg.textContent='Le password non coincidono.'; return; }
+  D.pw=nw; save();
+  msg.style.color='var(--green)'; msg.textContent='✓ Password cambiata con successo.';
+  ['pw-current','pw-new','pw-confirm'].forEach(id=>document.getElementById(id).value='');
+}
+
+function resetAll(){ D=JSON.parse(JSON.stringify(buildDefaultFromConfig())); save(); renderSite(); closeAdminPanel(); }
+
+// ===================== EXPORT =====================
+function exportSite(){
+  // Embed all data into the HTML and trigger download
+  const dataScript = `<script>
+(function(){
+  const saved = ${JSON.stringify(D)};
+  try { localStorage.setItem('chiara_data', JSON.stringify(saved)); } catch(e){}
+})();
+<\/script>`;
+  // Get the full page HTML and inject the data
+  let html = document.documentElement.outerHTML;
+  html = html.replace('</body>', dataScript + '</body>');
+  const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'chiara_aiani_sito.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// ===================== LIGHTBOX =====================
+let _lbxGallery = []; // [{src, label}]
+let _lbxIdx = 0;
+
+function lbxOpen(gridId, idx){
+  // Build gallery from the current data source
+  const keyMap = {'grid-book':'book','grid-art':'art','grid-actress-video':'actressVideo','grid-vm-video':'vmVideo'};
+  const key = keyMap[gridId];
+  if(!key || !D.media[key] || !D.media[key].length) return;
+  _lbxGallery = D.media[key].map(item=>({src:item.src, label:item.label||''}));
+  _lbxIdx = idx;
+  lbxShow();
+  document.getElementById('lbx-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function lbxShow(){
+  const item = _lbxGallery[_lbxIdx];
+  const img = document.getElementById('lbx-img');
+  img.style.opacity = '0';
+  img.src = item.src;
+  img.onload = ()=>{ img.style.opacity = '1'; };
+  // Force opacity in case image is cached
+  setTimeout(()=>{ img.style.opacity='1'; }, 50);
+  document.getElementById('lbx-caption').textContent = item.label;
+  document.getElementById('lbx-counter').textContent = (_lbxIdx+1) + ' / ' + _lbxGallery.length;
+}
+
+function lbxNav(dir){
+  _lbxIdx = (_lbxIdx + dir + _lbxGallery.length) % _lbxGallery.length;
+  lbxShow();
+}
+
+function lbxClose(){
+  document.getElementById('lbx-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function lbxBgClick(e){
+  if(e.target === document.getElementById('lbx-overlay')) lbxClose();
+}
+
+document.addEventListener('keydown', function(e){
+  const ov = document.getElementById('lbx-overlay');
+  const vm = document.getElementById('vid-modal-overlay');
+  if(vm.classList.contains('open') && e.key==='Escape'){ vidModalClose(); return; }
+  if(!ov.classList.contains('open')) return;
+  if(e.key==='Escape') lbxClose();
+  if(e.key==='ArrowLeft') lbxNav(-1);
+  if(e.key==='ArrowRight') lbxNav(1);
+});
+
+// ===================== INIT =====================
+renderSite();
+</script>
+</body>
+</html>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chiara Aiani</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
