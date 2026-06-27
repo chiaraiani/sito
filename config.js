@@ -157,7 +157,7 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   bookPhotos: [
     // Esempi — decommenta e modifica:
-    // { src: 'https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg', label: 'Ritratto', objectPosition: 'center top' },
+    // { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782592428/L1072124_copia_nkf7fc.jpg', label: 'Ritratto', objectPosition: 'center top' },
     // { src: 'foto/book2.jpg', label: 'Primo piano', objectPosition: '50% 20%' },
   ],
 
