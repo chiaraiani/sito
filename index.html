@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chiara Aiani</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:#E8F4F8; --bg-mid:#D4ECF4; --nav-bg:#7BB8C9; --nav-text:#1C3A3F;
+  --surface:#C8E4F0; --border:rgba(28,58,63,0.15); --border-md:rgba(28,58,63,0.25);
+  --green:#3E7A70; --green-dk:#2A5A52; --green-lt:#D4EEEA;
+  --aqua:#8BBCB4; --mint:#A8D5C2; --notte:#1C3A3F; --notte-mid:#2E5C60;
+  --text:#1C3A3F; --text-mid:#3A6068; --text-muted:#6A9098; --white:#F4FAFB;
+}
+body { font-family:'Montserrat',sans-serif; background:var(--bg); color:var(--text); min-height:600px; overflow-x:hidden; }
+.page { display:none; min-height:calc(100vh - 54px); flex-direction:column; }
+.page.active { display:flex; }
+.page > .content, .page > .sec-header { flex-shrink:0; }
+.page > .sec-footer { margin-top:auto; }
+
+nav {
+  position:sticky; top:0; z-index:100;
+  background:var(--nav-bg); border-bottom:1px solid var(--border-md);
+  padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:54px;
+}
+.nav-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; letter-spacing:4px; color:var(--notte); cursor:pointer; }
+.nav-links { display:flex; gap:2rem; align-items:center; }
+.nav-link { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--notte-mid); cursor:pointer; background:none; border:none; font-family:'Montserrat',sans-serif; transition:color 0.2s; padding:4px 0; border-bottom:2px solid transparent; }
+.nav-link:hover,.nav-link.active { color:var(--notte); border-bottom-color:var(--notte); }
+.nav-cv-btn { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--notte); font-family:'Montserrat',sans-serif; padding:5px 12px; border:1px solid var(--notte); text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:all 0.2s; white-space:nowrap; }
+.nav-cv-btn:hover { background:var(--notte); color:var(--white); }
+
+/* HOME */
+.home-split { display:grid; grid-template-columns:1fr 1fr; min-height:520px; height:-webkit-fill-available }
+.home-panel { position:relative; overflow:hidden; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:background 0.4s; }
+.panel-actress { background:var(--bg); }
+.panel-actress:hover { background:var(--bg-mid); }
+.panel-video { background:var(--notte); }
+.panel-video:hover { background:var(--notte-mid); }
+.panel-divider { position:absolute; top:8%; bottom:8%; right:0; width:1px; background:var(--border-md); }
+.panel-num { font-family:'Cormorant Garamond',serif; font-size:130px; font-weight:300; line-height:1; position:absolute; opacity:.06; user-select:none; }
+.panel-actress .panel-num { color:var(--notte); right:16px; top:50%; transform:translateY(-50%); }
+.panel-video .panel-num  { color:var(--mint); left:16px; top:50%; transform:translateY(-50%); }
+.panel-content { position:relative; z-index:2; text-align:center; padding:2rem; }
+.panel-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; margin-bottom:1rem; }
+.panel-actress .panel-eyebrow { color:var(--green); }
+.panel-video .panel-eyebrow  { color:var(--mint); }
+.panel-title { font-family:'Cormorant Garamond',serif; font-size:54px; font-weight:300; line-height:1.1; margin-bottom:1.25rem; }
+.panel-actress .panel-title { color:var(--notte); }
+.panel-video .panel-title  { color:var(--bg); }
+.panel-sub { font-size:11px; letter-spacing:1px; line-height:2; margin-bottom:2.5rem; }
+.panel-actress .panel-sub { color:var(--text-muted); }
+.panel-video .panel-sub  { color:var(--aqua); }
+.cta { display:inline-flex; align-items:center; gap:10px; border:1px solid; padding:11px 26px; font-size:10px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; background:none; font-family:'Montserrat',sans-serif; transition:all 0.3s; }
+.cta-dark { border-color:var(--green); color:var(--green); }
+.cta-dark:hover { background:var(--green); color:var(--white); }
+.cta-light { border-color:var(--mint); color:var(--mint); }
+.cta-light:hover { background:var(--mint); color:var(--notte); }
+.cta-line { width:36px; height:1px; transition:width 0.3s; display:inline-block; vertical-align:middle; }
+.cta-dark .cta-line { background:var(--green); }
+.cta-light .cta-line { background:var(--mint); }
+.home-panel:hover .cta-line { width:54px; }
+
+/* SECTION HEADER */
+.sec-header { padding:2.5rem 3rem 2rem; border-bottom:1px solid var(--border); display:flex; align-items:flex-end; justify-content:space-between; }
+.sec-eyebrow { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--green); margin-bottom:.5rem; }
+.sec-title { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:300; color:var(--notte); }
+.sec-tabs { display:flex; }
+.sec-tab { padding:8px 18px; font-size:10px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; border:1px solid var(--border-md); background:none; color:var(--text-muted); font-family:'Montserrat',sans-serif; transition:all 0.2s; margin-left:-1px; }
+.sec-tab.active,.sec-tab:hover { background:var(--green); color:var(--white); border-color:var(--green); z-index:1; }
+
+/* CONTENT */
+.content { padding:2.5rem 3rem; flex:1; }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+#page-vm > .tab-content.active { flex:1; }
+#page-actress > .content { flex:1; }
+
+/* PHOTO GRID */
+.photo-grid { display:grid; gap:3px; grid-template-columns:repeat(3,1fr); grid-auto-flow:dense; }
+.photo-item { position:relative; overflow:hidden; aspect-ratio:3/4; background:var(--surface); cursor:zoom-in; }
+.photo-item img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); }
+.photo-item:hover img { transform:scale(1.07); }
+.photo-ph { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:var(--text-muted); font-size:10px; letter-spacing:1.5px; text-transform:uppercase; }
+.photo-ph i { font-size:26px; color:var(--aqua); }
+.photo-ov { position:absolute; inset:0; background:linear-gradient(to top,rgba(28,58,63,0.75),transparent); opacity:0; transition:opacity 0.3s; display:flex; align-items:flex-end; justify-content:space-between; padding:1rem; }
+.photo-item:hover .photo-ov { opacity:1; }
+.photo-lbl { font-size:10px; letter-spacing:1px; color:var(--mint); }
+.photo-zoom-icon { color:var(--white); font-size:18px; opacity:0.85; }
+
+/* ART PROJECTS */
+.art-projects-container { display:flex; flex-direction:column; gap:2.5rem; }
+.art-project { border:1px solid var(--border); background:var(--bg); }
+.art-project-header { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid var(--border); cursor:pointer; transition:background 0.2s; }
+.art-project-header:hover { background:var(--bg-mid); }
+.art-project-year { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; color:var(--notte); line-height:1; letter-spacing:2px; }
+.art-project-meta-row { display:flex; gap:1.5rem; align-items:center; }
+.art-project-badge { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); background:var(--surface); padding:3px 10px; border:1px solid var(--border-md); }
+.art-project-toggle { font-size:18px; color:var(--text-muted); transition:transform 0.3s; }
+.art-project.collapsed .art-project-toggle { transform:rotate(-90deg); }
+.art-project-body { padding:1.25rem; }
+.art-project.collapsed .art-project-body { display:none; }
+.art-project-info { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-bottom:1rem; }
+.art-info-cell { background:var(--bg); padding:.625rem .875rem; }
+.art-info-lbl { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:2px; }
+.art-info-val { font-size:12px; color:var(--notte); }
+.art-project-photos { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; }
+
+/* LIGHTBOX */
+.lbx-overlay { display:none; position:fixed; inset:0; z-index:5000; background:rgba(10,22,24,0.96); backdrop-filter:blur(6px); align-items:center; justify-content:center; }
+.lbx-overlay.open { display:flex; }
+.lbx-img-wrap { position:relative; max-width:88vw; max-height:88vh; display:flex; align-items:center; justify-content:center; }
+.lbx-img { max-width:88vw; max-height:88vh; object-fit:contain; border:1px solid rgba(168,213,194,0.15); box-shadow:0 24px 80px rgba(0,0,0,0.6); transition:opacity 0.2s; }
+.lbx-caption { position:absolute; bottom:-2.25rem; left:0; right:0; text-align:center; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--aqua); }
+.lbx-btn { position:fixed; top:50%; transform:translateY(-50%); background:none; border:1px solid rgba(255,255,255,0.2); color:var(--white); width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px; transition:all 0.2s; z-index:5001; }
+.lbx-btn:hover { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.5); }
+.lbx-prev { left:1.5rem; }
+.lbx-next { right:1.5rem; }
+.lbx-close { position:fixed; top:1.25rem; right:1.5rem; z-index:5001; background:none; border:1px solid rgba(255,255,255,0.2); color:var(--white); width:38px; height:38px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; transition:all 0.2s; }
+.lbx-close:hover { background:rgba(255,255,255,0.1); }
+.lbx-counter { position:fixed; top:1.4rem; left:50%; transform:translateX(-50%); font-size:9px; letter-spacing:3px; color:var(--text-muted); text-transform:uppercase; }
+
+/* VIDEO MODAL */
+.vid-modal-overlay { display:none; position:fixed; inset:0; z-index:6000; background:rgba(10,22,24,0.96); backdrop-filter:blur(6px); align-items:center; justify-content:center; }
+.vid-modal-overlay.open { display:flex; }
+.vid-modal-wrap { position:relative; width:min(860px,90vw); }
+.vid-modal-close { position:absolute; top:-44px; right:0; background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; width:38px; height:38px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; transition:all 0.2s; }
+.vid-modal-close:hover { background:rgba(255,255,255,0.12); }
+.vid-modal-frame { width:100%; aspect-ratio:16/9; border:none; background:#000; display:block; }
+.vid-modal-video { width:100%; aspect-ratio:16/9; background:#000; display:block; outline:none; }
+
+/* Fallback YouTube embed non disponibile */
+.vid-fallback {
+  width:100%; aspect-ratio:16/9; background:#0d1b1e;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:1rem; padding:2rem; text-align:center;
+}
+.vid-fallback p { font-size:11px; color:var(--aqua); letter-spacing:1px; line-height:1.8; }
+.vid-fallback a {
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--mint); color:var(--mint);
+  padding:10px 22px; font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  text-decoration:none; font-family:'Montserrat',sans-serif; transition:all 0.2s;
+}
+.vid-fallback a:hover { background:var(--mint); color:var(--notte); }
+
+/* VIDEO GRID */
+.video-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
+.video-card { background:var(--surface); border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:border-color 0.25s; }
+.video-card:hover { border-color:var(--green); }
+.video-thumb { aspect-ratio:16/9; background:var(--bg-mid); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.video-thumb img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.play-btn { width:46px; height:46px; border:1px solid var(--green); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--green); font-size:16px; transition:all 0.25s; position:relative; z-index:2; }
+.video-card:hover .play-btn { background:var(--green); color:var(--white); }
+.video-info { padding:.875rem 1.125rem; }
+.video-title { font-size:13px; font-weight:400; color:var(--notte); margin-bottom:3px; }
+.video-meta  { font-size:10px; color:var(--text-muted); letter-spacing:1px; }
+
+/* VM LAYOUT */
+.vm-grid { display:grid; grid-template-columns:1fr 1fr; }
+.vm-col { padding:2.5rem 3rem; }
+.vm-col:first-child { border-right:1px solid var(--border); }
+.bio-text { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:300; line-height:1.85; color:var(--notte); margin-bottom:1.5rem; font-style:italic; }
+.bio-tags { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:2rem; }
+.bio-tag { font-size:9px; letter-spacing:2px; text-transform:uppercase; border:1px solid var(--border-md); padding:4px 11px; color:var(--text-mid); }
+.stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); margin-bottom:2rem; }
+.stat-box { background:var(--bg); padding:1.125rem; text-align:center; }
+.stat-num { font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--green); }
+.stat-lbl { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-top:3px; }
+.service-list { display:flex; flex-direction:column; gap:1px; background:var(--border); }
+.service-item { background:var(--bg); padding:.875rem 1.125rem; display:flex; gap:.875rem; align-items:flex-start; }
+.service-item i { font-size:17px; color:var(--green); margin-top:2px; flex-shrink:0; }
+.service-name { font-size:12px; font-weight:500; color:var(--notte); margin-bottom:2px; }
+.service-desc { font-size:11px; color:var(--text-muted); line-height:1.6; }
+
+/* WORKS */
+.works-cats { display:grid; gap:1px; background:var(--border); margin-bottom:1.5rem; }
+.work-cat { background:var(--bg); padding:1.25rem; cursor:pointer; text-align:center; transition:background 0.2s; }
+.work-cat:hover,.work-cat.active { background:var(--green-lt); }
+.work-cat i { font-size:20px; color:var(--green); margin-bottom:.625rem; display:block; }
+.work-cat-name { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-mid); margin-bottom:3px; }
+.work-cat-num { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:var(--green); }
+
+/* TARIFFE */
+.tariffe-table { display:flex; flex-direction:column; gap:1px; background:var(--border); }
+.tariffa { background:var(--bg); padding:.875rem 0; display:flex; justify-content:space-between; align-items:center; }
+.tariffa-name { font-size:12px; color:var(--notte); }
+.tariffa-sub  { font-size:10px; color:var(--text-muted); margin-top:2px; }
+.tariffa-price { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--green); margin-left:1rem; white-space:nowrap; }
+.tariffa-note { font-size:9px; color:var(--text-muted); text-align:right; margin-top:3px; }
+.pkg-list { display:flex; flex-direction:column; gap:1px; background:var(--border); }
+.pkg { background:var(--bg); padding:1rem 1.125rem; }
+.pkg.featured { background:var(--green-lt); border:1px solid var(--green); }
+.pkg-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:.375rem; }
+.pkg-name { font-size:12px; font-weight:500; color:var(--notte); }
+.pkg-badge { font-size:8px; letter-spacing:1px; background:var(--green); color:var(--white); padding:2px 8px; margin-left:8px; }
+.pkg-price { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--green); }
+.pkg-desc { font-size:10px; color:var(--text-muted); line-height:1.7; }
+
+/* CALENDAR */
+.cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:.875rem; }
+.cal-month { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; color:var(--notte); letter-spacing:2px; }
+.cal-nav { background:none; border:1px solid var(--border-md); color:var(--text-mid); padding:4px 10px; cursor:pointer; font-size:13px; font-family:'Montserrat',sans-serif; transition:all 0.2s; }
+.cal-nav:hover { border-color:var(--green); color:var(--green); }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.cal-dlbl { text-align:center; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); padding:3px 0; }
+.cal-day { aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-size:11px; cursor:pointer; transition:all 0.2s; position:relative; border-radius:2px; }
+.cal-day.avail:hover { background:var(--green-lt); color:var(--green-dk); }
+.cal-day.booked { color:var(--text-muted); text-decoration:line-through; cursor:not-allowed; opacity:.5; }
+.cal-day.empty { cursor:default; }
+.cal-day.selected { background:var(--green); color:var(--white); }
+.cal-day.today { border:1px solid var(--green); }
+.cal-legend { display:flex; gap:1.5rem; margin-top:.625rem; }
+.leg { display:flex; align-items:center; gap:6px; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); }
+.leg-dot { width:8px; height:8px; border-radius:50%; }
+
+/* FORM */
+.form-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--notte); margin-bottom:1.25rem; }
+.date-banner { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--green); padding:7px 12px; border-left:2px solid var(--green); margin-bottom:1.25rem; background:var(--green-lt); }
+.f-group { margin-bottom:1.125rem; }
+.f-label { display:block; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:5px; }
+.f-input { width:100%; background:var(--white); border:1px solid var(--border-md); color:var(--notte); padding:9px 13px; font-family:'Montserrat',sans-serif; font-size:13px; outline:none; transition:border-color 0.2s; }
+.f-input:focus { border-color:var(--green); }
+.f-input::placeholder { color:var(--text-muted); }
+textarea.f-input { resize:vertical; min-height:90px; }
+.f-submit { width:100%; padding:13px; background:var(--green); color:var(--white); border:none; font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:background 0.2s; font-weight:500; }
+.f-submit:hover { background:var(--green-dk); }
+.f-note { font-size:9px; color:var(--text-muted); margin-top:7px; text-align:center; }
+.form-success { display:none; text-align:center; padding:2rem; border:1px solid var(--border); }
+.form-success.show { display:block; }
+.success-icon { font-size:30px; color:var(--green); margin-bottom:.875rem; }
+.success-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--notte); margin-bottom:.5rem; }
+.success-text { font-size:11px; color:var(--text-muted); line-height:2; }
+
+/* FOOTER */
+.sec-footer { padding:1.25rem 3rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:var(--bg-mid); }
+.footer-name { font-family:'Cormorant Garamond',serif; font-size:13px; font-weight:300; letter-spacing:3px; color:var(--text-mid); }
+.footer-loc { font-size:9px; letter-spacing:2px; color:var(--text-muted); text-transform:uppercase; }
+.footer-insta { font-size:9px; letter-spacing:1px; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:color 0.2s; }
+.footer-insta:hover { color:var(--green-dk); }
+.footer-email { font-size:9px; letter-spacing:1px; color:var(--green); text-decoration:none; display:inline-flex; align-items:center; gap:5px; transition:color 0.2s; }
+.footer-email:hover { color:var(--green-dk); }
+.divider { height:1px; background:var(--border); margin:1.5rem 0; }
+.note-box { padding:.875rem 1.125rem; border-left:2px solid var(--green); background:var(--green-lt); margin-top:.875rem; }
+.note-box p { font-size:10px; color:var(--text-mid); line-height:1.9; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width:1024px){
+  nav { padding:0 1.25rem; }
+  .nav-links { gap:1.25rem; }
+  .sec-header { padding:2rem 2rem 1.5rem; }
+  .content { padding:2rem 2rem; }
+  .vm-col { padding:2rem 2rem; }
+  .sec-footer { padding:1rem 2rem; }
+  .panel-title { font-size:44px; }
+  .panel-num { font-size:100px; }
+}
+@media (max-width:768px){
+  nav { padding:0 1rem; height:auto; min-height:54px; flex-wrap:wrap; gap:0; }
+  .nav-links { gap:.75rem; flex-wrap:wrap; }
+  .nav-link { font-size:9px; letter-spacing:1.5px; }
+  .nav-cv-btn { font-size:8px; padding:4px 8px; }
+  .home-split { grid-template-columns:1fr; min-height:auto; height:auto; }
+  .home-panel { min-height:260px; padding:2.5rem 1.5rem; }
+  .panel-divider { display:none; }
+  .panel-num { font-size:80px; }
+  .panel-title { font-size:38px; }
+  .panel-sub { font-size:10px; margin-bottom:1.75rem; }
+  .sec-header { padding:1.5rem 1.25rem 1.25rem; flex-direction:column; align-items:flex-start; gap:1rem; }
+  .sec-title { font-size:30px; }
+  .sec-tabs { flex-wrap:wrap; gap:2px; }
+  .sec-tab { padding:6px 12px; font-size:9px; letter-spacing:1px; }
+  .content { padding:1.5rem 1.25rem; }
+  .photo-grid { grid-template-columns:repeat(2,1fr); }
+  .art-project-info { grid-template-columns:1fr 1fr; }
+  .art-project-photos { grid-template-columns:repeat(2,1fr); }
+  .video-grid { grid-template-columns:1fr; }
+  .vm-grid { grid-template-columns:1fr; }
+  .vm-col { padding:1.5rem 1.25rem; border-right:none !important; border-top:1px solid var(--border); }
+  .vm-col:first-child { border-top:none; }
+  .works-cats { grid-template-columns:repeat(2,1fr) !important; }
+  #vt-rates .vm-grid { grid-template-columns:1fr; }
+  #vt-book > div { grid-template-columns:1fr !important; }
+  #vt-book > div > div { border-right:none !important; border-bottom:1px solid var(--border); padding:1.5rem 1.25rem; }
+  #vt-book > div > div:last-child { border-bottom:none; }
+  .sec-footer { flex-wrap:wrap; gap:.625rem; padding:1rem 1.25rem; }
+  #vt-about .vm-grid { grid-template-columns:1fr; }
+  #vt-about .vm-col:first-child { border-right:none; border-bottom:1px solid var(--border); }
+  .lbx-prev { left:.5rem; }
+  .lbx-next { right:.5rem; }
+  .lbx-btn { width:38px; height:38px; font-size:16px; }
+  .vid-modal-wrap { width:95vw; }
+  .vid-modal-close { top:-38px; }
+}
+@media (max-width:480px){
+  nav { padding:8px 1rem; flex-wrap:wrap; height:auto; gap:6px; }
+  .nav-logo { font-size:15px; letter-spacing:2px; }
+  .nav-links { gap:.5rem; }
+  .nav-link { font-size:8px; letter-spacing:1px; padding:3px 0; }
+  .nav-cv-btn { display:none; }
+  .home-panel { min-height:220px; padding:2rem 1rem; }
+  .panel-title { font-size:32px; }
+  .panel-num { font-size:64px; }
+  .panel-eyebrow { font-size:8px; letter-spacing:2px; }
+  .panel-sub { font-size:10px; margin-bottom:1.25rem; line-height:1.8; }
+  .cta { padding:9px 18px; font-size:9px; letter-spacing:1.5px; }
+  .sec-header { padding:1.25rem 1rem 1rem; }
+  .sec-title { font-size:26px; }
+  .sec-eyebrow { font-size:8px; }
+  .sec-tab { padding:5px 10px; font-size:8px; letter-spacing:1px; }
+  .content { padding:1.25rem 1rem; }
+  .photo-grid { grid-template-columns:repeat(2,1fr); gap:2px; }
+  .art-project-photos { grid-template-columns:repeat(2,1fr); }
+  .art-project-info { grid-template-columns:1fr; }
+  .video-grid { grid-template-columns:1fr; gap:.875rem; }
+  .video-info { padding:.75rem .875rem; }
+  .bio-text { font-size:16px; }
+  .stat-num { font-size:28px; }
+  .works-cats { grid-template-columns:1fr 1fr !important; }
+  .work-cat { padding:.875rem .625rem; }
+  .work-cat-num { font-size:22px; }
+  .tariffa { padding:.75rem 0; flex-wrap:wrap; gap:.25rem; }
+  .tariffa-price { font-size:18px; }
+  .pkg-head { flex-wrap:wrap; gap:.375rem; }
+  .cal-month { font-size:16px; }
+  .cal-day { font-size:10px; }
+  .form-title { font-size:20px; }
+  .f-input { font-size:12px; padding:8px 10px; }
+  .f-submit { font-size:9px; letter-spacing:2px; }
+  .sec-footer { flex-direction:column; align-items:flex-start; gap:.5rem; padding:.875rem 1rem; }
+  .vm-col { padding:1.25rem 1rem; }
+  .service-item { padding:.75rem .875rem; }
+  .note-box { padding:.75rem 1rem; }
+  .pkg { padding:.875rem 1rem; }
+}
+@media (max-width:360px){
+  .photo-grid { grid-template-columns:1fr 1fr; }
+  .sec-tabs { flex-wrap:wrap; }
+  .stats-row { grid-template-columns:repeat(2,1fr); }
+  .panel-title { font-size:28px; }
+  .sec-title { font-size:22px; }
+}
+@media (max-width:520px){
+  .tariffa { flex-direction:column; align-items:flex-start; gap:.25rem; }
+  .tariffa-price { margin-left:0; }
+  #vt-rates .vm-grid { grid-template-columns:1fr; }
+  .vm-col { padding:1.25rem 1rem; }
+}
+@media (max-width:640px){
+  #vt-book > div { display:flex !important; flex-direction:column; }
+  #vt-book > div > div { padding:1.5rem 1rem; border-right:none !important; }
+  #vt-book > div > div:first-child { border-bottom:1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div style="display:flex;align-items:center;gap:1.25rem;">
+    <div class="nav-logo" onclick="go('home')">CHIARA AIANI</div>
+    <a href="https://drive.google.com/file/d/1znDpKHfJr2v15oBu9pbyFrHkDV1dLjIu/view?usp=sharing" target="_blank" rel="noopener" class="nav-cv-btn">
+      <i class="ti ti-download" style="font-size:10px;vertical-align:-1px;"></i> Scarica CV
+    </a>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link" onclick="go('home')">Home</button>
+    <button class="nav-link" id="nav-actress" onclick="go('actress')">Attrice</button>
+    <button class="nav-link" id="nav-vm" onclick="go('vm')">Videomaker</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="home-split">
+    <div class="home-panel panel-actress" onclick="go('actress')">
+      <div class="panel-num">I</div>
+      <div class="panel-content">
+        <div class="panel-eyebrow" id="home-actress-eyebrow"></div>
+        <div class="panel-title" id="home-actress-title"></div>
+        <div class="panel-sub" id="home-actress-sub"></div>
+        <button class="cta cta-dark">Esplora <span class="cta-line"></span></button>
+      </div>
+      <div class="panel-divider"></div>
+    </div>
+    <div class="home-panel panel-video" onclick="go('vm')">
+      <div class="panel-num">II</div>
+      <div class="panel-content">
+        <div class="panel-eyebrow" id="home-vm-eyebrow"></div>
+        <div class="panel-title" id="home-vm-title"></div>
+        <div class="panel-sub" id="home-vm-sub"></div>
+        <button class="cta cta-light">Esplora <span class="cta-line"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ATTRICE -->
+<div id="page-actress" class="page">
+  <div class="sec-header">
+    <div>
+      <div class="sec-eyebrow">Portfolio · Attrice</div>
+      <div class="sec-title" id="actress-name"></div>
+    </div>
+    <div class="sec-tabs">
+      <button class="sec-tab active" onclick="aTab('book',this)">Book</button>
+      <button class="sec-tab" onclick="aTab('art',this)">Artistiche</button>
+      <button class="sec-tab" onclick="aTab('video',this)">Video</button>
+    </div>
+  </div>
+  <div class="content">
+    <div id="at-book" class="tab-content active">
+      <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-book-caption"></p>
+      <div class="photo-grid" id="grid-book"></div>
+    </div>
+    <div id="at-art" class="tab-content">
+      <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-art-caption"></p>
+      <div class="art-projects-container" id="art-projects-container"></div>
+    </div>
+    <div id="at-video" class="tab-content">
+      <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-video-caption"></p>
+      <div class="video-grid" id="grid-actress-video"></div>
+    </div>
+  </div>
+  <div class="sec-footer">
+    <span class="footer-name" id="footer-actress"></span>
+    <a class="footer-insta" id="footer-actress-ig" href="#" target="_blank" rel="noopener"><i class="ti ti-brand-instagram" style="font-size:13px;"></i><span id="footer-actress-ig-text"></span></a>
+    <a class="footer-email" id="footer-actress-email" href="#"><i class="ti ti-mail" style="font-size:13px;"></i><span id="footer-actress-email-text"></span></a>
+    <span class="footer-loc" id="footer-actress-loc"></span>
+  </div>
+</div>
+
+<!-- VIDEOMAKER -->
+<div id="page-vm" class="page">
+  <div class="sec-header">
+    <div>
+      <div class="sec-eyebrow">Servizi · Videomaker</div>
+      <div class="sec-title" id="vm-title"></div>
+    </div>
+    <div class="sec-tabs">
+      <button class="sec-tab active" onclick="vTab('about',this)">Profilo</button>
+      <button class="sec-tab" onclick="vTab('works',this)">Lavori</button>
+      <button class="sec-tab" onclick="vTab('rates',this)">Tariffe</button>
+      <button class="sec-tab" onclick="vTab('book',this)">Contattami</button>
+    </div>
+  </div>
+
+  <div id="vt-about" class="tab-content active">
+    <div class="vm-grid">
+      <div class="vm-col">
+        <div class="sec-eyebrow" style="margin-bottom:.875rem;">Chi sono</div>
+        <p class="bio-text" id="vm-bio"></p>
+        <p style="font-size:12px;color:var(--text-muted);line-height:2;margin-bottom:1.5rem;" id="vm-bio-ext"></p>
+        <div class="bio-tags" id="vm-tags-container"></div>
+        <div class="stats-row" id="stats-row">
+          <div class="stat-box"><div class="stat-num" id="stat1-num"></div><div class="stat-lbl" id="stat1-lbl"></div></div>
+          <div class="stat-box"><div class="stat-num" id="stat2-num"></div><div class="stat-lbl" id="stat2-lbl"></div></div>
+          <div class="stat-box" id="stat3-box"><div class="stat-num" id="stat3-num"></div><div class="stat-lbl" id="stat3-lbl"></div></div>
+        </div>
+      </div>
+      <div class="vm-col">
+        <div class="sec-eyebrow" style="margin-bottom:.875rem;">Cosa offro</div>
+        <div class="service-list" id="services-list"></div>
+        <div style="margin-top:1.25rem;">
+          <button class="cta cta-dark" style="width:100%;justify-content:center;" onclick="vTab('book',document.querySelectorAll('#page-vm .sec-tab')[3])">Contattami <span class="cta-line"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="vt-works" class="tab-content">
+    <div class="content">
+      <div style="margin-bottom:1.5rem;">
+        <div class="sec-eyebrow" id="works-eyebrow"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--notte);margin-bottom:.375rem;" id="works-heading"></div>
+        <p style="font-size:11px;color:var(--text-muted);line-height:2;" id="works-subtext"></p>
+      </div>
+      <div class="works-cats" id="works-cats"></div>
+      <div class="video-grid" id="grid-vm-video"></div>
+    </div>
+  </div>
+
+  <div id="vt-rates" class="tab-content">
+    <div class="vm-grid">
+      <div class="vm-col">
+        <div class="sec-eyebrow" style="margin-bottom:1.25rem;">Tariffe giornaliere</div>
+        <div class="tariffe-table" id="rates-table"></div>
+        <div class="note-box" style="margin-top:.875rem;"><p id="rates-note"></p></div>
+      </div>
+      <div class="vm-col">
+        <div class="sec-eyebrow" style="margin-bottom:1.25rem;">Pacchetti</div>
+        <div class="pkg-list" id="packages-list"></div>
+        <div style="margin-top:1.25rem;">
+          <button class="cta cta-dark" style="width:100%;justify-content:center;" onclick="vTab('book',document.querySelectorAll('#page-vm .sec-tab')[3])">Contattami <span class="cta-line"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="vt-book" class="tab-content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;">
+      <div style="padding:2.5rem 3rem;border-right:1px solid var(--border);">
+        <div class="sec-eyebrow" style="margin-bottom:1.25rem;">Disponibilità</div>
+        <div class="cal-header">
+          <button class="cal-nav" onclick="chMo(-1)">&#8592;</button>
+          <div class="cal-month" id="cal-title"></div>
+          <button class="cal-nav" onclick="chMo(1)">&#8594;</button>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="cal-legend">
+          <div class="leg"><div class="leg-dot" style="background:var(--green);"></div>Disponibile</div>
+          <div class="leg"><div class="leg-dot" style="background:var(--border-md);"></div>Non disponibile</div>
+        </div>
+        <div class="note-box" style="margin-top:1rem;">
+          <p><i class="ti ti-info-circle" style="font-size:13px;vertical-align:-2px;margin-right:5px;"></i>Puoi selezionare una data dal calendario per indicarla nel messaggio — oppure scrivimi direttamente.</p>
+        </div>
+      </div>
+      <div style="padding:2.5rem 3rem;">
+        <div id="bform">
+          <div class="form-title">Scrivimi</div>
+          <div class="date-banner" id="date-banner" style="display:none;">Data selezionata: —</div>
+          <div class="f-group"><label class="f-label">Nome e cognome</label><input type="text" class="f-input" placeholder="Il tuo nome" id="fn"></div>
+          <div class="f-group"><label class="f-label">Email</label><input type="email" class="f-input" placeholder="tua@gmail.com" id="fe"></div>
+          <div class="f-group"><label class="f-label">Tipo di progetto</label>
+            <select class="f-input" id="ft" style="cursor:pointer;">
+              <option value="">Seleziona...</option>
+              <option>Cortometraggio / Fiction</option>
+              <option>Documentario</option>
+              <option>Video corporate</option>
+              <option>Evento</option>
+              <option>Video musicale</option>
+              <option>Social content</option>
+              <option>Altro</option>
+            </select>
+          </div>
+          <div class="f-group"><label class="f-label">Messaggio</label><textarea class="f-input" placeholder="Raccontami il tuo progetto..." id="fm"></textarea></div>
+          <button class="f-submit" onclick="submitForm()">Invia messaggio</button>
+          <p class="f-note" id="form-reply-note"></p>
+        </div>
+        <div class="form-success" id="fsuccess">
+          <div class="success-icon"><i class="ti ti-circle-check"></i></div>
+          <div class="success-title">Messaggio inviato!</div>
+          <div class="success-text" id="success-text"></div>
+          <button class="cta cta-dark" style="margin-top:1.25rem;" onclick="resetF()">Nuovo messaggio <span class="cta-line"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-footer">
+    <span class="footer-name" id="footer-vm"></span>
+    <a class="footer-insta" id="footer-vm-ig" href="#" target="_blank" rel="noopener"><i class="ti ti-brand-instagram" style="font-size:13px;"></i><span id="footer-vm-ig-text"></span></a>
+    <a class="footer-email" id="footer-vm-email" href="#"><i class="ti ti-mail" style="font-size:13px;"></i><span id="footer-vm-email-text"></span></a>
+    <span class="footer-loc" id="footer-vm-loc"></span>
+  </div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="vid-modal-overlay" id="vid-modal-overlay" onclick="vidModalBgClick(event)">
+  <div class="vid-modal-wrap">
+    <button class="vid-modal-close" onclick="vidModalClose()"><i class="ti ti-x"></i></button>
+    <div id="vid-modal-content"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lbx-overlay" id="lbx-overlay" onclick="lbxBgClick(event)">
+  <button class="lbx-close" onclick="lbxClose()"><i class="ti ti-x"></i></button>
+  <div class="lbx-counter" id="lbx-counter"></div>
+  <button class="lbx-btn lbx-prev" onclick="lbxNav(-1)"><i class="ti ti-chevron-left"></i></button>
+  <div class="lbx-img-wrap">
+    <img class="lbx-img" id="lbx-img" src="" alt="">
+    <div class="lbx-caption" id="lbx-caption"></div>
+  </div>
+  <button class="lbx-btn lbx-next" onclick="lbxNav(1)"><i class="ti ti-chevron-right"></i></button>
+</div>
+
+<!-- config.js deve essere nella stessa cartella di index.html -->
+<script src="config.js"></script>
+
+<script>
+// ── alias comodi ──────────────────────────────
+const C  = SITE_CONFIG;
+const T  = C.texts;
+const MI = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+const DI = ['L','M','M','G','V','S','D'];
+
+// ── stato calendario ──────────────────────────
+let cy = new Date().getFullYear();
+let cm = new Date().getMonth();
+let sel = null;
+
+// ── stato filtro lavori ───────────────────────
+let _activeFilter = 'all';
+
+// ===================== NAVIGAZIONE =====================
+function go(p) {
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+  document.getElementById('page-' + p).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(x => x.classList.remove('active'));
+  if (p === 'actress') document.getElementById('nav-actress').classList.add('active');
+  if (p === 'vm')      document.getElementById('nav-vm').classList.add('active');
+}
+
+function aTab(t, el) {
+  document.querySelectorAll('#page-actress .tab-content').forEach(x => x.classList.remove('active'));
+  document.getElementById('at-' + t).classList.add('active');
+  document.querySelectorAll('#page-actress .sec-tab').forEach(x => x.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function vTab(t, el) {
+  document.querySelectorAll('#page-vm .tab-content').forEach(x => x.classList.remove('active'));
+  document.getElementById('vt-' + t).classList.add('active');
+  document.querySelectorAll('#page-vm .sec-tab').forEach(x => x.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+
+// ===================== RENDER TESTI =====================
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+function renderTexts() {
+  setText('home-actress-eyebrow', T.homeActressEyebrow);
+  setText('home-actress-title',   T.homeActressTitle);
+  setText('home-actress-sub',     T.homeActressSub);
+  setText('home-vm-eyebrow',      T.homeVmEyebrow);
+  setText('home-vm-title',        T.homeVmTitle);
+  setText('home-vm-sub',          T.homeVmSub);
+
+  setText('actress-name',         T.actressName);
+  setText('actress-book-caption', T.actressBookCaption);
+  setText('actress-art-caption',  T.actressArtCaption);
+  setText('actress-video-caption',T.actressVideoCaption);
+
+  setText('vm-title',    T.vmTitle);
+  setText('vm-bio',      T.vmBio);
+  setText('vm-bio-ext',  T.vmBioExt);
+
+  setText('stat1-num', T.stat1Num); setText('stat1-lbl', T.stat1Lbl);
+  setText('stat2-num', T.stat2Num); setText('stat2-lbl', T.stat2Lbl);
+  const s3box = document.getElementById('stat3-box');
+  if (s3box) {
+    if (!T.stat3Num && !T.stat3Lbl) {
+      s3box.style.display = 'none';
+    } else {
+      s3box.style.display = '';
+      setText('stat3-num', T.stat3Num);
+      setText('stat3-lbl', T.stat3Lbl);
+    }
+  }
+
+  setText('works-eyebrow', T.worksEyebrow);
+  setText('works-heading',  T.worksHeading);
+  setText('works-subtext',  T.worksSubtext);
+  setText('rates-note',     T.ratesNote);
+
+  // Footer
+  setText('footer-actress',    T.actressName.toUpperCase() + ' · ATTRICE');
+  setText('footer-vm',         T.actressName.toUpperCase() + ' · VIDEOMAKER');
+  setText('footer-actress-loc', T.contactCity + ', Italia');
+  setText('footer-vm-loc',      T.contactCity);
+
+  const igHandle = T.instagramHandle || '';
+  const igUrl    = T.instagramUrl    || '#';
+  ['footer-actress-ig', 'footer-vm-ig'].forEach(id => {
+    const a = document.getElementById(id);
+    if (a) a.href = igUrl;
+  });
+  ['footer-actress-ig-text', 'footer-vm-ig-text'].forEach(id => setText(id, igHandle));
+
+  const email = T.contactEmail || '';
+  ['footer-actress-email', 'footer-vm-email'].forEach(id => {
+    const a = document.getElementById(id);
+    if (a) a.href = 'mailto:' + email;
+  });
+  ['footer-actress-email-text', 'footer-vm-email-text'].forEach(id => setText(id, email));
+
+  setText('form-reply-note', T.formReplyNote);
+  const sct = document.getElementById('success-text');
+  if (sct) sct.innerHTML = (T.successText || '').replace(/\n/g, '<br>');
+
+  // Tags
+  const tc = document.getElementById('vm-tags-container');
+  tc.innerHTML = '';
+  (T.vmTags || '').split(',').forEach(tag => {
+    const s = document.createElement('span');
+    s.className = 'bio-tag';
+    s.textContent = tag.trim();
+    tc.appendChild(s);
+  });
+}
+
+// ===================== SERVIZI =====================
+function renderServices() {
+  const sl = document.getElementById('services-list');
+  sl.innerHTML = '';
+  (C.services || []).forEach(sv => {
+    sl.innerHTML += `<div class="service-item"><i class="ti ${sv.icon}"></i><div><div class="service-name">${sv.name}</div><div class="service-desc">${sv.desc}</div></div></div>`;
+  });
+}
+
+// ===================== TARIFFE & PACCHETTI =====================
+function renderRates() {
+  const rt = document.getElementById('rates-table');
+  rt.innerHTML = '';
+  (C.rates || []).forEach(r => {
+    rt.innerHTML += `<div class="tariffa"><div><div class="tariffa-name">${r.name}</div><div class="tariffa-sub">${r.sub}</div></div><div><div class="tariffa-price">${r.price}</div><div class="tariffa-note">${r.note}</div></div></div>`;
+  });
+
+  const pl = document.getElementById('packages-list');
+  pl.innerHTML = '';
+  (C.packages || []).forEach(p => {
+    pl.innerHTML += `<div class="pkg${p.featured ? ' featured' : ''}"><div class="pkg-head"><div><div class="pkg-name">${p.name}${p.featured ? '<span class="pkg-badge">Più richiesto</span>' : ''}</div></div><div class="pkg-price">${p.price}</div></div><div class="pkg-desc">${p.desc}</div></div>`;
+  });
+}
+
+// ===================== FILTRI LAVORI =====================
+function filterW(el, filterVal) {
+  document.querySelectorAll('.work-cat').forEach(x => x.classList.remove('active'));
+  el.classList.add('active');
+  _activeFilter = filterVal || 'all';
+  renderVmVideoGrid();
+}
+
+function renderWorksCats() {
+  const wc = document.getElementById('works-cats');
+  if (!wc) return;
+  const filters = C.worksFilters || [];
+  wc.style.gridTemplateColumns = `repeat(${filters.length}, 1fr)`;
+  wc.innerHTML = '';
+  filters.forEach((f, i) => {
+    const isActive = (i === 0 && _activeFilter === 'all') || (!f.isAll && f.filterVal === _activeFilter);
+    const count = f.isAll
+      ? (C.vmVideos || []).length || '—'
+      : (C.vmVideos || []).filter(v => (v.filterVal || '').toLowerCase() === (f.filterVal || '').toLowerCase()).length || '—';
+    const div = document.createElement('div');
+    div.className = 'work-cat' + (isActive ? ' active' : '');
+    div.innerHTML = `<i class="ti ${f.icon || 'ti-layout-grid'}"></i><div class="work-cat-name">${f.label}</div><div class="work-cat-num">${count}</div>`;
+    div.addEventListener('click', function () { filterW(this, f.isAll ? 'all' : f.filterVal); });
+    wc.appendChild(div);
+  });
+}
+
+// ===================== GRIGLIA FOTO =====================
+function renderPhotoGrid(gridId, items, type) {
+  const g = document.getElementById(gridId);
+  g.innerHTML = '';
+  if (!items || !items.length) {
+    const placeholders = type === 'book'
+      ? ['Ritratto principale', 'Primo piano', 'Mezzo busto', 'Character', 'Figura intera', 'Dettaglio']
+      : ['Scatto di scena', 'Set teatrale', 'Espressione', 'Cinematografico', 'Backstage'];
+    placeholders.forEach(lbl => {
+      g.innerHTML += `<div class="photo-item"><div class="photo-ph"><i class="ti ti-photo"></i>${lbl}</div></div>`;
+    });
+    return;
+  }
+  items.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'photo-item';
+    const pos = item.objectPosition || 'center top';
+    el.innerHTML = `<img src="${item.src}" alt="${item.label || ''}" style="object-position:${pos};"><div class="photo-ov"><span class="photo-lbl">${item.label || ''}</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div>`;
+    el.addEventListener('click', () => lbxOpen(gridId, i));
+    g.appendChild(el);
+  });
+}
+
+// ===================== PROGETTI ARTISTICI =====================
+function renderArtProjects() {
+  const container = document.getElementById('art-projects-container');
+  if (!container) return;
+  container.innerHTML = '';
+  if (!C.artProjects || !C.artProjects.length) {
+    container.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text-muted);font-size:11px;letter-spacing:1px;">Nessun progetto fotografico — aggiungine uno in config.js</div>';
+    return;
+  }
+  C.artProjects.forEach((proj, pi) => {
+    const photoCount = proj.photos ? proj.photos.length : 0;
+    const div = document.createElement('div');
+    div.className = 'art-project';
+    div.innerHTML = `
+      <div class="art-project-header" onclick="this.parentElement.classList.toggle('collapsed')">
+        <div>
+          <div class="art-project-year">${proj.year || '—'}</div>
+          <div style="font-size:10px;color:var(--text-muted);letter-spacing:1px;margin-top:2px;">${photoCount} foto</div>
+        </div>
+        <div class="art-project-meta-row">
+          ${proj.photographer ? `<span class="art-project-badge"><i class="ti ti-camera" style="font-size:10px;vertical-align:-1px;margin-right:4px;"></i>${proj.photographer}</span>` : ''}
+          ${proj.location     ? `<span class="art-project-badge"><i class="ti ti-map-pin" style="font-size:10px;vertical-align:-1px;margin-right:4px;"></i>${proj.location}</span>` : ''}
+          <i class="ti ti-chevron-down art-project-toggle"></i>
+        </div>
+      </div>
+      <div class="art-project-body">
+        <div class="art-project-info">
+          <div class="art-info-cell"><div class="art-info-lbl">Fotografo</div><div class="art-info-val">${proj.photographer || '—'}</div></div>
+          <div class="art-info-cell"><div class="art-info-lbl">Anno</div><div class="art-info-val">${proj.year || '—'}</div></div>
+          <div class="art-info-cell"><div class="art-info-lbl">Luogo</div><div class="art-info-val">${proj.location || '—'}</div></div>
+        </div>
+        <div class="art-project-photos" id="art-proj-photos-${pi}"></div>
+      </div>`;
+    container.appendChild(div);
+
+    const pg = document.getElementById(`art-proj-photos-${pi}`);
+    if (proj.photos && proj.photos.length) {
+      proj.photos.forEach((ph, phi) => {
+        const pe = document.createElement('div');
+        pe.className = 'photo-item';
+        const pos = ph.objectPosition || 'center top';
+        pe.innerHTML = `<img src="${ph.src}" alt="${ph.label || ''}" style="object-position:${pos};"><div class="photo-ov"><span class="photo-lbl">${ph.label || ''}</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div>`;
+        pe.addEventListener('click', () => lbxOpenArt(pi, phi));
+        pg.appendChild(pe);
+      });
+    } else {
+      pg.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:1.25rem;color:var(--text-muted);font-size:10px;">Nessuna foto in questo progetto</div>';
+    }
+  });
+}
+
+// ===================== GRIGLIA VIDEO =====================
+function getEmbedSrc(url) {
+  if (!url) return null;
+  const yt = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/);
+  if (yt) return 'https://www.youtube.com/embed/' + yt[1] + '?autoplay=1&rel=0';
+  const vi = url.match(/vimeo\.com\/(\d+)/);
+  if (vi) return 'https://player.vimeo.com/video/' + vi[1] + '?autoplay=1';
+  return null;
+}
+
+function renderVideoGrid(gridId, items) {
+  const g = document.getElementById(gridId);
+  g.innerHTML = '';
+  if (!items || !items.length) {
+    for (let i = 0; i < 4; i++) {
+      g.innerHTML += `<div class="video-card"><div class="video-thumb"><div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">Titolo produzione</div><div class="video-meta">Tipo · Anno</div></div></div>`;
+    }
+    return;
+  }
+  items.forEach(v => {
+    const ytMatch = v.url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/);
+    let thumbHtml = '';
+    if (v.thumb) {
+      thumbHtml = `<img src="${v.thumb}" alt="">`;
+    } else if (ytMatch) {
+      thumbHtml = `<img src="https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg" alt="" onerror="this.style.display='none'">`;
+    }
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.innerHTML = `<div class="video-thumb">${thumbHtml}<div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-meta">${v.meta}</div></div>`;
+    card.addEventListener('click', () => openVideo(v.url, v.title));
+    g.appendChild(card);
+  });
+}
+
+function renderVmVideoGrid() {
+  const vmVids = C.vmVideos || [];
+  const items = _activeFilter === 'all'
+    ? vmVids
+    : vmVids.filter(v => (v.filterVal || '').toLowerCase() === _activeFilter.toLowerCase());
+  renderVideoGrid('grid-vm-video', items.length ? items : (vmVids.length ? [] : null));
+}
+
+// ===================== PLAYER VIDEO con FALLBACK (Opzione B) =====================
+function openVideo(url, title) {
+  if (!url) return;
+  const embedSrc = getEmbedSrc(url);
+  const c = document.getElementById('vid-modal-content');
+
+  if (embedSrc) {
+    // Primo tentativo: iframe embed
+    const iframe = document.createElement('iframe');
+    iframe.className = 'vid-modal-frame';
+    iframe.src = embedSrc;
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.title = title || 'Video';
+
+    // Fallback: ascolta messaggi di errore YouTube via postMessage
+    // e usa anche l'evento 'error' dell'iframe dove supportato
+    iframe.addEventListener('error', () => showVideoFallback(url, title));
+
+    c.innerHTML = '';
+    c.appendChild(iframe);
+
+    // Fallback temporizzato: se dopo 4 secondi l'iframe segnala
+    // un errore (es. errore 153 / embedding disabilitato), mostra il link diretto.
+    // YouTube injetta l'errore nel DOM dell'iframe ma non lo espone all'esterno,
+    // quindi ascoltiamo il messaggio postMessage che YouTube invia al parent.
+    const ytErrorHandler = function(e) {
+      if (!e.data) return;
+      let data = e.data;
+      if (typeof data === 'string') { try { data = JSON.parse(data); } catch(err) { return; } }
+      // YouTube invia {event:'infoDelivery', info:{error:150}} o simili per video non embeddabili
+      if (data.event === 'infoDelivery' && data.info && data.info.error) {
+        window.removeEventListener('message', ytErrorHandler);
+        showVideoFallback(url, title);
+      }
+    };
+    window.addEventListener('message', ytErrorHandler);
+
+    // Pulizia listener quando il modal viene chiuso
+    iframe._ytErrorHandler = ytErrorHandler;
+
+  } else {
+    // File MP4 diretto
+    c.innerHTML = `<video class="vid-modal-video" src="${url}" controls autoplay playsinline></video>`;
+  }
+
+  document.getElementById('vid-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function showVideoFallback(url, title) {
+  const c = document.getElementById('vid-modal-content');
+  c.innerHTML = `
+    <div class="vid-fallback">
+      <p>Questo video non può essere riprodotto direttamente qui<br>perché il suo proprietario ha disabilitato l'incorporamento esterno.</p>
+      <a href="${url}" target="_blank" rel="noopener">
+        <i class="ti ti-brand-youtube" style="font-size:16px;"></i>
+        Guarda su YouTube
+      </a>
+    </div>`;
+}
+
+function vidModalClose() {
+  // Rimuovi listener YouTube se presente
+  const iframe = document.querySelector('#vid-modal-content iframe');
+  if (iframe && iframe._ytErrorHandler) {
+    window.removeEventListener('message', iframe._ytErrorHandler);
+  }
+  document.getElementById('vid-modal-overlay').classList.remove('open');
+  document.getElementById('vid-modal-content').innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+function vidModalBgClick(e) {
+  if (e.target === document.getElementById('vid-modal-overlay')) vidModalClose();
+}
+
+// ===================== CALENDARIO =====================
+function renderCal() {
+  const key     = cy + '-' + (cm + 1);
+  const blocked = (C.blocked && C.blocked[key]) ? C.blocked[key] : [];
+  document.getElementById('cal-title').textContent = MI[cm] + ' ' + cy;
+  const g = document.getElementById('cal-grid');
+  g.innerHTML = '';
+  DI.forEach(d => { const e = document.createElement('div'); e.className = 'cal-dlbl'; e.textContent = d; g.appendChild(e); });
+  const fd  = new Date(cy, cm, 1).getDay();
+  const off = fd === 0 ? 6 : fd - 1;
+  for (let i = 0; i < off; i++) { const e = document.createElement('div'); e.className = 'cal-day empty'; g.appendChild(e); }
+  const dim = new Date(cy, cm + 1, 0).getDate();
+  const td  = new Date();
+  for (let d = 1; d <= dim; d++) {
+    const e   = document.createElement('div');
+    const isB = blocked.includes(d);
+    const isP = new Date(cy, cm, d) < new Date(td.getFullYear(), td.getMonth(), td.getDate());
+    const isT = d === td.getDate() && cm === td.getMonth() && cy === td.getFullYear();
+    const isS = sel && sel.d === d && sel.m === cm && sel.y === cy;
+    e.className = 'cal-day ' + (isS ? 'selected' : (isB || isP ? 'booked' : 'avail')) + (isT && !isS ? ' today' : '');
+    e.textContent = d;
+    if (!isB && !isP) e.onclick = () => pickDate(d, cm, cy);
+    g.appendChild(e);
+  }
+}
+
+function pickDate(d, m, y) {
+  if (sel && sel.d === d && sel.m === m && sel.y === y) {
+    sel = null; renderCal();
+    const banner = document.getElementById('date-banner');
+    banner.style.display = 'none'; banner.textContent = '';
+    return;
+  }
+  sel = { d, m, y }; renderCal();
+  const banner = document.getElementById('date-banner');
+  banner.textContent = 'Data selezionata: ' + d + ' ' + MI[m] + ' ' + y;
+  banner.style.display = 'block';
+}
+
+function chMo(dir) {
+  cm += dir;
+  if (cm < 0)  { cm = 11; cy--; }
+  if (cm > 11) { cm = 0;  cy++; }
+  renderCal();
+}
+
+// ===================== FORM CONTATTI =====================
+function submitForm() {
+  const n = document.getElementById('fn').value.trim();
+  const e = document.getElementById('fe').value.trim();
+  const m = document.getElementById('fm').value.trim();
+  const t = document.getElementById('ft').value;
+  const bannerEl = document.getElementById('date-banner');
+  const dl = bannerEl.style.display !== 'none' ? bannerEl.textContent.replace('Data selezionata: ', '') : '';
+  if (!n || !e || !m) return;
+  const subj = dl ? 'Richiesta collaborazione — ' + dl : 'Richiesta collaborazione';
+  const body = 'Nome: ' + n + '\nEmail: ' + e + (dl ? '\nData: ' + dl : '') + '\nProgetto: ' + (t || '—') + '\n\n' + m;
+  window.location.href = 'mailto:' + T.contactEmail + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+  document.getElementById('bform').style.display = 'none';
+  document.getElementById('fsuccess').classList.add('show');
+}
+
+function resetF() {
+  sel = null;
+  ['fn', 'fe', 'fm'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('ft').value = '';
+  const banner = document.getElementById('date-banner');
+  banner.style.display = 'none'; banner.textContent = '';
+  document.getElementById('bform').style.display = 'block';
+  document.getElementById('fsuccess').classList.remove('show');
+  renderCal();
+}
+
+// ===================== LIGHTBOX =====================
+let _lbxGallery = [];
+let _lbxIdx     = 0;
+
+function lbxOpen(gridId, idx) {
+  const map = {
+    'grid-book':          C.bookPhotos    || [],
+    'grid-actress-video': C.actressVideos || [],
+  };
+  const items = map[gridId];
+  if (!items || !items.length) return;
+  _lbxGallery = items.map(item => ({ src: item.src, label: item.label || '' }));
+  _lbxIdx = idx;
+  lbxShow();
+  document.getElementById('lbx-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function lbxOpenArt(projIdx, photoIdx) {
+  if (!C.artProjects[projIdx] || !C.artProjects[projIdx].photos) return;
+  _lbxGallery = C.artProjects[projIdx].photos.map(p => ({ src: p.src, label: p.label || '' }));
+  _lbxIdx = photoIdx;
+  lbxShow();
+  document.getElementById('lbx-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function lbxShow() {
+  const item = _lbxGallery[_lbxIdx];
+  const img  = document.getElementById('lbx-img');
+  img.style.opacity = '0';
+  img.src = item.src;
+  img.onload = () => { img.style.opacity = '1'; };
+  setTimeout(() => { img.style.opacity = '1'; }, 50);
+  document.getElementById('lbx-caption').textContent = item.label;
+  document.getElementById('lbx-counter').textContent = (_lbxIdx + 1) + ' / ' + _lbxGallery.length;
+}
+
+function lbxNav(dir) {
+  _lbxIdx = (_lbxIdx + dir + _lbxGallery.length) % _lbxGallery.length;
+  lbxShow();
+}
+
+function lbxClose() {
+  document.getElementById('lbx-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function lbxBgClick(e) {
+  if (e.target === document.getElementById('lbx-overlay')) lbxClose();
+}
+
+document.addEventListener('keydown', function(e) {
+  const ov = document.getElementById('lbx-overlay');
+  const vm = document.getElementById('vid-modal-overlay');
+  if (vm.classList.contains('open') && e.key === 'Escape') { vidModalClose(); return; }
+  if (!ov.classList.contains('open')) return;
+  if (e.key === 'Escape')      lbxClose();
+  if (e.key === 'ArrowLeft')   lbxNav(-1);
+  if (e.key === 'ArrowRight')  lbxNav(1);
+});
+
+// ===================== INIT =====================
+function init() {
+  renderTexts();
+  renderServices();
+  renderRates();
+  renderWorksCats();
+  renderPhotoGrid('grid-book',          C.bookPhotos    || [], 'book');
+  renderArtProjects();
+  renderVideoGrid('grid-actress-video', C.actressVideos || []);
+  renderVmVideoGrid();
+  renderCal();
+}
+
+init();
+</script>
+</body>
+</html>
