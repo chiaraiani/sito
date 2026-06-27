@@ -157,8 +157,8 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   bookPhotos: [
     // Esempi - decommenta e modifica:
-    { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782592428/L1072124_copia_nkf7fc.jpg' },
-    // { src: 'foto/book2.jpg', label: 'Primo piano', objectPosition: '50% 20%' },
+    { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782592428/L1072124_copia_nkf7fc.jpg', label: 'Primo piano', objectPosition: '50% 20%' },
+    { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782592428/L1072203_copia_ar04do.jpg', label: 'Primo piano', objectPosition: '50% 20%' },
 ],
 
   // ─────────────────────────────────────────────
