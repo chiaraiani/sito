@@ -187,7 +187,7 @@ const SITE_CONFIG = {
   artProjects: [
     // Esempio — decommenta e modifica:
      {
-       year: '2026',
+       year: '2027',
        photographer: 'Marco Ragaini',
        location: 'Milano',
        photos: [
@@ -200,8 +200,8 @@ const SITE_CONFIG = {
        ],
      },
     {
-       year: '2026',
-       photographer: 'Marco Ragaini',
+       year: '2025',
+       photographer: 'O Ragaini',
        location: 'Milano',
        photos: [
          { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782595619/B0027288_qabn0a.jpg'},
