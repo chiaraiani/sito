@@ -33,7 +33,7 @@ nav {
 .nav-cv-btn:hover { background:var(--notte); color:var(--white); }
 
 /* HOME */
-.home-split { display:grid; grid-template-columns:1fr 1fr; ; min-height:520px; height:-webkit-fill-available}
+.home-split { display:grid; grid-template-columns:1fr 1fr; min-height:520px; height:-webkit-fill-available; }
 .home-panel { position:relative; overflow:hidden; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:background 0.4s; }
 .panel-actress { background:var(--bg); }
 .panel-actress:hover { background:var(--bg-mid); }
@@ -75,14 +75,6 @@ nav {
 .content { padding:2.5rem 3rem; }
 .tab-content { display:none; }
 .tab-content.active { display:block; }
-/* Stili per nascondere l'intera sezione col pulsante */
-.tab-content.hidden { display: none !important; }
-
-/* Stili per l'apertura e chiusura del singolo progetto al click */
-.art-project-body { display: none; }
-.art-project.open .art-project-body { display: block; }
-.art-project.open .art-project-toggle { transform: rotate(180deg); }
-.art-project-toggle { transition: transform 0.2s; }
 
 /* PHOTO GRID */
 .photo-grid { display:grid; gap:3px; grid-template-columns:repeat(3,1fr); grid-auto-flow:dense; }
@@ -97,6 +89,69 @@ nav {
 .photo-item:hover .photo-ov { opacity:1; }
 .photo-lbl { font-size:10px; letter-spacing:1px; color:var(--mint); }
 .photo-zoom-icon { color:var(--white); font-size:18px; opacity:0.85; }
+
+/* ===================== ACCORDION FOTO ARTISTICHE ===================== */
+.art-projects-container { display:flex; flex-direction:column; gap:2px; }
+
+/* intestazione cliccabile del progetto */
+.art-project-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1rem 1.25rem; background:var(--bg); border:1px solid var(--border);
+  cursor:pointer; transition:background 0.2s, border-color 0.2s;
+  user-select:none;
+}
+.art-project-header:hover { background:var(--bg-mid); border-color:var(--border-md); }
+.art-project.open .art-project-header { background:var(--green-lt); border-color:var(--green); }
+
+.art-project-year {
+  font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300;
+  color:var(--notte); line-height:1;
+}
+.art-project-count {
+  font-size:9px; letter-spacing:1px; text-transform:uppercase;
+  color:var(--text-muted); margin-top:3px;
+}
+.art-project-meta-row { display:flex; align-items:center; gap:10px; }
+.art-project-badge {
+  font-size:9px; letter-spacing:1px; text-transform:uppercase;
+  color:var(--text-mid); border:1px solid var(--border-md);
+  padding:3px 10px; white-space:nowrap;
+}
+/* freccia rotante */
+.art-project-toggle {
+  font-size:16px; color:var(--green);
+  transition:transform 0.3s ease; flex-shrink:0; margin-left:8px;
+}
+.art-project.open .art-project-toggle { transform:rotate(180deg); }
+
+/* corpo dell'accordion — nascosto di default, animato */
+.art-project-body {
+  overflow:hidden;
+  max-height:0;
+  transition:max-height 0.45s ease, padding 0.3s ease;
+  border:1px solid transparent;
+  border-top:none;
+}
+.art-project.open .art-project-body {
+  max-height:9000px; /* valore alto abbastanza da contenere qualsiasi galleria */
+  border-color:var(--green);
+  border-top:none;
+}
+
+/* metadati del progetto dentro il corpo */
+.art-project-info {
+  display:flex; gap:1px; background:var(--border);
+  border-bottom:1px solid var(--border);
+}
+.art-info-cell { background:var(--bg); padding:.75rem 1.25rem; flex:1; }
+.art-info-lbl { font-size:8px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:3px; }
+.art-info-val { font-size:12px; color:var(--notte); }
+
+/* griglia foto dentro l'accordion */
+.art-project-photos {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:3px;
+  padding:3px; background:var(--bg);
+}
 
 /* LIGHTBOX */
 .lbx-overlay {
@@ -161,12 +216,6 @@ nav {
 .vid-modal-close:hover { background:rgba(255,255,255,0.12); }
 .vid-modal-frame { width:100%; aspect-ratio:16/9; border:none; background:#000; display:block; }
 .vid-modal-video { width:100%; aspect-ratio:16/9; background:#000; display:block; outline:none; }
-.adm-media-item { cursor:grab; user-select:none; }
-.adm-media-item:active { cursor:grabbing; }
-.adm-media-item.sortable-ghost { opacity:0.35; background:var(--green-lt) !important; border-color:var(--green) !important; }
-.adm-media-item.sortable-chosen { box-shadow:0 4px 16px rgba(62,122,112,0.25); }
-.adm-drag-handle { color:var(--text-muted); font-size:14px; cursor:grab; flex-shrink:0; padding:0 4px; }
-.adm-sort-hint { font-size:9px; color:var(--green); letter-spacing:1px; text-align:center; padding:5px 0 0; opacity:0.8; }
 
 /* VIDEO GRID */
 .video-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
@@ -207,7 +256,7 @@ nav {
 
 /* TARIFFE */
 .tariffe-table { display:flex; flex-direction:column; gap:1px; background:var(--border); }
-.tariffa { background:var(--bg); padding:.875rem 0; display:flex; justify-content:space-between; align-items:center; }
+.tariffa { background:var(--bg); padding:.875rem 1.125rem; display:flex; justify-content:space-between; align-items:center; }
 .tariffa-name { font-size:12px; color:var(--notte); }
 .tariffa-sub  { font-size:10px; color:var(--text-muted); margin-top:2px; }
 .tariffa-price { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--green); margin-left:1rem; white-space:nowrap; }
@@ -250,16 +299,12 @@ textarea.f-input { resize:vertical; min-height:90px; }
 .f-submit { width:100%; padding:13px; background:var(--green); color:var(--white); border:none; font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:background 0.2s; font-weight:500; }
 .f-submit:hover { background:var(--green-dk); }
 .f-note { font-size:9px; color:var(--text-muted); margin-top:7px; text-align:center; }
-.form-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; gap:.875rem; min-height:280px; }
-.form-placeholder i { font-size:38px; color:var(--aqua); opacity:.5; }
-.form-placeholder p { font-size:11px; color:var(--text-muted); line-height:2; }
 .form-success { display:none; text-align:center; padding:2rem; border:1px solid var(--border); }
 .form-success.show { display:block; }
 .success-icon { font-size:30px; color:var(--green); margin-bottom:.875rem; }
 .success-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--notte); margin-bottom:.5rem; }
 .success-text { font-size:11px; color:var(--text-muted); line-height:2; }
 .booking-form { display:block; }
-.booking-form.show { display:block; }
 
 /* FOOTER */
 .sec-footer { padding:1.25rem 3rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:var(--bg-mid); }
@@ -271,18 +316,13 @@ textarea.f-input { resize:vertical; min-height:90px; }
 .note-box { padding:.875rem 1.125rem; border-left:2px solid var(--green); background:var(--green-lt); margin-top:.875rem; }
 .note-box p { font-size:10px; color:var(--text-mid); line-height:1.9; }
 
-
-/* ===================== RESPONSIVE MOBILE ===================== */
-@media (max-width: 768px) {
-
-  /* NAV */
+/* RESPONSIVE */
+@media (max-width:768px){
   nav { padding:0 1rem; height:auto; min-height:54px; flex-wrap:wrap; gap:.5rem; padding-top:.5rem; padding-bottom:.5rem; }
   .nav-logo { font-size:15px; letter-spacing:2px; }
   .nav-links { gap:.75rem; flex-wrap:wrap; }
   .nav-link { font-size:9px; letter-spacing:1px; }
   .nav-cv-btn { font-size:8px; padding:4px 8px; }
-  
-  /* HOME — pannelli uno sopra l'altro */
   .home-split { grid-template-columns:1fr; min-height:auto; }
   .home-panel { min-height:55vh; }
   .panel-divider { display:none; }
@@ -290,69 +330,42 @@ textarea.f-input { resize:vertical; min-height:90px; }
   .panel-num { font-size:80px; }
   .panel-sub { font-size:10px; }
   .cta { padding:10px 20px; font-size:9px; }
-
-  /* SECTION HEADER */
   .sec-header { padding:1.5rem 1.25rem 1rem; flex-direction:column; align-items:flex-start; gap:1rem; }
   .sec-title { font-size:28px; }
   .sec-tabs { flex-wrap:wrap; }
   .sec-tab { font-size:9px; padding:6px 12px; }
-
-  /* CONTENT */
   .content { padding:1.25rem; }
-
-  /* PHOTO GRID */
   .photo-grid { grid-template-columns:repeat(2,1fr); }
   .photo-grid-2 { grid-template-columns:1fr; }
   .photo-item.span2 { grid-row:span 1; }
-
-  /* VIDEO GRID */
   .video-grid { grid-template-columns:1fr; }
-
-  /* VM LAYOUT — colonne una sopra l'altra */
   .vm-grid { grid-template-columns:1fr; }
   .vm-col { padding:1.5rem 1.25rem; border-right:none !important; border-bottom:1px solid var(--border); }
   .vm-col:last-child { border-bottom:none; }
-
-  /* BIO */
   .bio-text { font-size:16px; }
   .stats-row { grid-template-columns:repeat(3,1fr); }
   .stat-num { font-size:22px; }
-
-  /* WORKS CATS */
   .works-cats { grid-template-columns:1fr; }
-
-  /* TARIFFE */
   .tariffa { flex-direction:column; gap:.5rem; padding:.875rem 1.125rem; }
   .tariffa-price { margin-left:0; }
-
-  /* BOOKING / CALENDARIO */
   #vt-book > div { grid-template-columns:1fr !important; }
   #vt-book > div > div { border-right:none !important; border-bottom:1px solid var(--border); padding:1.5rem 1.25rem; }
   #vt-book > div > div:last-child { border-bottom:none; }
-
-  /* RATES LAYOUT */
   #vt-rates .vm-grid { grid-template-columns:1fr; }
-
-  /* FOOTER */
   .sec-footer { padding:1rem 1.25rem; flex-direction:column; gap:.625rem; align-items:flex-start; }
-
-  /* LIGHTBOX BUTTONS */
   .lbx-prev { left:.5rem; }
   .lbx-next { right:.5rem; }
   .lbx-btn { width:36px; height:36px; font-size:15px; }
-
-  /* ADMIN PANEL */
-  .admin-panel { width:100vw; }
-  .adm-tabs { gap:2px; }
-  .adm-tab { font-size:8px; padding:6px 10px; }
+  .art-project-photos { grid-template-columns:repeat(2,1fr); }
+  .art-project-meta-row { flex-wrap:wrap; gap:6px; }
 }
-
-@media (max-width: 480px) {
+@media (max-width:480px){
   .panel-title { font-size:30px; }
   .photo-grid { grid-template-columns:1fr; }
   .stats-row { grid-template-columns:1fr; }
   .sec-tabs { gap:0; }
   .sec-tab { flex:1; text-align:center; }
+  .art-project-photos { grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -411,58 +424,33 @@ textarea.f-input { resize:vertical; min-height:90px; }
     </div>
   </div>
   <div class="content">
-        <!-- SEZIONE FOTO ARTISTICHE -->
-    <div id="at-art" class="tab-content active">
-      <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-art-caption">Foto artistiche</p>
-      <div class="art-projects-container" id="art-projects-container">
-        <div class="art-project">
-          <div class="art-project-header" onclick="toggleArtProject(this.parentElement)">
-            <div>
-              <div class="art-project-year">2026</div>
-              <div style="font-size:10px;color:var(--text-muted);letter-spacing:1px;margin-top:2px;">9 foto</div>
-            </div>
-            <div class="art-project-meta-row">
-              <span class="art-project-badge"><i class="ti ti-camera" style="font-size:10px;vertical-align:-1px;margin-right:4px;"></i>Marco Ragaini</span>
-              <span class="art-project-badge"><i class="ti ti-map-pin" style="font-size:10px;vertical-align:-1px;margin-right:4px;"></i>Milano</span>
-              <i class="ti ti-chevron-down art-project-toggle"></i>
-            </div>
-          </div>
-          <div class="art-project-body">
-            <div class="art-project-info">
-              <div class="art-info-cell"><div class="art-info-lbl">Fotografo</div><div class="art-info-val">Marco Ragaini</div></div>
-              <div class="art-info-cell"><div class="art-info-lbl">Anno</div><div class="art-info-val">2026</div></div>
-              <div class="art-info-cell"><div class="art-info-lbl">Luogo</div><div class="art-info-val">Milano</div></div>
-            </div>
-            <div class="art-project-photos" id="art-proj-photos-0">
-              <div class="photo-item"><img src="file:///Users/chiara/Desktop/Chiara%20work/Chiara%20book%2013:02%20Ragaini/NO%20IVAN/B0027288.jpg" alt="Foto" style="object-position:center top;"><div class="photo-ov"><span class="photo-lbl">Foto</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div></div>
-              <div class="photo-item"><img src="file:///Users/chiara/Desktop/Chiara%20work/Chiara%20book%2013:02%20Ragaini/NO%20IVAN/B0027257.jpg" alt="Foto" style="object-position:center top;"><div class="photo-ov"><span class="photo-lbl">Foto</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div></div>
-              <div class="photo-item"><img src="file:///Users/chiara/Desktop/Chiara%20work/Chiara%20book%2013:02%20Ragaini/NO%20IVAN/B0027339.jpg" alt="Foto" style="object-position:center top;"><div class="photo-ov"><span class="photo-lbl">Foto</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div></div>
-              <div class="photo-item"><img src="file:///Users/chiara/Desktop/Chiara%20work/Chiara%20book%2013:02%20Ragaini/NO%20IVAN/B0027309%20copia.jpg" alt="Foto" style="object-position:center top;"><div class="photo-ov"><span class="photo-lbl">Foto</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div></div>
-              <div class="photo-item"><img src="file:///Users/chiara/Desktop/Chiara%20work/Chiara%20book%2013:02%20Ragaini/NO%20IVAN/B0027316.jpg" alt="Foto" style="object-position:center top;"><div class="photo-ov"><span class="photo-lbl">Foto</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div></div>
-              <div class="photo-item"><img src="file:///Users/chiara/Desktop/Chiara%20work/Chiara%20book%2013:02%20Ragaini/NO%20IVAN/L1072168.jpg" alt="Foto" style="object-position:center top;"><div class="photo-ov"><span class="photo-lbl">Foto</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div></div>
-              <div class="photo-item"><img src="file:///Users/chiara/Desktop/Chiara%20work/Chiara%20book%2013:02%20Ragaini/NO%20IVAN/B0027305.jpg" alt="Foto" style="object-position:center top;"><div class="photo-ov"><span class="photo-lbl">Foto</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div></div>
-              <div class="photo-item"><img src="file:///Users/chiara/Desktop/Chiara%20work/Chiara%20book%2013:02%20Ragaini/NO%20IVAN/B0027297-2.jpg" alt="Foto" style="object-position:center top;"><div class="photo-ov"><span class="photo-lbl">Foto</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div></div>
-              <div class="photo-item"><img src="file:///Users/chiara/Desktop/Chiara%20work/Chiara%20book%2013:02%20Ragaini/NO%20IVAN/B0027235.jpg" alt="Foto" style="object-position:center top;"><div class="photo-ov"><span class="photo-lbl">Foto</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
+
+    <!-- TAB: BOOK -->
     <div id="at-book" class="tab-content active">
       <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-book-caption">Fotografie del book professionale</p>
       <div class="photo-grid" id="grid-book"></div>
     </div>
+
+    <!-- TAB: ARTISTICHE — accordion per progetto -->
     <div id="at-art" class="tab-content">
-      <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-art-caption">Scatti artistici e di scena</p>
-      <div class="photo-grid photo-grid-2" id="grid-art"></div>
+      <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-art-caption">Foto artistiche</p>
+      <div class="art-projects-container" id="art-projects-container">
+        <!-- I progetti vengono generati da JavaScript leggendo config.js -->
+      </div>
     </div>
+
+    <!-- TAB: VIDEO -->
     <div id="at-video" class="tab-content">
       <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-bottom:1.25rem;" id="actress-video-caption">Produzioni e lavori realizzati</p>
       <div class="video-grid" id="grid-actress-video"></div>
     </div>
+
   </div>
-  <div class="sec-footer"><span class="footer-name" id="footer-actress">CHIARA AIANI · ATTRICE</span><a class="footer-insta" href="https://instagram.com/chiaraiani" target="_blank" rel="noopener"><i class="ti ti-brand-instagram" style="font-size:13px;"></i>@chiaraiani</a><span class="footer-loc" id="footer-actress-loc">Milano, Italia</span></div>
+  <div class="sec-footer">
+    <span class="footer-name" id="footer-actress">CHIARA AIANI · ATTRICE</span>
+    <a class="footer-insta" href="https://instagram.com/chiaraiani" target="_blank" rel="noopener"><i class="ti ti-brand-instagram" style="font-size:13px;"></i>@chiaraiani</a>
+    <span class="footer-loc" id="footer-actress-loc">Milano, Italia</span>
+  </div>
 </div>
 
 <!-- VIDEOMAKER -->
@@ -484,8 +472,8 @@ textarea.f-input { resize:vertical; min-height:90px; }
     <div class="vm-grid">
       <div class="vm-col">
         <div class="sec-eyebrow" style="margin-bottom:.875rem;">Chi sono</div>
-        <p class="bio-text" id="vm-bio">Videomaker e regista con uno sguardo narrativo nato dal teatro e dalla recitazione. Racconto storie visive che sanno emozionare.</p>
-        <p style="font-size:12px;color:var(--text-muted);line-height:2;margin-bottom:1.5rem;" id="vm-bio-ext">Qui puoi inserire la tua biografia completa, la tua formazione, i tuoi riferimenti artistici e il tipo di lavoro che ami fare.</p>
+        <p class="bio-text" id="vm-bio"></p>
+        <p style="font-size:12px;color:var(--text-muted);line-height:2;margin-bottom:1.5rem;" id="vm-bio-ext"></p>
         <div class="bio-tags" id="vm-tags-container"></div>
         <div class="stats-row">
           <div class="stat-box"><div class="stat-num" id="stat1-num">5+</div><div class="stat-lbl" id="stat1-lbl">Anni</div></div>
@@ -508,7 +496,7 @@ textarea.f-input { resize:vertical; min-height:90px; }
       <div style="margin-bottom:1.5rem;">
         <div class="sec-eyebrow" id="works-eyebrow">Selezione lavori</div>
         <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--notte);margin-bottom:.375rem;" id="works-heading">Portfolio videomaker</div>
-        <p style="font-size:11px;color:var(--text-muted);line-height:2;" id="works-subtext">Una selezione di progetti realizzati — documentari, fiction, corporate e contenuti social.</p>
+        <p style="font-size:11px;color:var(--text-muted);line-height:2;" id="works-subtext"></p>
       </div>
       <div class="works-cats" id="works-cats"></div>
       <div class="video-grid" id="grid-vm-video"></div>
@@ -520,7 +508,7 @@ textarea.f-input { resize:vertical; min-height:90px; }
       <div class="vm-col">
         <div class="sec-eyebrow" style="margin-bottom:1.25rem;">Tariffe giornaliere</div>
         <div class="tariffe-table" id="rates-table"></div>
-        <div class="note-box" style="margin-top:.875rem;"><p id="rates-note">Le tariffe sono orientative. Ogni progetto viene valutato singolarmente. Contattami per un preventivo personalizzato.</p></div>
+        <div class="note-box" style="margin-top:.875rem;"><p id="rates-note"></p></div>
       </div>
       <div class="vm-col">
         <div class="sec-eyebrow" style="margin-bottom:1.25rem;">Pacchetti</div>
@@ -582,10 +570,14 @@ textarea.f-input { resize:vertical; min-height:90px; }
     </div>
   </div>
 
-  <div class="sec-footer"><span class="footer-name" id="footer-vm">CHIARA AIANI · VIDEOMAKER</span><a class="footer-insta" href="https://instagram.com/chiaraiani" target="_blank" rel="noopener"><i class="ti ti-brand-instagram" style="font-size:13px;"></i>@chiaraiani</a><span class="footer-loc" id="footer-vm-loc">chiara@gmail.com · Milano</span></div>
+  <div class="sec-footer">
+    <span class="footer-name" id="footer-vm">CHIARA AIANI · VIDEOMAKER</span>
+    <a class="footer-insta" href="https://instagram.com/chiaraiani" target="_blank" rel="noopener"><i class="ti ti-brand-instagram" style="font-size:13px;"></i>@chiaraiani</a>
+    <span class="footer-loc" id="footer-vm-loc">chiara@gmail.com · Milano</span>
+  </div>
 </div>
 
-<!-- ===================== VIDEO MODAL ===================== -->
+<!-- VIDEO MODAL -->
 <div class="vid-modal-overlay" id="vid-modal-overlay" onclick="vidModalBgClick(event)">
   <div class="vid-modal-wrap">
     <button class="vid-modal-close" onclick="vidModalClose()" aria-label="Chiudi"><i class="ti ti-x"></i></button>
@@ -593,7 +585,7 @@ textarea.f-input { resize:vertical; min-height:90px; }
   </div>
 </div>
 
-<!-- ===================== LIGHTBOX ===================== -->
+<!-- LIGHTBOX -->
 <div class="lbx-overlay" id="lbx-overlay" onclick="lbxBgClick(event)">
   <button class="lbx-close" onclick="lbxClose()" aria-label="Chiudi"><i class="ti ti-x"></i></button>
   <div class="lbx-counter" id="lbx-counter"></div>
@@ -605,90 +597,85 @@ textarea.f-input { resize:vertical; min-height:90px; }
   <button class="lbx-btn lbx-next" onclick="lbxNav(1)" aria-label="Successiva"><i class="ti ti-chevron-right"></i></button>
 </div>
 
-    
-</div>
-
 <script>
 // ===================== DATA MODEL =====================
-
-// Converte SITE_CONFIG (config.js) nel formato interno usato dal sito.
-// Se config.js non è caricato, usa valori di fallback incorporati.
-function buildDefaultFromConfig() {
+function buildData() {
   const C = (typeof SITE_CONFIG !== 'undefined') ? SITE_CONFIG : null;
   const T = C ? C.texts : {};
-
-  // Helper: legge da SITE_CONFIG o usa il fallback
   function t(key, fallback){ return (T && T[key] !== undefined) ? T[key] : fallback; }
-
   return {
     texts: {
-      homeActressTitle:  t('homeLeftTitle',    'Attrice'),
-      homeActressSub:    t('homeLeftSub',      'Book fotografico · Foto artistiche\nLavori & produzioni'),
-      homeActressEyebrow:t('homeLeftEyebrow',  'Portfolio'),
-      homeVmTitle:       t('homeRightTitle',   'Video-\nmaker'),
-      homeVmSub:         t('homeRightSub',     'Regia · Montaggio · Produzione\nPrenota una collaborazione'),
-      homeVmEyebrow:     t('homeRightEyebrow', 'Servizi'),
-      actressName:       t('actressName',      'Chiara Aiani'),
-      actressBookCaption:t('actressBookCaption','Fotografie del book professionale'),
-      actressArtCaption: t('actressArtCaption','Scatti artistici e di scena'),
+      homeActressTitle:   t('homeLeftTitle',    'Attrice'),
+      homeActressSub:     t('homeLeftSub',      'Book fotografico · Foto artistiche\nLavori & produzioni'),
+      homeActressEyebrow: t('homeLeftEyebrow',  'Portfolio'),
+      homeVmTitle:        t('homeRightTitle',   'Video-\nmaker'),
+      homeVmSub:          t('homeRightSub',     'Regia · Montaggio · Produzione\nPrenota una collaborazione'),
+      homeVmEyebrow:      t('homeRightEyebrow', 'Servizi'),
+      actressName:        t('actressName',      'Chiara Aiani'),
+      actressBookCaption: t('actressBookCaption','Fotografie del book professionale'),
+      actressArtCaption:  t('actressArtCaption','Foto artistiche'),
       actressVideoCaption:t('actressVideoCaption','Produzioni e lavori realizzati'),
-      vmTitle:           t('vmTitle',          'Regia & Produzione'),
-      vmBio:             t('vmBio',            'Videomaker e regista con uno sguardo narrativo nato dal teatro e dalla recitazione. Racconto storie visive che sanno emozionare.'),
-      vmBioExt:          t('vmBioExt',         'Qui puoi inserire la tua biografia completa, la tua formazione, i tuoi riferimenti artistici e il tipo di lavoro che ami fare.'),
-      vmTags:            t('vmTags',           'Regia,Montaggio,Riprese,Documentario,Narrativa,Corporate'),
-      stat1Num:          t('stat1Num',         '5+'),
-      stat1Lbl:          t('stat1Lbl',         'Anni'),
-      stat2Num:          t('stat2Num',         '30+'),
-      stat2Lbl:          t('stat2Lbl',         'Progetti'),
-      stat3Num:          t('stat3Num',         ''),
-      stat3Lbl:          t('stat3Lbl',         ''),
-      contactEmail:      t('contactEmail',     'chiara@gmail.com'),
-      contactCity:       t('contactCity',      'Milano'),
-      formReplyNote:     t('formReplyNote',    'Riceverai una risposta entro 48 ore alla tua email'),
-      successText:       t('successText',      'Grazie! Ti rispondo entro 48 ore.\nControlla la tua casella Gmail.'),
-      instagramHandle:   t('instagramHandle',  '@chiaraiani'),
-      instagramUrl:      t('instagramUrl',     'https://instagram.com/chiaraiani'),
-      ratesNote:         t('ratesNote',        'Le tariffe sono orientative. Ogni progetto viene valutato singolarmente. Contattami per un preventivo personalizzato.'),
-      worksEyebrow:      t('worksEyebrow',     'Selezione lavori'),
-      worksHeading:      t('worksHeading',     'Portfolio videomaker'),
-      worksSubtext:      t('worksSubtext',     'Una selezione di progetti realizzati — documentari, fiction, corporate e contenuti social.'),
+      vmTitle:            t('vmTitle',          'Regia & Produzione'),
+      vmBio:              t('vmBio',            'Videomaker e regista con uno sguardo narrativo nato dal teatro e dalla recitazione.'),
+      vmBioExt:           t('vmBioExt',         ''),
+      vmTags:             t('vmTags',           'Regia,Montaggio,Riprese,Documentario,Narrativa,Corporate'),
+      stat1Num:           t('stat1Num',         '5+'),  stat1Lbl: t('stat1Lbl','Anni'),
+      stat2Num:           t('stat2Num',         '30+'), stat2Lbl: t('stat2Lbl','Progetti'),
+      stat3Num:           t('stat3Num',         ''),    stat3Lbl: t('stat3Lbl',''),
+      contactEmail:       t('contactEmail',     'chiara@gmail.com'),
+      contactCity:        t('contactCity',      'Milano'),
+      formReplyNote:      t('formReplyNote',    'Riceverai una risposta entro 48 ore alla tua email'),
+      successText:        t('successText',      'Grazie! Ti rispondo entro 48 ore.\nControlla la tua casella Gmail.'),
+      instagramHandle:    t('instagramHandle',  '@chiaraiani'),
+      instagramUrl:       t('instagramUrl',     'https://instagram.com/chiaraiani'),
+      ratesNote:          t('ratesNote',        'Le tariffe sono orientative.'),
+      worksEyebrow:       t('worksEyebrow',     'Selezione lavori'),
+      worksHeading:       t('worksHeading',     'Portfolio videomaker'),
+      worksSubtext:       t('worksSubtext',     'Una selezione di progetti realizzati.'),
     },
-    services: (C && C.services && C.services.length) ? C.services : [
-      {icon:'ti-video',   name:'Riprese & Regia',             desc:'Gestione completa del set, direzione attori, scelta location.'},
-      {icon:'ti-cut',     name:'Montaggio & Post-produzione', desc:'Color grading, sound design, effetti visivi e finalizzazione.'},
-      {icon:'ti-writing', name:'Sviluppo del progetto',       desc:'Dall\'idea alla sceneggiatura, storyboard e pre-produzione.'},
-      {icon:'ti-building',name:'Video corporate & eventi',    desc:'Contenuti per brand, eventi aziendali, documentari istituzionali.'}
-    ],
-    rates: (C && C.rates && C.rates.length) ? C.rates : [
-      {name:'Riprese — mezza giornata', sub:'Fino a 4 ore · operatore singolo', price:'€ 250', note:'+ iva'},
-      {name:'Riprese — giornata intera',sub:'Fino a 8 ore · operatore singolo', price:'€ 450', note:'+ iva'},
-      {name:'Montaggio',                sub:'Per ora lavorata',                 price:'€ 40',  note:'/ ora'},
-      {name:'Regia progetto',           sub:'Sviluppo completo',                price:'Su richiesta', note:''}
-    ],
-    packages: (C && C.packages && C.packages.length) ? C.packages : [
-      {name:'Pacchetto Social',       price:'€ 350',      desc:'Riprese mezza giornata + montaggio 5 reel ottimizzati per social', featured:false},
-      {name:'Pacchetto Evento',       price:'€ 700',      desc:'Copertura completa evento + highlight video + 3 clip brevi',       featured:true},
-      {name:'Pacchetto Documentario', price:'Da € 1.200', desc:'Progetto completo: sviluppo, riprese, post-produzione e consegna finale', featured:false}
-    ],
+    services:    (C && C.services    && C.services.length)    ? C.services    : defaultServices(),
+    rates:       (C && C.rates       && C.rates.length)       ? C.rates       : defaultRates(),
+    packages:    (C && C.packages    && C.packages.length)    ? C.packages    : defaultPackages(),
+    artProjects: (C && C.artProjects && C.artProjects.length) ? C.artProjects : [],
     media: {
-      book:         (C && C.bookPhotos)    ? C.bookPhotos.map(p=>({src:p.src, label:p.label||'', objectPosition:p.objectPosition||'center top'})) : [],
-      art:          (C && C.artProjects)   ? C.artProjects.flatMap(proj=>proj.photos.map(p=>({src:p.src, label:p.label||''}))) : [],
-      actressVideo: (C && C.actressVideos) ? C.actressVideos.map(v=>({title:v.title, url:v.url, meta:v.meta||'', thumb:v.thumb||''})) : [],
-      vmVideo:      (C && C.vmVideos)      ? C.vmVideos.map(v=>({title:v.title, url:v.url, meta:v.meta||'', thumb:v.thumb||'', filterVal:v.filterVal||''})) : [],
+      book:         (C && C.bookPhotos)    ? C.bookPhotos.map(p=>({src:p.src,label:p.label||'',objectPosition:p.objectPosition||'center top'})) : [],
+      actressVideo: (C && C.actressVideos) ? C.actressVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||''})) : [],
+      vmVideo:      (C && C.vmVideos)      ? C.vmVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||'',filterVal:v.filterVal||''})) : [],
     },
     blocked: (C && C.blocked) ? C.blocked : {}
   };
 }
 
-const DEFAULT_DATA = buildDefaultFromConfig();
+function defaultServices(){
+  return [
+    {icon:'ti-video',   name:'Riprese & Regia',             desc:'Gestione completa del set, direzione attori, scelta location.'},
+    {icon:'ti-cut',     name:'Montaggio & Post-produzione', desc:'Color grading, sound design, effetti visivi e finalizzazione.'},
+    {icon:'ti-writing', name:'Sviluppo del progetto',       desc:'Dall\'idea alla sceneggiatura, storyboard e pre-produzione.'},
+    {icon:'ti-building',name:'Video corporate & eventi',    desc:'Contenuti per brand, eventi aziendali, documentari istituzionali.'}
+  ];
+}
+function defaultRates(){
+  return [
+    {name:'Riprese — mezza giornata',sub:'Fino a 4 ore · operatore singolo',price:'€ 250',note:'+ iva'},
+    {name:'Riprese — giornata intera',sub:'Fino a 8 ore · operatore singolo',price:'€ 450',note:'+ iva'},
+    {name:'Montaggio',sub:'Per ora lavorata',price:'€ 40',note:'/ ora'},
+    {name:'Regia progetto',sub:'Sviluppo completo',price:'Su richiesta',note:''}
+  ];
+}
+function defaultPackages(){
+  return [
+    {name:'Pacchetto Social',price:'€ 350',desc:'Riprese mezza giornata + montaggio 5 reel ottimizzati per social',featured:false},
+    {name:'Pacchetto Evento',price:'€ 700',desc:'Copertura completa evento + highlight video + 3 clip brevi',featured:true},
+    {name:'Pacchetto Documentario',price:'Da € 1.200',desc:'Progetto completo: sviluppo, riprese, post-produzione e consegna finale',featured:false}
+  ];
+}
 
-// Dati caricati da config.js — nessun localStorage necessario
-const D = JSON.parse(JSON.stringify(DEFAULT_DATA));
+const D = buildData();
 
 // ===================== NAVIGATION =====================
 const MI=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
 const DI=['L','M','M','G','V','S','D'];
-let cy=2026, cm=new Date().getMonth(), sel=null;
+let cy=new Date().getFullYear(), cm=new Date().getMonth(), sel=null;
 
 function go(p){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
@@ -697,69 +684,79 @@ function go(p){
   if(p==='actress') document.getElementById('nav-actress').classList.add('active');
   if(p==='vm') document.getElementById('nav-vm').classList.add('active');
 }
-function aTab(t,el){ document.querySelectorAll('#page-actress .tab-content').forEach(x=>x.classList.remove('active')); document.getElementById('at-'+t).classList.add('active'); document.querySelectorAll('#page-actress .sec-tab').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
-function vTab(t,el){ document.querySelectorAll('#page-vm .tab-content').forEach(x=>x.classList.remove('active')); document.getElementById('vt-'+t).classList.add('active'); document.querySelectorAll('#page-vm .sec-tab').forEach(x=>x.classList.remove('active')); if(el) el.classList.add('active'); }
-function filterW(el){ document.querySelectorAll('.work-cat').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
+function aTab(t,el){
+  document.querySelectorAll('#page-actress .tab-content').forEach(x=>x.classList.remove('active'));
+  document.getElementById('at-'+t).classList.add('active');
+  document.querySelectorAll('#page-actress .sec-tab').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+}
+function vTab(t,el){
+  document.querySelectorAll('#page-vm .tab-content').forEach(x=>x.classList.remove('active'));
+  document.getElementById('vt-'+t).classList.add('active');
+  document.querySelectorAll('#page-vm .sec-tab').forEach(x=>x.classList.remove('active'));
+  if(el) el.classList.add('active');
+}
+function filterW(el){
+  document.querySelectorAll('.work-cat').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+}
 
 // ===================== RENDER SITE =====================
 function renderSite(){
   const T=D.texts;
-  // Home
   setText('home-actress-title', T.homeActressTitle);
   setText('home-actress-sub', T.homeActressSub);
   setText('home-actress-eyebrow', T.homeActressEyebrow);
   setText('home-vm-eyebrow', T.homeVmEyebrow);
   document.getElementById('home-vm-title').innerHTML = T.homeVmTitle.replace('\n','<br>');
   setText('home-vm-sub', T.homeVmSub);
-  // Attrice
   setText('actress-name', T.actressName);
   setText('actress-book-caption', T.actressBookCaption);
   setText('actress-art-caption', T.actressArtCaption);
   setText('actress-video-caption', T.actressVideoCaption);
-  // VM
   setText('vm-title', T.vmTitle);
   setText('vm-bio', T.vmBio);
   setText('vm-bio-ext', T.vmBioExt);
   setText('stat1-num', T.stat1Num); setText('stat1-lbl', T.stat1Lbl);
   setText('stat2-num', T.stat2Num); setText('stat2-lbl', T.stat2Lbl);
-  // Stat 3 is optional — render nothing if both num and lbl are empty
-  const s3num = T.stat3Num||''; const s3lbl = T.stat3Lbl||'';
   const s3box = document.querySelector('.stats-row .stat-box:nth-child(3)');
   if(s3box){
-    if(!s3num && !s3lbl){ s3box.style.display='none'; } else { s3box.style.display=''; setText('stat3-num', s3num); setText('stat3-lbl', s3lbl); }
-  } else { setText('stat3-num', s3num); setText('stat3-lbl', s3lbl); }
+    if(!T.stat3Num && !T.stat3Lbl){ s3box.style.display='none'; }
+    else { s3box.style.display=''; setText('stat3-num', T.stat3Num); setText('stat3-lbl', T.stat3Lbl); }
+  }
   setText('rates-note', T.ratesNote);
-  setText('works-eyebrow', T.worksEyebrow||'Selezione lavori');
-  setText('works-heading', T.worksHeading||'Portfolio videomaker');
-  setText('works-subtext', T.worksSubtext||'');
+  setText('works-eyebrow', T.worksEyebrow);
+  setText('works-heading', T.worksHeading);
+  setText('works-subtext', T.worksSubtext);
   setText('footer-actress-loc', T.contactCity+', Italia');
   setText('footer-vm-loc', T.contactEmail+' · '+T.contactCity);
-  // Instagram links
   const igHandle = T.instagramHandle||'@chiaraiani';
   const igUrl = T.instagramUrl||'https://instagram.com/chiaraiani';
-  document.querySelectorAll('.footer-insta').forEach(a=>{ a.href=igUrl; a.querySelector('i').nextSibling ? (a.childNodes[a.childNodes.length-1].textContent=igHandle) : a.appendChild(document.createTextNode(igHandle)); });
-  // Form notes
-  const frn=document.getElementById('form-reply-note'); if(frn) frn.textContent=T.formReplyNote||'Riceverai una risposta entro 48 ore alla tua email';
-  const sct=document.getElementById('success-text'); if(sct) sct.innerHTML=(T.successText||'Grazie! Ti rispondo entro 48 ore.\nControlla la tua casella Gmail.').replace(/\n/g,'<br>');
+  document.querySelectorAll('.footer-insta').forEach(a=>{
+    a.href=igUrl;
+    const last=a.childNodes[a.childNodes.length-1];
+    if(last && last.nodeType===3) last.textContent=igHandle;
+    else a.appendChild(document.createTextNode(igHandle));
+  });
+  const frn=document.getElementById('form-reply-note'); if(frn) frn.textContent=T.formReplyNote;
+  const sct=document.getElementById('success-text'); if(sct) sct.innerHTML=T.successText.replace(/\n/g,'<br>');
   // Tags
   const tc=document.getElementById('vm-tags-container'); tc.innerHTML='';
-  T.vmTags.split(',').forEach(t=>{ const s=document.createElement('span'); s.className='bio-tag'; s.textContent=t.trim(); tc.appendChild(s); });
+  T.vmTags.split(',').forEach(tag=>{ const s=document.createElement('span'); s.className='bio-tag'; s.textContent=tag.trim(); tc.appendChild(s); });
   // Services
   const sl=document.getElementById('services-list'); sl.innerHTML='';
   D.services.forEach(sv=>{ sl.innerHTML+=`<div class="service-item"><i class="ti ${sv.icon}" aria-hidden="true"></i><div><div class="service-name">${sv.name}</div><div class="service-desc">${sv.desc}</div></div></div>`; });
-  // Works cats — usa worksFilters da config.js se disponibile
+  // Works filters
   const wc=document.getElementById('works-cats'); wc.innerHTML='';
   const filters = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.worksFilters && SITE_CONFIG.worksFilters.length)
     ? SITE_CONFIG.worksFilters
-    : [{label:'Tutti', icon:'ti-layout-grid', filterVal:'all', isAll:true},
-       {label:'Narrativa', icon:'ti-movie', filterVal:'narrativa', isAll:false},
-       {label:'Doc & Corporate', icon:'ti-camera', filterVal:'corporate', isAll:false}];
+    : [{label:'Tutti',icon:'ti-layout-grid',filterVal:'all',isAll:true},{label:'Narrativa',icon:'ti-movie',filterVal:'narrativa',isAll:false},{label:'Doc & Corporate',icon:'ti-camera',filterVal:'corporate',isAll:false}];
   filters.forEach((f,fi)=>{
-    const count = f.isAll ? (D.media.vmVideo.length||0) : D.media.vmVideo.filter(v=>v.filterVal===f.filterVal).length;
-    const div = document.createElement('div');
-    div.className = 'work-cat' + (fi===0?' active':'');
-    div.onclick = function(){ filterW(this); };
-    div.innerHTML = `<i class="ti ${f.icon}"></i><div class="work-cat-name">${f.label}</div><div class="work-cat-num">${count||'—'}</div>`;
+    const count = f.isAll ? D.media.vmVideo.length : D.media.vmVideo.filter(v=>v.filterVal===f.filterVal).length;
+    const div=document.createElement('div');
+    div.className='work-cat'+(fi===0?' active':'');
+    div.onclick=function(){ filterW(this); };
+    div.innerHTML=`<i class="ti ${f.icon}"></i><div class="work-cat-name">${f.label}</div><div class="work-cat-num">${count||'—'}</div>`;
     wc.appendChild(div);
   });
   // Rates
@@ -770,42 +767,197 @@ function renderSite(){
   D.packages.forEach(p=>{ pl.innerHTML+=`<div class="pkg${p.featured?' featured':''}"><div class="pkg-head"><div><div class="pkg-name">${p.name}${p.featured?'<span class="pkg-badge">Più richiesto</span>':''}</div></div><div class="pkg-price">${p.price}</div></div><div class="pkg-desc">${p.desc}</div></div>`; });
   // Media grids
   renderPhotoGrid('grid-book', D.media.book, 'book');
-  renderPhotoGrid('grid-art', D.media.art, 'art');
+  renderArtProjects();
   renderVideoGrid('grid-actress-video', D.media.actressVideo);
   renderVideoGrid('grid-vm-video', D.media.vmVideo);
   renderCal();
 }
-function setText(id, val){ const el=document.getElementById(id); if(el) el.textContent=val; }
 
+function setText(id, val){ const el=document.getElementById(id); if(el) el.textContent=val||''; }
+
+// ===================== ACCORDION ARTISTICHE =====================
+// Gallery globale per il lightbox: array piatto di tutte le foto di tutti i progetti
+let _artAllPhotos = [];  // [{src, label, projectIdx, photoIdx}]
+
+function renderArtProjects(){
+  const container = document.getElementById('art-projects-container');
+  container.innerHTML = '';
+  _artAllPhotos = [];
+
+  if(!D.artProjects || !D.artProjects.length){
+    // Placeholder quando non ci sono progetti
+    container.innerHTML = `
+      <div style="text-align:center;padding:3rem;border:1px solid var(--border);background:var(--bg);">
+        <i class="ti ti-photo" style="font-size:36px;color:var(--aqua);display:block;margin-bottom:.875rem;opacity:.5;"></i>
+        <p style="font-size:11px;color:var(--text-muted);line-height:2;">
+          Nessun progetto fotografico ancora aggiunto.<br>
+          Aggiungili nella sezione <strong>artProjects</strong> del file <strong>config.js</strong>.
+        </p>
+      </div>`;
+    return;
+  }
+
+  // Costruisci prima la gallery piatta (per il lightbox con navigazione globale)
+  D.artProjects.forEach((proj, pi) => {
+    (proj.photos || []).forEach((photo, phi) => {
+      _artAllPhotos.push({ src: photo.src, label: photo.label || '', projectIdx: pi, photoIdx: phi });
+    });
+  });
+
+  // Genera ogni card accordion
+  D.artProjects.forEach((proj, pi) => {
+    const photos = proj.photos || [];
+    const count  = photos.length;
+
+    // Indice della prima foto di questo progetto nell'array globale
+    const globalOffset = _artAllPhotos.findIndex(p => p.projectIdx === pi);
+
+    const div = document.createElement('div');
+    div.className = 'art-project';
+    div.id = 'art-project-' + pi;
+
+    // ── Intestazione cliccabile ──
+    const header = document.createElement('div');
+    header.className = 'art-project-header';
+    header.setAttribute('role', 'button');
+    header.setAttribute('aria-expanded', 'false');
+    header.innerHTML = `
+      <div>
+        <div class="art-project-year">${proj.year || '—'}</div>
+        <div class="art-project-count">${count} ${count === 1 ? 'foto' : 'foto'}</div>
+      </div>
+      <div class="art-project-meta-row">
+        ${proj.photographer ? `<span class="art-project-badge"><i class="ti ti-camera" style="font-size:10px;vertical-align:-1px;margin-right:4px;"></i>${proj.photographer}</span>` : ''}
+        ${proj.location     ? `<span class="art-project-badge"><i class="ti ti-map-pin"  style="font-size:10px;vertical-align:-1px;margin-right:4px;"></i>${proj.location}</span>`     : ''}
+        <i class="ti ti-chevron-down art-project-toggle"></i>
+      </div>`;
+    header.addEventListener('click', () => toggleArtProject(div));
+
+    // ── Corpo con metadati + griglia foto ──
+    const body = document.createElement('div');
+    body.className = 'art-project-body';
+
+    // Metadati
+    const info = document.createElement('div');
+    info.className = 'art-project-info';
+    info.innerHTML = `
+      <div class="art-info-cell"><div class="art-info-lbl">Fotografo</div><div class="art-info-val">${proj.photographer || '—'}</div></div>
+      <div class="art-info-cell"><div class="art-info-lbl">Anno</div>    <div class="art-info-val">${proj.year        || '—'}</div></div>
+      <div class="art-info-cell"><div class="art-info-lbl">Luogo</div>   <div class="art-info-val">${proj.location   || '—'}</div></div>`;
+    body.appendChild(info);
+
+    // Griglia foto
+    const grid = document.createElement('div');
+    grid.className = 'art-project-photos';
+    photos.forEach((photo, phi) => {
+      const globalIdx = globalOffset + phi;
+      const item = document.createElement('div');
+      item.className = 'photo-item';
+      const pos = photo.objectPosition || 'center top';
+      item.innerHTML = `
+        <img src="${photo.src}" alt="${photo.label || ''}" style="object-position:${pos};" loading="lazy">
+        <div class="photo-ov">
+          <span class="photo-lbl">${photo.label || ''}</span>
+          <i class="ti ti-zoom-in photo-zoom-icon"></i>
+        </div>`;
+      // Click → lightbox sull'indice globale (navigazione cross-progetto)
+      item.addEventListener('click', () => lbxOpenArt(globalIdx));
+      grid.appendChild(item);
+    });
+    body.appendChild(grid);
+
+    div.appendChild(header);
+    div.appendChild(body);
+    container.appendChild(div);
+  });
+}
+
+// Apre/chiude un accordion
+function toggleArtProject(projectEl){
+  const isOpen = projectEl.classList.contains('open');
+  // (opzionale) chiudi tutti gli altri prima — rimuovi le due righe sotto per tenerli tutti aperti
+  document.querySelectorAll('.art-project.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.art-project-header').setAttribute('aria-expanded','false');
+  });
+  if(!isOpen){
+    projectEl.classList.add('open');
+    projectEl.querySelector('.art-project-header').setAttribute('aria-expanded','true');
+  }
+}
+
+// ===================== LIGHTBOX — FOTO ARTISTICHE =====================
+// Usa _artAllPhotos (gallery piatta di tutti i progetti) per navigare cross-progetto
+let _lbxIdx = 0;
+
+function lbxOpenArt(globalIdx){
+  if(!_artAllPhotos.length) return;
+  _lbxIdx = globalIdx;
+  _lbxShow(_artAllPhotos);
+  document.getElementById('lbx-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// LIGHTBOX — FOTO BOOK
+let _bookGallery = [];
+function lbxOpenBook(idx){
+  _bookGallery = D.media.book.map(item=>({src:item.src, label:item.label||''}));
+  if(!_bookGallery.length) return;
+  _lbxIdx = idx;
+  _lbxShow(_bookGallery);
+  document.getElementById('lbx-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// Gallery corrente nel lightbox
+let _currentGallery = [];
+
+function _lbxShow(gallery){
+  _currentGallery = gallery;
+  const item = gallery[_lbxIdx];
+  const img = document.getElementById('lbx-img');
+  img.style.opacity = '0';
+  img.src = item.src;
+  img.onload = () => { img.style.opacity = '1'; };
+  setTimeout(() => { img.style.opacity = '1'; }, 50);
+  document.getElementById('lbx-caption').textContent = item.label || '';
+  document.getElementById('lbx-counter').textContent = (_lbxIdx + 1) + ' / ' + gallery.length;
+}
+
+function lbxNav(dir){
+  _lbxIdx = (_lbxIdx + dir + _currentGallery.length) % _currentGallery.length;
+  _lbxShow(_currentGallery);
+}
+function lbxClose(){
+  document.getElementById('lbx-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbxBgClick(e){
+  if(e.target === document.getElementById('lbx-overlay')) lbxClose();
+}
+
+// ===================== PHOTO GRID — BOOK =====================
 function renderPhotoGrid(gridId, items, type){
   const g=document.getElementById(gridId); g.innerHTML='';
   if(!items.length){
-    const placeholders = type==='book' ? [
-      {label:'Ritratto principale'},{label:'Primo piano'},{label:'Mezzo busto'},
-      {label:'Character'},{label:'Figura intera'},{label:'Dettaglio'}
-    ] : [
-      {label:'Scatto di scena'},{label:'Set teatrale'},{label:'Espressione'},
-      {label:'Cinematografico'},{label:'Backstage'}
-    ];
-    placeholders.forEach(p=>{ g.innerHTML+=`<div class="photo-item"><div class="photo-ph"><i class="ti ti-photo"></i>${p.label}</div><div class="photo-ov"><span class="photo-lbl">${p.label}</span></div></div>`; });
+    const placeholders = type==='book'
+      ? [{label:'Ritratto principale'},{label:'Primo piano'},{label:'Mezzo busto'},{label:'Character'},{label:'Figura intera'},{label:'Dettaglio'}]
+      : [{label:'Scatto di scena'},{label:'Set teatrale'},{label:'Espressione'},{label:'Cinematografico'},{label:'Backstage'}];
+    placeholders.forEach(p=>{ g.innerHTML+=`<div class="photo-item"><div class="photo-ph"><i class="ti ti-photo"></i>${p.label}</div></div>`; });
     return;
   }
-  const ctxKey = gridId;
-  const total = items.length;
   items.forEach((item,i)=>{
-    // Only apply span2 to the first item of 'book' if there are enough items to fill the row without leaving a blank
-    // A span2 item takes 1 col-span but 2 row-span. With 3 columns: first item span2 leaves 2 spots in row1 and 3 in row2.
-    // Safe to span if total >= 3 (fills at least the 2 adjacent cells in same row).
-    const useSpan = (i===0 && type==='book' && total>=3);
+    const useSpan = (i===0 && type==='book' && items.length>=3);
     const el = document.createElement('div');
     el.className = 'photo-item' + (useSpan?' span2':'');
     const pos = item.objectPosition || 'center top';
-    el.innerHTML = `<img src="${item.src}" alt="${item.label||''}" style="object-position:${pos};"><div class="photo-ov"><span class="photo-lbl">${item.label||''}</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div>`;
-    el.addEventListener('click', ()=>lbxOpen(ctxKey, i));
+    el.innerHTML = `<img src="${item.src}" alt="${item.label||''}" style="object-position:${pos};" loading="lazy"><div class="photo-ov"><span class="photo-lbl">${item.label||''}</span><i class="ti ti-zoom-in photo-zoom-icon"></i></div>`;
+    el.addEventListener('click', ()=>lbxOpenBook(i));
     g.appendChild(el);
   });
 }
 
+// ===================== VIDEO =====================
 function renderVideoGrid(gridId, items){
   const g=document.getElementById(gridId); g.innerHTML='';
   if(!items.length){
@@ -814,55 +966,42 @@ function renderVideoGrid(gridId, items){
   }
   items.forEach(v=>{
     const embedSrc = getEmbedSrc(v.url);
-    const isYTVimeo = !!embedSrc;
     let thumbHtml = '';
-    if(v.thumb){
-      thumbHtml = `<img src="${v.thumb}" alt="">`;
-    } else if(isYTVimeo){
-      // Auto-generate YouTube thumbnail if possible
+    if(v.thumb){ thumbHtml=`<img src="${v.thumb}" alt="">`; }
+    else if(embedSrc){
       const ytMatch = v.url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/);
-      if(ytMatch) thumbHtml = `<img src="https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg" alt="" onerror="this.style.display='none'">`;
+      if(ytMatch) thumbHtml=`<img src="https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg" alt="" onerror="this.style.display='none'">`;
     }
-    const card = document.createElement('div');
-    card.className = 'video-card';
-    card.innerHTML = `<div class="video-thumb">${thumbHtml}<div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-meta">${v.meta}</div></div>`;
-    card.addEventListener('click', ()=>openVideo(v.url, v.title));
+    const card=document.createElement('div');
+    card.className='video-card';
+    card.innerHTML=`<div class="video-thumb">${thumbHtml}<div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-meta">${v.meta}</div></div>`;
+    card.addEventListener('click',()=>openVideo(v.url, v.title));
     g.appendChild(card);
   });
 }
-
 function getEmbedSrc(url){
   if(!url) return null;
-  const yt = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/);
+  const yt=url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/);
   if(yt) return 'https://www.youtube.com/embed/'+yt[1]+'?autoplay=1&rel=0';
-  const vi = url.match(/vimeo\.com\/(\d+)/);
+  const vi=url.match(/vimeo\.com\/(\d+)/);
   if(vi) return 'https://player.vimeo.com/video/'+vi[1]+'?autoplay=1';
   return null;
 }
-
 function openVideo(url, title){
   if(!url) return;
-  const embedSrc = getEmbedSrc(url);
-  const c = document.getElementById('vid-modal-content');
-  if(embedSrc){
-    c.innerHTML = `<iframe class="vid-modal-frame" src="${embedSrc}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title||'Video'}"></iframe>`;
-  } else {
-    // Direct file (mp4 etc)
-    c.innerHTML = `<video class="vid-modal-video" src="${url}" controls autoplay playsinline></video>`;
-  }
+  const embedSrc=getEmbedSrc(url);
+  const c=document.getElementById('vid-modal-content');
+  if(embedSrc){ c.innerHTML=`<iframe class="vid-modal-frame" src="${embedSrc}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title||'Video'}"></iframe>`; }
+  else { c.innerHTML=`<video class="vid-modal-video" src="${url}" controls autoplay playsinline></video>`; }
   document.getElementById('vid-modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
-
 function vidModalClose(){
   document.getElementById('vid-modal-overlay').classList.remove('open');
   document.getElementById('vid-modal-content').innerHTML='';
   document.body.style.overflow='';
 }
-
-function vidModalBgClick(e){
-  if(e.target===document.getElementById('vid-modal-overlay')) vidModalClose();
-}
+function vidModalBgClick(e){ if(e.target===document.getElementById('vid-modal-overlay')) vidModalClose(); }
 
 // ===================== CALENDAR =====================
 function renderCal(){
@@ -893,15 +1032,16 @@ function pickDate(d,m,y){
   banner.style.display='block';
 }
 function chMo(dir){ cm+=dir; if(cm<0){cm=11;cy--;} if(cm>11){cm=0;cy++;} renderCal(); }
+
+// ===================== FORM =====================
 function submitForm(){
   const n=document.getElementById('fn').value.trim(), e=document.getElementById('fe').value.trim(), m=document.getElementById('fm').value.trim(), t=document.getElementById('ft').value;
   const bannerEl=document.getElementById('date-banner');
   const dl=bannerEl.style.display!=='none' ? bannerEl.textContent.replace('Data selezionata: ','') : '';
   if(!n||!e||!m) return;
-  const subj=dl ? 'Richiesta collaborazione — '+dl : 'Richiesta collaborazione';
+  const subj=dl?'Richiesta collaborazione — '+dl:'Richiesta collaborazione';
   const body='Nome: '+n+'\nEmail: '+e+(dl?'\nData: '+dl:'')+'\nProgetto: '+(t||'—')+'\n\n'+m;
-  const mailto='mailto:'+D.texts.contactEmail+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
-  window.location.href=mailto;
+  window.location.href='mailto:'+D.texts.contactEmail+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
   document.getElementById('bform').style.display='none';
   document.getElementById('fsuccess').classList.add('show');
 }
@@ -916,51 +1056,10 @@ function resetF(){
   renderCal();
 }
 
-// ===================== LIGHTBOX =====================
-let _lbxGallery = []; // [{src, label}]
-let _lbxIdx = 0;
-
-function lbxOpen(gridId, idx){
-  // Build gallery from the current data source
-  const keyMap = {'grid-book':'book','grid-art':'art','grid-actress-video':'actressVideo','grid-vm-video':'vmVideo'};
-  const key = keyMap[gridId];
-  if(!key || !D.media[key] || !D.media[key].length) return;
-  _lbxGallery = D.media[key].map(item=>({src:item.src, label:item.label||''}));
-  _lbxIdx = idx;
-  lbxShow();
-  document.getElementById('lbx-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function lbxShow(){
-  const item = _lbxGallery[_lbxIdx];
-  const img = document.getElementById('lbx-img');
-  img.style.opacity = '0';
-  img.src = item.src;
-  img.onload = ()=>{ img.style.opacity = '1'; };
-  // Force opacity in case image is cached
-  setTimeout(()=>{ img.style.opacity='1'; }, 50);
-  document.getElementById('lbx-caption').textContent = item.label;
-  document.getElementById('lbx-counter').textContent = (_lbxIdx+1) + ' / ' + _lbxGallery.length;
-}
-
-function lbxNav(dir){
-  _lbxIdx = (_lbxIdx + dir + _lbxGallery.length) % _lbxGallery.length;
-  lbxShow();
-}
-
-function lbxClose(){
-  document.getElementById('lbx-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function lbxBgClick(e){
-  if(e.target === document.getElementById('lbx-overlay')) lbxClose();
-}
-
+// ===================== KEYBOARD =====================
 document.addEventListener('keydown', function(e){
-  const ov = document.getElementById('lbx-overlay');
-  const vm = document.getElementById('vid-modal-overlay');
+  const ov=document.getElementById('lbx-overlay');
+  const vm=document.getElementById('vid-modal-overlay');
   if(vm.classList.contains('open') && e.key==='Escape'){ vidModalClose(); return; }
   if(!ov.classList.contains('open')) return;
   if(e.key==='Escape') lbxClose();
@@ -970,29 +1069,6 @@ document.addEventListener('keydown', function(e){
 
 // ===================== INIT =====================
 renderSite();
-</script>
-  <script>
-// Gestisce il pulsante in alto "Mostra/Nascondi Foto"
-document.getElementById('togglePhotosBtn').addEventListener('click', function() {
-  const artSection = document.getElementById('at-art');
-  const icon = this.querySelector('i');
-  const text = this.querySelector('span');
-  
-  artSection.classList.toggle('hidden');
-  
-  if (artSection.classList.contains('hidden')) {
-    icon.className = 'ti ti-eye';
-    text.textContent = 'Mostra Foto';
-  } else {
-    icon.className = 'ti ti-eye-off';
-    text.textContent = 'Nascondi Foto';
-  }
-});
-
-// Gestisce l'apertura e chiusura del blocco Marco Ragaini quando ci clicchi sopra
-function toggleArtProject(projectElement) {
-  projectElement.classList.toggle('open');
-}
 </script>
 </body>
 </html>
