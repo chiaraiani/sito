@@ -199,7 +199,6 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   blocked: {},
   
-};
     // ─── SEZIONE ATTRICE ───
     actressName:          'Chiara Aiani',
     actressBookCaption:   'Book professionale',
