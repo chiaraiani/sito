@@ -270,7 +270,7 @@ nav {
 .pkg-price { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--green); }
 .pkg-desc { font-size:10px; color:var(--text-muted); line-height:1.7; }
 
-/* CALENDAR */
+/* CALENDAR 
 .cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:.875rem; }
 .cal-month { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; color:var(--notte); letter-spacing:2px; }
 .cal-nav { background:none; border:1px solid var(--border-md); color:var(--text-mid); padding:4px 10px; cursor:pointer; font-size:13px; font-family:'Montserrat',sans-serif; transition:all 0.2s; }
@@ -286,7 +286,7 @@ nav {
 .cal-legend { display:flex; gap:1.5rem; margin-top:.625rem; }
 .leg { display:flex; align-items:center; gap:6px; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); }
 .leg-dot { width:8px; height:8px; border-radius:50%; }
-
+*/
 /* FORM */
 .form-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--notte); margin-bottom:1.25rem; }
 .date-banner { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--green); padding:7px 12px; border-left:2px solid var(--green); margin-bottom:1.25rem; background:var(--green-lt); }
@@ -534,9 +534,9 @@ textarea.f-input { resize:vertical; min-height:90px; }
           <div class="leg"><div class="leg-dot" style="background:var(--green);"></div>Disponibile</div>
           <div class="leg"><div class="leg-dot" style="background:var(--border-md);"></div>Non disponibile</div>
         </div>
-        <div class="note-box" style="margin-top:1rem;">
+       <!-- <div class="note-box" style="margin-top:1rem;"> 
           <p><i class="ti ti-info-circle" style="font-size:13px;vertical-align:-2px;margin-right:5px;" aria-hidden="true"></i>Puoi selezionare una data dal calendario per indicarla nel messaggio — oppure scrivimi direttamente.</p>
-        </div>
+        </div> -->
       </div>
       <div style="padding:2.5rem 3rem;">
         <div class="booking-form" id="bform">
@@ -1005,34 +1005,34 @@ function vidModalClose(){
 function vidModalBgClick(e){ if(e.target===document.getElementById('vid-modal-overlay')) vidModalClose(); }
 
 // ===================== CALENDAR =====================
-function renderCal(){
-  const key=cy+'-'+(cm+1);
-  const blocked=D.blocked[key]||[];
-  document.getElementById('cal-title').textContent=MI[cm]+' '+cy;
-  const g=document.getElementById('cal-grid'); g.innerHTML='';
-  DI.forEach(d=>{const e=document.createElement('div');e.className='cal-dlbl';e.textContent=d;g.appendChild(e);});
-  const fd=new Date(cy,cm,1).getDay(), off=fd===0?6:fd-1;
-  for(let i=0;i<off;i++){const e=document.createElement('div');e.className='cal-day empty';g.appendChild(e);}
-  const dim=new Date(cy,cm+1,0).getDate(), td=new Date();
-  for(let d=1;d<=dim;d++){
-    const e=document.createElement('div');
-    const isB=blocked.includes(d), isP=new Date(cy,cm,d)<new Date(td.getFullYear(),td.getMonth(),td.getDate());
-    const isT=d===td.getDate()&&cm===td.getMonth()&&cy===td.getFullYear();
-    const isS=sel&&sel.d===d&&sel.m===cm&&sel.y===cy;
-    e.className='cal-day '+(isS?'selected':isB||isP?'booked':'avail')+(isT&&!isS?' today':'');
-    e.textContent=d;
-    if(!isB&&!isP) e.onclick=()=>pickDate(d,cm,cy);
-    g.appendChild(e);
-  }
-}
-function pickDate(d,m,y){
-  sel={d,m,y}; renderCal();
-  const lbl=d+' '+MI[m]+' '+y;
-  const banner=document.getElementById('date-banner');
-  banner.textContent='Data selezionata: '+lbl;
-  banner.style.display='block';
-}
-function chMo(dir){ cm+=dir; if(cm<0){cm=11;cy--;} if(cm>11){cm=0;cy++;} renderCal(); }
+//function renderCal(){
+ // const key=cy+'-'+(cm+1);
+ // const blocked=D.blocked[key]||[];
+ // document.getElementById('cal-title').textContent=MI[cm]+' '+cy;
+ // const g=document.getElementById('cal-grid'); g.innerHTML='';
+ // DI.forEach(d=>{const e=document.createElement('div');e.className='cal-dlbl';e.textContent=d;g.appendChild(e);});
+ // const fd=new Date(cy,cm,1).getDay(), off=fd===0?6:fd-1;
+ // for(let i=0;i<off;i++){const e=document.createElement('div');e.className='cal-day empty';g.appendChild(e);}
+ // const dim=new Date(cy,cm+1,0).getDate(), td=new Date();
+ // for(let d=1;d<=dim;d++){
+   // const e=document.createElement('div');
+//    const isB=blocked.includes(d), isP=new Date(cy,cm,d)<new Date(td.getFullYear(),td.getMonth(),td.getDate());
+//    const isT=d===td.getDate()&&cm===td.getMonth()&&cy===td.getFullYear();
+//    const isS=sel&&sel.d===d&&sel.m===cm&&sel.y===cy;
+ //   e.className='cal-day '+(isS?'selected':isB||isP?'booked':'avail')+(isT&&!isS?' today':'');
+//    e.textContent=d;
+//    if(!isB&&!isP) e.onclick=()=>pickDate(d,cm,cy);
+//    g.appendChild(e);
+//  }
+// }
+// function pickDate(d,m,y){
+//  sel={d,m,y}; renderCal();
+//  const lbl=d+' '+MI[m]+' '+y;
+//  const banner=document.getElementById('date-banner');
+//  banner.textContent='Data selezionata: '+lbl;
+//  banner.style.display='block';
+// }
+// function chMo(dir){ cm+=dir; if(cm<0){cm=11;cy--;} if(cm>11){cm=0;cy++;} renderCal(); }
 
 // ===================== FORM =====================
 function submitForm(){
