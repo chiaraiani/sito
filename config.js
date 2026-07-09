@@ -149,6 +149,13 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   actressVideos: [
     // { title: 'Titolo produzione', url: 'https://youtube.com/watch?v=XXXX', meta: 'Cortometraggio · 2024', thumb: '' },
+    { 
+  title: 'Almost', 
+  url: 'https://youtu.be/wJ3Fm9lTFD4?feature=shared', 
+  meta: 'Cortometraggio · 2026',
+ director: 'Massimiliano Montàgano',
+  thumb: '' 
+},
   ],
 
 
