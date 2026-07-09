@@ -639,7 +639,7 @@ function buildData() {
     artProjects: (C && C.artProjects && C.artProjects.length) ? C.artProjects : [],
     media: {
       book:         (C && C.bookPhotos)    ? C.bookPhotos.map(p=>({src:p.src,label:p.label||'',objectPosition:p.objectPosition||'center top'})) : [],
-      actressVideo: (C && C.actressVideos) ? C.actressVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||''})) : [],
+      actressVideo: (C && C.actressVideos) ? C.actressVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||'',director:v.director||''})) : [],
       vmVideo:      (C && C.vmVideos)      ? C.vmVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||'',filterVal:v.filterVal||''})) : [],
     },
     blocked: (C && C.blocked) ? C.blocked : {}
@@ -974,7 +974,8 @@ function renderVideoGrid(gridId, items){
     }
     const card=document.createElement('div');
     card.className='video-card';
-    card.innerHTML=`<div class="video-thumb">${thumbHtml}<div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-meta">${v.meta}</div></div>`;
+    const directorHtml = v.director ? `<div class="video-meta">Regia di ${v.director}</div>` : '';
+    card.innerHTML=`<div class="video-thumb">${thumbHtml}<div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-meta">${v.meta}</div>${directorHtml}</div>`;
     card.addEventListener('click',()=>openVideo(v.url, v.title));
     g.appendChild(card);
   });
@@ -1072,4 +1073,3 @@ renderSite();
 </script>
 </body>
 </html>
-
