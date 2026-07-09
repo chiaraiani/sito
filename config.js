@@ -165,6 +165,13 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   vmVideos: [
     // { title: 'Titolo lavoro', url: 'https://youtube.com/watch?v=XXXX', meta: 'Documentario · 2024', thumb: '', filterVal: 'all' },
+      {
+    title: 'Ul me pà e a me màma',
+    url: 'https://youtu.be/uKLeSn4aZEo?si=4GFdEBf_ryBKcVHr',
+    meta: 'Cortometraggio · 2026',
+    director: 'Chiara Aiani',
+    thumb: '',
+  },
   ],
 
 
