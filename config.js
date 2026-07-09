@@ -170,7 +170,6 @@ const SITE_CONFIG = {
     url: 'https://youtu.be/uKLeSn4aZEo?si=4GFdEBf_ryBKcVHr',
     meta: 'Cortometraggio · 2026',
     director: 'Chiara Aiani',
-    tag: 'narrativa',
     thumb: '',
   },
   ],
@@ -183,8 +182,8 @@ const SITE_CONFIG = {
   // ─────────────────────────────────────────────
   worksFilters: [
     { label: 'Tutti',           icon: 'ti-layout-grid', filterVal: 'all',       isAll: true  },
-    { label: 'Narrativa',       icon: 'ti-movie',       filterVal: 'narrativa', isAll: false },
-    { label: 'Doc & Corporate', icon: 'ti-camera',      filterVal: 'corporate', isAll: false },
+   // { label: 'Narrativa',       icon: 'ti-movie',       filterVal: 'narrativa', isAll: false },
+   // { label: 'Doc & Corporate', icon: 'ti-camera',      filterVal: 'corporate', isAll: false },
   ],
 
 
