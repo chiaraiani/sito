@@ -170,6 +170,7 @@ const SITE_CONFIG = {
     url: 'https://youtu.be/uKLeSn4aZEo?si=4GFdEBf_ryBKcVHr',
     meta: 'Cortometraggio · 2026',
     director: 'Chiara Aiani',
+    tag: 'narrativa',
     thumb: '',
   },
   ],
