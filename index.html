@@ -747,18 +747,18 @@ function renderSite(){
   const sl=document.getElementById('services-list'); sl.innerHTML='';
   D.services.forEach(sv=>{ sl.innerHTML+=`<div class="service-item"><i class="ti ${sv.icon}" aria-hidden="true"></i><div><div class="service-name">${sv.name}</div><div class="service-desc">${sv.desc}</div></div></div>`; });
   // Works filters
-  const wc=document.getElementById('works-cats'); wc.innerHTML='';
-  const filters = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.worksFilters && SITE_CONFIG.worksFilters.length)
-    ? SITE_CONFIG.worksFilters
-    : [{label:'Tutti',icon:'ti-layout-grid',filterVal:'all',isAll:true},{label:'Narrativa',icon:'ti-movie',filterVal:'narrativa',isAll:false},{label:'Doc & Corporate',icon:'ti-camera',filterVal:'corporate',isAll:false}];
-  filters.forEach((f,fi)=>{
-    const count = f.isAll ? D.media.vmVideo.length : D.media.vmVideo.filter(v=>v.filterVal===f.filterVal).length;
-    const div=document.createElement('div');
-    div.className='work-cat'+(fi===0?' active':'');
-    div.onclick=function(){ filterW(this); };
-    div.innerHTML=`<i class="ti ${f.icon}"></i><div class="work-cat-name">${f.label}</div><div class="work-cat-num">${count||'—'}</div>`;
-    wc.appendChild(div);
-  });
+  // const wc=document.getElementById('works-cats'); wc.innerHTML='';
+  // const filters = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.worksFilters && SITE_CONFIG.worksFilters.length)
+   // ? SITE_CONFIG.worksFilters
+   // : [{label:'Tutti',icon:'ti-layout-grid',filterVal:'all',isAll:true},{label:'Narrativa',icon:'ti-movie',filterVal:'narrativa',isAll:false},{label:'Doc & Corporate',icon:'ti-camera',filterVal:'corporate',isAll:false}];
+  // filters.forEach((f,fi)=>{
+    // const count = f.isAll ? D.media.vmVideo.length : D.media.vmVideo.filter(v=>v.filterVal===f.filterVal).length;
+   // const div=document.createElement('div');
+   // div.className='work-cat'+(fi===0?' active':'');
+   // div.onclick=function(){ filterW(this); };
+   // div.innerHTML=`<i class="ti ${f.icon}"></i><div class="work-cat-name">${f.label}</div><div class="work-cat-num">${count||'—'}</div>`;
+  //  wc.appendChild(div);
+  // });
   // Rates
   const rt=document.getElementById('rates-table'); rt.innerHTML='';
   D.rates.forEach(r=>{ rt.innerHTML+=`<div class="tariffa"><div><div class="tariffa-name">${r.name}</div><div class="tariffa-sub">${r.sub}</div></div><div><div class="tariffa-price">${r.price}</div><div class="tariffa-note">${r.note}</div></div></div>`; });
