@@ -148,12 +148,12 @@ const SITE_CONFIG = {
   //  meta: testo secondario sotto il titolo (es. 'Cortometraggio · 2024')
   // ─────────────────────────────────────────────
   actressVideos: [
-    // { title: 'Titolo produzione', url: 'https://youtube.com/watch?v=XXXX', meta: 'Cortometraggio · 2024', thumb: '' },
+    // { title: 'Titolo produzione', url: 'https://youtube.com/watch?v=XXXX', meta: 'Cortometraggio · 2024', regista, thumb: '' },
     { 
-  title: 'Almost', 
+  titolo: 'Almost', 
   url: 'https://youtu.be/wJ3Fm9lTFD4?feature=shared', 
   meta: 'Cortometraggio · 2026',
- director: 'Massimiliano Montàgano',
+ regista: 'Massimiliano Montàgano',
   thumb: '' 
 },
   ],
