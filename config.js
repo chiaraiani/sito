@@ -29,9 +29,9 @@ const SITE_CONFIG = {
     homeLeftTitle:   'Attrice',
     homeLeftSub:     'Book fotografico · Foto artistiche · Lavori · Contatti',
 
-    // Pannello destro (Videomaker) — home
+    // Pannello destro (Video editor) — home
     homeRightEyebrow: 'Servizi',
-    homeRightTitle:   'Videomaker',
+    homeRightTitle:   'Video\nEditor',
     homeRightSub:     'Montaggio · Produzione · Contatti',
 
     // ─── SEZIONE ATTRICE ───
@@ -40,14 +40,14 @@ const SITE_CONFIG = {
     actressArtCaption:    'Foto artistiche',
     actressVideoCaption:  'Produzioni e lavori realizzati',
 
-    // ─── SEZIONE VIDEOMAKER ───
+    // ─── SEZIONE VIDEO EDITOR ───
     vmTitle:   'Servizi',
 
     // Frase in corsivo (bio breve) — lascia vuoto per nasconderla
     vmBio: '',
 
     // Paragrafo esteso (biografia completa)
-    vmBioExt: 'Ciao! Sono attrice e videomaker. Ho studiato videomaking a Milano e Arte Drammatica a Venezia e ora ho unito queste arti per poter produrre e avere una maggiore visione dell\'ambiente artistico del settore. Livello EQF5 in digital videomaking.',
+    vmBioExt: 'Ciao! Sono attrice e video editor. Ho studiato editing video a Milano e Arte Drammatica a Venezia e ora ho unito queste arti per poter produrre e avere una maggiore visione dell\'ambiente artistico del settore. Livello EQF5 in digital videomaking e certificazioni Blackmagic.',
 
     // Tag competenze separati da virgola
     vmTags: 'Idee,Riprese,Reel,Documentario,Narrativa,Corporate',
@@ -58,9 +58,9 @@ const SITE_CONFIG = {
     stat2Num: 'Confronto',  stat2Lbl: '',
     stat3Num: 'Puntualità', stat3Lbl: '',
 
-    // ─── PAGINA LAVORI (tab Videomaker) ───
+    // ─── PAGINA LAVORI (tab Video editor) ───
     worksEyebrow: 'Selezione lavori',
-    worksHeading: 'Portfolio videomaker',
+    worksHeading: 'Portfolio video editor',
     worksSubtext: 'I miei progetti',
 
     // ─── CONTATTI & FOOTER ───
@@ -160,7 +160,7 @@ const SITE_CONFIG = {
 
 
   // ─────────────────────────────────────────────
-  //  VIDEO SEZIONE VIDEOMAKER (tab Lavori)
+  //  VIDEO SEZIONE VIDEO EDITOR (tab Lavori)
   //  filterVal: deve corrispondere esattamente al filterVal nei worksFilters sopra
   // ─────────────────────────────────────────────
   vmVideos: [
@@ -188,7 +188,7 @@ const SITE_CONFIG = {
 
 
   // ─────────────────────────────────────────────
-  //  SERVIZI OFFERTI (sezione Videomaker › Profilo)
+  //  SERVIZI OFFERTI (sezione Video editor › Profilo)
   //  icon: cerca il nome su https://tabler.io/icons  (es. 'ti-video')
   // ─────────────────────────────────────────────
   services: [
