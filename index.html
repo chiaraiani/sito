@@ -270,7 +270,7 @@ nav {
 .pkg-price { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--green); }
 .pkg-desc { font-size:10px; color:var(--text-muted); line-height:1.7; }
 
-/* CALENDAR 
+CALENDAR 
 .cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:.875rem; }
 .cal-month { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; color:var(--notte); letter-spacing:2px; }
 .cal-nav { background:none; border:1px solid var(--border-md); color:var(--text-mid); padding:4px 10px; cursor:pointer; font-size:13px; font-family:'Montserrat',sans-serif; transition:all 0.2s; }
@@ -286,7 +286,7 @@ nav {
 .cal-legend { display:flex; gap:1.5rem; margin-top:.625rem; }
 .leg { display:flex; align-items:center; gap:6px; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); }
 .leg-dot { width:8px; height:8px; border-radius:50%; }
-*/
+
 /* FORM */
 .form-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--notte); margin-bottom:1.25rem; }
 .date-banner { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--green); padding:7px 12px; border-left:2px solid var(--green); margin-bottom:1.25rem; background:var(--green-lt); }
@@ -381,7 +381,7 @@ textarea.f-input { resize:vertical; min-height:90px; }
   <div class="nav-links">
     <button class="nav-link" onclick="go('home')">Home</button>
     <button class="nav-link" id="nav-actress" onclick="go('actress')">Attrice</button>
-    <button class="nav-link" id="nav-vm" onclick="go('vm')">Videomaker</button>
+    <button class="nav-link" id="nav-vm" onclick="go('vm')">Video editor</button>
   </div>
 </nav>
 
@@ -402,7 +402,7 @@ textarea.f-input { resize:vertical; min-height:90px; }
       <div class="panel-num">II</div>
       <div class="panel-content">
         <div class="panel-eyebrow" id="home-vm-eyebrow">Servizi</div>
-        <div class="panel-title" id="home-vm-title">Video-<br>maker</div>
+        <div class="panel-title" id="home-vm-title">Video<br>editor</div>
         <div class="panel-sub" id="home-vm-sub">Regia · Montaggio · Produzione<br>Prenota una collaborazione</div>
         <button class="cta cta-light">Esplora <span class="cta-line"></span></button>
       </div>
@@ -453,11 +453,11 @@ textarea.f-input { resize:vertical; min-height:90px; }
   </div>
 </div>
 
-<!-- VIDEOMAKER -->
+<!-- VIDEO EDITOR -->
 <div id="page-vm" class="page">
   <div class="sec-header">
     <div>
-      <div class="sec-eyebrow">Servizi · Videomaker</div>
+      <div class="sec-eyebrow">Servizi · Video editor</div>
       <div class="sec-title" id="vm-title">Regia & Produzione</div>
     </div>
     <div class="sec-tabs">
@@ -534,14 +534,14 @@ textarea.f-input { resize:vertical; min-height:90px; }
           <div class="leg"><div class="leg-dot" style="background:var(--green);"></div>Disponibile</div>
           <div class="leg"><div class="leg-dot" style="background:var(--border-md);"></div>Non disponibile</div>
         </div>
-       <!-- <div class="note-box" style="margin-top:1rem;"> 
+        <div class="note-box" style="margin-top:1rem;"> 
           <p><i class="ti ti-info-circle" style="font-size:13px;vertical-align:-2px;margin-right:5px;" aria-hidden="true"></i>Puoi selezionare una data dal calendario per indicarla nel messaggio — oppure scrivimi direttamente.</p>
-        </div> -->
+        </div> 
       </div>
       <div style="padding:2.5rem 3rem;">
         <div class="booking-form" id="bform">
           <div class="form-title">Scrivimi</div>
-          <div class="date-banner" id="date-banner" style="display:none;">Data selezionata: —</div>
+          <div class="date-banner" id="date-banner" style="display:none;">Data selezionata: —</div> <input type="hidden" id="fdate">
           <div class="f-group"><label class="f-label">Nome e cognome</label><input type="text" class="f-input" placeholder="Il tuo nome" id="fn"></div>
           <div class="f-group"><label class="f-label">Email</label><input type="email" class="f-input" placeholder="tua@gmail.com" id="fe"></div>
           <div class="f-group"><label class="f-label">Tipo di progetto</label>
@@ -571,7 +571,7 @@ textarea.f-input { resize:vertical; min-height:90px; }
   </div>
 
   <div class="sec-footer">
-    <span class="footer-name" id="footer-vm">CHIARA AIANI · VIDEOMAKER</span>
+    <span class="footer-name" id="footer-vm">CHIARA AIANI · VIDEO EDITOR</span>
     <a class="footer-insta" href="https://instagram.com/chiaraiani" target="_blank" rel="noopener"><i class="ti ti-brand-instagram" style="font-size:13px;"></i>@chiaraiani</a>
     <span class="footer-loc" id="footer-vm-loc">chiara@gmail.com · Milano</span>
   </div>
@@ -616,7 +616,7 @@ function buildData() {
       actressArtCaption:  t('actressArtCaption','Foto artistiche'),
       actressVideoCaption:t('actressVideoCaption','Produzioni e lavori realizzati'),
       vmTitle:            t('vmTitle',          'Regia & Produzione'),
-      vmBio:              t('vmBio',            'Videomaker e regista con uno sguardo narrativo nato dal teatro e dalla recitazione.'),
+      vmBio:              t('vmBio',            'Video editor e regista con uno sguardo narrativo nato dal teatro e dalla recitazione.'),
       vmBioExt:           t('vmBioExt',         ''),
       vmTags:             t('vmTags',           'Regia,Montaggio,Riprese,Documentario,Narrativa,Corporate'),
       stat1Num:           t('stat1Num',         '5+'),  stat1Lbl: t('stat1Lbl','Anni'),
@@ -630,7 +630,7 @@ function buildData() {
       instagramUrl:       t('instagramUrl',     'https://instagram.com/chiaraiani'),
       ratesNote:          t('ratesNote',        'Le tariffe sono orientative.'),
       worksEyebrow:       t('worksEyebrow',     'Selezione lavori'),
-      worksHeading:       t('worksHeading',     'Portfolio videomaker'),
+      worksHeading:       t('worksHeading',     'Portfolio video editor'),
       worksSubtext:       t('worksSubtext',     'Una selezione di progetti realizzati.'),
     },
     services:    (C && C.services    && C.services.length)    ? C.services    : defaultServices(),
@@ -1004,35 +1004,35 @@ function vidModalClose(){
 }
 function vidModalBgClick(e){ if(e.target===document.getElementById('vid-modal-overlay')) vidModalClose(); }
 
-// ===================== CALENDAR =====================
-//function renderCal(){
- // const key=cy+'-'+(cm+1);
- // const blocked=D.blocked[key]||[];
- // document.getElementById('cal-title').textContent=MI[cm]+' '+cy;
- // const g=document.getElementById('cal-grid'); g.innerHTML='';
- // DI.forEach(d=>{const e=document.createElement('div');e.className='cal-dlbl';e.textContent=d;g.appendChild(e);});
- // const fd=new Date(cy,cm,1).getDay(), off=fd===0?6:fd-1;
- // for(let i=0;i<off;i++){const e=document.createElement('div');e.className='cal-day empty';g.appendChild(e);}
- // const dim=new Date(cy,cm+1,0).getDate(), td=new Date();
- // for(let d=1;d<=dim;d++){
-   // const e=document.createElement('div');
-//    const isB=blocked.includes(d), isP=new Date(cy,cm,d)<new Date(td.getFullYear(),td.getMonth(),td.getDate());
-//    const isT=d===td.getDate()&&cm===td.getMonth()&&cy===td.getFullYear();
-//    const isS=sel&&sel.d===d&&sel.m===cm&&sel.y===cy;
- //   e.className='cal-day '+(isS?'selected':isB||isP?'booked':'avail')+(isT&&!isS?' today':'');
-//    e.textContent=d;
-//    if(!isB&&!isP) e.onclick=()=>pickDate(d,cm,cy);
-//    g.appendChild(e);
-//  }
-// }
-// function pickDate(d,m,y){
-//  sel={d,m,y}; renderCal();
-//  const lbl=d+' '+MI[m]+' '+y;
-//  const banner=document.getElementById('date-banner');
-//  banner.textContent='Data selezionata: '+lbl;
-//  banner.style.display='block';
-// }
-// function chMo(dir){ cm+=dir; if(cm<0){cm=11;cy--;} if(cm>11){cm=0;cy++;} renderCal(); }
+ ===================== CALENDAR =====================
+function renderCal(){
+  const key=cy+'-'+(cm+1);
+  const blocked=D.blocked[key]||[];
+  document.getElementById('cal-title').textContent=MI[cm]+' '+cy;
+  const g=document.getElementById('cal-grid'); g.innerHTML='';
+  DI.forEach(d=>{const e=document.createElement('div');e.className='cal-dlbl';e.textContent=d;g.appendChild(e);});
+  const fd=new Date(cy,cm,1).getDay(), off=fd===0?6:fd-1;
+ for(let i=0;i<off;i++){const e=document.createElement('div');e.className='cal-day empty';g.appendChild(e);}
+  const dim=new Date(cy,cm+1,0).getDate(), td=new Date();
+  for(let d=1;d<=dim;d++){
+    const e=document.createElement('div');
+    const isB=blocked.includes(d), isP=new Date(cy,cm,d)<new Date(td.getFullYear(),td.getMonth(),td.getDate());
+    const isT=d===td.getDate()&&cm===td.getMonth()&&cy===td.getFullYear();
+    const isS=sel&&sel.d===d&&sel.m===cm&&sel.y===cy;
+    e.className='cal-day '+(isS?'selected':isB||isP?'booked':'avail')+(isT&&!isS?' today':'');
+    e.textContent=d;
+    if(!isB&&!isP) e.onclick=()=>pickDate(d,cm,cy);
+    g.appendChild(e);
+  }
+ }
+ function pickDate(d,m,y){
+  sel={d,m,y}; renderCal();
+  const lbl=d+' '+MI[m]+' '+y;
+  const banner=document.getElementById('date-banner');
+banner.textContent='Data selezionata: '+lbl;
+  banner.style.display='block';
+ }
+ function chMo(dir){ cm+=dir; if(cm<0){cm=11;cy--;} if(cm>11){cm=0;cy++;} renderCal(); }
 
 // ===================== FORM =====================
 function submitForm(){
@@ -1047,6 +1047,7 @@ function submitForm(){
   document.getElementById('fsuccess').classList.add('show');
 }
 function resetF(){
+  
   sel=null;
   ['fn','fe','fm'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('ft').value='';
