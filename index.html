@@ -729,7 +729,10 @@ function renderSite(){
   setText('works-eyebrow', T.worksEyebrow);
   setText('works-heading', T.worksHeading);
   setText('works-subtext', T.worksSubtext);
-  setText('footer-actress-loc', T.contactCity+', Italia');
+  setTabEmail('actress-book-email',  T.contactEmail);
+setTabEmail('actress-art-email',   T.contactEmail);
+setTabEmail('actress-video-email', T.contactEmail);
+  setText('footer-actress-loc', T.contactEmail+' · '+T.contactCity);
   setText('footer-vm-loc', T.contactEmail+' · '+T.contactCity);
   const igHandle = T.instagramHandle||'@chiaraiani';
   const igUrl = T.instagramUrl||'https://instagram.com/chiaraiani';
@@ -773,9 +776,14 @@ function renderSite(){
   renderVideoGrid('grid-vm-video', D.media.vmVideo);
   renderCal();
 }
-
 function setText(id, val){ const el=document.getElementById(id); if(el) el.textContent=val||''; }
-
+function setTabEmail(id, email){
+  const el=document.getElementById(id);
+  if(!el || !email) return;
+  el.href='mailto:'+email;
+  el.innerHTML='<i class="ti ti-mail" aria-hidden="true"></i> '+email;
+}
+  
 // ===================== ACCORDION ARTISTICHE =====================
 // Gallery globale per il lightbox: array piatto di tutte le foto di tutti i progetti
 let _artAllPhotos = [];  // [{src, label, projectIdx, photoIdx}]
