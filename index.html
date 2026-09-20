@@ -270,7 +270,7 @@ nav {
 .pkg-price { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--green); }
 .pkg-desc { font-size:10px; color:var(--text-muted); line-height:1.7; }
 
-CALENDAR 
+/* CALENDAR */
 .cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:.875rem; }
 .cal-month { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; color:var(--notte); letter-spacing:2px; }
 .cal-nav { background:none; border:1px solid var(--border-md); color:var(--text-mid); padding:4px 10px; cursor:pointer; font-size:13px; font-family:'Montserrat',sans-serif; transition:all 0.2s; }
@@ -1013,7 +1013,7 @@ function vidModalClose(){
 }
 function vidModalBgClick(e){ if(e.target===document.getElementById('vid-modal-overlay')) vidModalClose(); }
 
- ===================== CALENDAR =====================
+// ===================== CALENDAR =====================
 function renderCal(){
   const key=cy+'-'+(cm+1);
   const blocked=D.blocked[key]||[];
