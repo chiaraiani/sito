@@ -196,7 +196,7 @@ const SITE_CONFIG = {
     director: 'Chiara Aiani',
     thumb: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791455662/default_1.2.1_wsbnec.png',
     vertical: true,
-    filterVal: 'video promozionale',
+    filterVal: 'pubblicità',
   },
   {
     title: 'Amiflex',
@@ -204,7 +204,7 @@ const SITE_CONFIG = {
     meta: 'Video pubblicitario · 2026',
     director: 'Chiara Aiani',
     thumb: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791454588/default_1.1.1_ultetu.png',
-    filterVal: 'video promozionale',
+    filterVal: 'pubblicità',
   },
   ],
 
