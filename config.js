@@ -138,6 +138,22 @@ const SITE_CONFIG = {
         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1782595618/B0027232_iwwcny.jpg' },
       ],
     },
+        {
+      year: '2026',
+      photographer: 'Massimiliano Montàgano',
+      location: 'Milano',
+      photos: [
+        // { src: 'https://...' },
+      ],
+    },
+    {
+      year: '2026',
+      photographer: 'Ilaria Serra',
+      location: 'Milano',
+      photos: [
+        // { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791451810/_MG_0016_rfku5h.jpg' },
+      ],
+    },
   ],
 
 
