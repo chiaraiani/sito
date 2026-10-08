@@ -980,6 +980,8 @@ function renderVideoGrid(gridId, items){
     else if(embedSrc){
       const ytMatch = v.url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/);
       if(ytMatch) thumbHtml=`<img src="https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg" alt="" onerror="this.style.display='none'">`;
+            const gdId = getDriveId(v.url);
+      if(gdId) thumbHtml=`<img src="https://drive.google.com/thumbnail?id=${gdId}&sz=w640" alt="" onerror="this.style.display='none'">`;
     }
     const card=document.createElement('div');
     card.className='video-card';
@@ -995,7 +997,14 @@ function getEmbedSrc(url){
   if(yt) return 'https://www.youtube.com/embed/'+yt[1]+'?autoplay=1&rel=0';
   const vi=url.match(/vimeo\.com\/(\d+)/);
   if(vi) return 'https://player.vimeo.com/video/'+vi[1]+'?autoplay=1';
+    const gd=getDriveId(url);
+  if(gd) return 'https://drive.google.com/file/d/'+gd+'/preview';
   return null;
+}
+function getDriveId(url){
+  if(!url) return null;
+  const m=url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^#]*&)?id=)([a-zA-Z0-9_-]+)/);
+  return m?m[1]:null;
 }
 function openVideo(url, title){
   if(!url) return;
