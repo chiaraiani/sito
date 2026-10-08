@@ -218,6 +218,8 @@ nav {
 .vid-modal-video { width:100%; aspect-ratio:16/9; background:#000; display:block; outline:none; }
 .vid-modal-wrap.vertical { width:min(420px,90vw,calc(85vh * 9 / 16)); }
 .vid-modal-wrap.vertical .vid-modal-frame, .vid-modal-wrap.vertical .vid-modal-video { aspect-ratio:9/16; }
+.video-role { color:var(--green); margin-top:4px; }
+.video-empty { grid-column:1/-1; text-align:center; padding:3rem 1rem; border:1px solid var(--border); background:var(--bg); font-size:11px; color:var(--text-muted); letter-spacing:1px; line-height:2; }
 /* VIDEO GRID */
 .video-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
 .video-card { background:var(--surface); border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:border-color 0.25s; }
@@ -464,7 +466,8 @@ textarea.f-input { resize:vertical; min-height:90px; }
     </div>
     <div class="sec-tabs">
       <button class="sec-tab active" onclick="vTab('about',this)">Profilo</button>
-      <button class="sec-tab" onclick="vTab('works',this)">Lavori</button>
+      <button class="sec-tab" onclick="vTab('works',this)">I miei lavori</button>
+<button class="sec-tab" onclick="vTab('client',this)">Su commissione</button>
       <button class="sec-tab" onclick="vTab('rates',this)">Tariffe</button>
       <button class="sec-tab" onclick="vTab('book',this)">Contattami</button>
     </div>
@@ -487,7 +490,7 @@ textarea.f-input { resize:vertical; min-height:90px; }
         <div class="sec-eyebrow" style="margin-bottom:.875rem;">Cosa offro</div>
         <div class="service-list" id="services-list"></div>
         <div style="margin-top:1.25rem;">
-          <button class="cta cta-dark" style="width:100%;justify-content:center;" onclick="vTab('book',document.querySelectorAll('#page-vm .sec-tab')[3])">Contattami <span class="cta-line"></span></button>
+          <button class="cta cta-dark" style="width:100%;justify-content:center;" onclick="vTab('book',document.querySelectorAll('#page-vm .sec-tab')[4])">Contattami <span class="cta-line"></span></button>
         </div>
       </div>
     </div>
@@ -504,7 +507,16 @@ textarea.f-input { resize:vertical; min-height:90px; }
       <div class="video-grid" id="grid-vm-video"></div>
     </div>
   </div>
-
+  <div id="vt-client" class="tab-content">
+    <div class="content">
+      <div style="margin-bottom:1.5rem;">
+        <div class="sec-eyebrow" id="client-eyebrow">Collaborazioni</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--notte);margin-bottom:.375rem;" id="client-heading">Lavori su commissione</div>
+        <p style="font-size:11px;color:var(--text-muted);line-height:2;" id="client-subtext"></p>
+      </div>
+      <div class="video-grid" id="grid-client-video"></div>
+    </div>
+  </div>
   <div id="vt-rates" class="tab-content">
     <div class="vm-grid">
       <div class="vm-col">
@@ -516,7 +528,7 @@ textarea.f-input { resize:vertical; min-height:90px; }
         <div class="sec-eyebrow" style="margin-bottom:1.25rem;">Pacchetti</div>
         <div class="pkg-list" id="packages-list"></div>
         <div style="margin-top:1.25rem;">
-          <button class="cta cta-dark" style="width:100%;justify-content:center;" onclick="vTab('book',document.querySelectorAll('#page-vm .sec-tab')[3])">Contattami <span class="cta-line"></span></button>
+          <button class="cta cta-dark" style="width:100%;justify-content:center;" onclick="vTab('book',document.querySelectorAll('#page-vm .sec-tab')[4])">Contattami <span class="cta-line"></span></button>
         </div>
       </div>
     </div>
@@ -634,6 +646,9 @@ function buildData() {
       worksEyebrow:       t('worksEyebrow',     'Selezione lavori'),
       worksHeading:       t('worksHeading',     'Portfolio video editor'),
       worksSubtext:       t('worksSubtext',     'Una selezione di progetti realizzati.'),
+      clientEyebrow:      t('clientEyebrow',    'Collaborazioni'),
+      clientHeading:      t('clientHeading',    'Lavori su commissione'),
+      clientSubtext:      t('clientSubtext',    'Progetti realizzati su commissione: qui trovi il mio ruolo in ciascun lavoro.'),
     },
     services:    (C && C.services    && C.services.length)    ? C.services    : defaultServices(),
     rates:       (C && C.rates       && C.rates.length)       ? C.rates       : defaultRates(),
@@ -643,7 +658,7 @@ function buildData() {
       book:         (C && C.bookPhotos)    ? C.bookPhotos.map(p=>({src:p.src,label:p.label||'',objectPosition:p.objectPosition||'center top'})) : [],
       actressVideo: (C && C.actressVideos) ? C.actressVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||'',director:v.director||''})) : [],
       vmVideo:      (C && C.vmVideos)      ? C.vmVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||'',director:v.director||'',vertical:!!v.vertical,filterVal:v.filterVal||''})) : [],
-    },
+      clientVideo:  (C && C.clientWorks)   ? C.clientWorks.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||'',director:v.director||'',vertical:!!v.vertical,client:v.client||'',role:v.role||''})) : [],    },
     blocked: (C && C.blocked) ? C.blocked : {}
   };
 }
@@ -698,9 +713,30 @@ function vTab(t,el){
   document.querySelectorAll('#page-vm .sec-tab').forEach(x=>x.classList.remove('active'));
   if(el) el.classList.add('active');
 }
-function filterW(el){
-  document.querySelectorAll('.work-cat').forEach(x=>x.classList.remove('active'));
-  el.classList.add('active');
+let _worksFilter='all';
+function getWorksFilters(){
+  return (typeof SITE_CONFIG!=='undefined' && SITE_CONFIG.worksFilters && SITE_CONFIG.worksFilters.length)
+    ? SITE_CONFIG.worksFilters
+    : [{label:'Tutti',icon:'ti-layout-grid',filterVal:'all',isAll:true},{label:'Cinematografico',icon:'ti-movie',filterVal:'cinema',isAll:false},{label:'Pubblicitario',icon:'ti-speakerphone',filterVal:'pubblicita',isAll:false}];
+}
+function filterW(val){ _worksFilter=val; renderWorks(); }
+function renderWorks(){
+  const wc=document.getElementById('works-cats'); wc.innerHTML='';
+  const filters=getWorksFilters();
+  const all=D.media.vmVideo;
+  wc.style.display = filters.length>1 ? '' : 'none';
+  wc.style.gridTemplateColumns = 'repeat('+Math.max(1,Math.min(filters.length,4))+',1fr)';
+  filters.forEach(f=>{
+    const count = f.isAll ? all.length : all.filter(v=>v.filterVal===f.filterVal).length;
+    const div=document.createElement('div');
+    div.className='work-cat'+(_worksFilter===f.filterVal?' active':'');
+    div.addEventListener('click',()=>filterW(f.filterVal));
+    div.innerHTML=`<i class="ti ${f.icon||'ti-movie'}"></i><div class="work-cat-name">${f.label}</div><div class="work-cat-num">${count||'—'}</div>`;
+    wc.appendChild(div);
+  });
+  const cur=filters.find(f=>f.filterVal===_worksFilter) || filters[0];
+  const items = cur.isAll ? all : all.filter(v=>v.filterVal===cur.filterVal);
+  renderVideoGrid('grid-vm-video', items, 'Nessun lavoro in questa categoria al momento.');
 }
 
 // ===================== RENDER SITE =====================
@@ -730,6 +766,9 @@ function renderSite(){
   setText('works-eyebrow', T.worksEyebrow);
   setText('works-heading', T.worksHeading);
   setText('works-subtext', T.worksSubtext);
+  setText('client-eyebrow', T.clientEyebrow);
+  setText('client-heading', T.clientHeading);
+  setText('client-subtext', T.clientSubtext);
   setTabEmail('actress-book-email',  T.contactEmail);
 setTabEmail('actress-art-email',   T.contactEmail);
 setTabEmail('actress-video-email', T.contactEmail);
@@ -774,7 +813,8 @@ setTabEmail('actress-video-email', T.contactEmail);
   renderPhotoGrid('grid-book', D.media.book, 'book');
   renderArtProjects();
   renderVideoGrid('grid-actress-video', D.media.actressVideo);
-  renderVideoGrid('grid-vm-video', D.media.vmVideo);
+  renderWorks();
+  renderVideoGrid('grid-client-video', D.media.clientVideo, 'Nessun lavoro su commissione ancora inserito.');  
   renderCal();
 }
 function setText(id, val){ const el=document.getElementById(id); if(el) el.textContent=val||''; }
@@ -968,8 +1008,9 @@ function renderPhotoGrid(gridId, items, type){
 }
 
 // ===================== VIDEO =====================
-function renderVideoGrid(gridId, items){
+function renderVideoGrid(gridId, items, emptyMsg){  
   const g=document.getElementById(gridId); g.innerHTML='';
+    if(!items.length && emptyMsg){ g.innerHTML=`<div class="video-empty">${emptyMsg}</div>`; return; }
   if(!items.length){
     for(let i=0;i<4;i++) g.innerHTML+=`<div class="video-card"><div class="video-thumb"><div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">Titolo produzione</div><div class="video-meta">Tipo · Anno</div></div></div>`;
     return;
@@ -987,7 +1028,9 @@ function renderVideoGrid(gridId, items){
     const card=document.createElement('div');
     card.className='video-card';
     const directorHtml = v.director ? `<div class="video-meta">Regia di ${v.director}</div>` : '';
-    card.innerHTML=`<div class="video-thumb">${thumbHtml}<div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-meta">${v.meta}</div>${directorHtml}</div>`;
+        const clientHtml = v.client ? `<div class="video-meta">Cliente: ${v.client}</div>` : '';
+    const roleHtml = v.role ? `<div class="video-meta video-role">Ruolo: ${v.role}</div>` : '';
+    card.innerHTML=`<div class="video-thumb">${thumbHtml}<div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-meta">${v.meta}</div>${clientHtml}${directorHtml}${roleHtml}</div>`;
     card.addEventListener('click',()=>openVideo(v.url, v.title, v.vertical));
     g.appendChild(card);
   });
