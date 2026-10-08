@@ -196,7 +196,7 @@ const SITE_CONFIG = {
     director: 'Chiara Aiani',
     thumb: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791455662/default_1.2.1_wsbnec.png',
     vertical: true,
-    filterVal: 'pubblicità',
+    filterVal: 'pubblicita',
   },
   {
     title: 'Amiflex',
@@ -204,7 +204,7 @@ const SITE_CONFIG = {
     meta: 'Video pubblicitario · 2026',
     director: 'Chiara Aiani',
     thumb: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791454588/default_1.1.1_ultetu.png',
-    filterVal: 'pubblicità',
+    filterVal: 'pubblicita',
   },
   ],
 
@@ -217,7 +217,7 @@ const SITE_CONFIG = {
    worksFilters: [
     { label: 'Tutti',              icon: 'ti-layout-grid',  filterVal: 'all',        isAll: true  },
     { label: 'Cinema',             icon: 'ti-movie',        filterVal: 'cinema',     isAll: false },
-    { label: 'Pubblicità/Social',  icon: 'ti-speakerphone', filterVal: 'pubblicita', isAll: false },
+    { label: 'Video promozionale/Social', icon: 'ti-speakerphone', filterVal: 'pubblicita', isAll: false },
   ],
 
 
