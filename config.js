@@ -193,7 +193,7 @@ const SITE_CONFIG = {
     url: 'https://drive.google.com/file/d/1cmVbpkNLQxneZQSoKJQANgb_JxKUyVLB/view?usp=share_link',
     meta: 'Reel pubblicitario · 2026',
     director: 'Chiara Aiani',
-    thumb: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791454413/default_1.8.1_xbvdse.png',
+    thumb: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791455662/default_1.2.1_wsbnec.png',
     vertical: true,
   },
   {
