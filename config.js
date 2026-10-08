@@ -217,7 +217,7 @@ const SITE_CONFIG = {
    worksFilters: [
     { label: 'Tutti',              icon: 'ti-layout-grid',  filterVal: 'all',        isAll: true  },
     { label: 'Cinema',             icon: 'ti-movie',        filterVal: 'cinema',     isAll: false },
-    { label: 'Video promozionale/social',  icon: 'ti-speakerphone', filterVal: 'pubblicita', isAll: false },
+    { label: 'Pubblicità/Social',  icon: 'ti-speakerphone', filterVal: 'pubblicita', isAll: false },
   ],
 
 
