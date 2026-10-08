@@ -216,7 +216,8 @@ nav {
 .vid-modal-close:hover { background:rgba(255,255,255,0.12); }
 .vid-modal-frame { width:100%; aspect-ratio:16/9; border:none; background:#000; display:block; }
 .vid-modal-video { width:100%; aspect-ratio:16/9; background:#000; display:block; outline:none; }
-
+.vid-modal-wrap.vertical { width:min(420px,90vw,calc(85vh * 9 / 16)); }
+.vid-modal-wrap.vertical .vid-modal-frame, .vid-modal-wrap.vertical .vid-modal-video { aspect-ratio:9/16; }
 /* VIDEO GRID */
 .video-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
 .video-card { background:var(--surface); border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:border-color 0.25s; }
@@ -641,7 +642,7 @@ function buildData() {
     media: {
       book:         (C && C.bookPhotos)    ? C.bookPhotos.map(p=>({src:p.src,label:p.label||'',objectPosition:p.objectPosition||'center top'})) : [],
       actressVideo: (C && C.actressVideos) ? C.actressVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||'',director:v.director||''})) : [],
-      vmVideo:      (C && C.vmVideos)      ? C.vmVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||'',filterVal:v.filterVal||''})) : [],
+      vmVideo:      (C && C.vmVideos)      ? C.vmVideos.map(v=>({title:v.title,url:v.url,meta:v.meta||'',thumb:v.thumb||'',director:v.director||'',vertical:!!v.vertical,filterVal:v.filterVal||''})) : [],
     },
     blocked: (C && C.blocked) ? C.blocked : {}
   };
@@ -987,7 +988,7 @@ function renderVideoGrid(gridId, items){
     card.className='video-card';
     const directorHtml = v.director ? `<div class="video-meta">Regia di ${v.director}</div>` : '';
     card.innerHTML=`<div class="video-thumb">${thumbHtml}<div class="play-btn"><i class="ti ti-player-play"></i></div></div><div class="video-info"><div class="video-title">${v.title}</div><div class="video-meta">${v.meta}</div>${directorHtml}</div>`;
-    card.addEventListener('click',()=>openVideo(v.url, v.title));
+    card.addEventListener('click',()=>openVideo(v.url, v.title, v.vertical));
     g.appendChild(card);
   });
 }
@@ -1006,10 +1007,11 @@ function getDriveId(url){
   const m=url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^#]*&)?id=)([a-zA-Z0-9_-]+)/);
   return m?m[1]:null;
 }
-function openVideo(url, title){
+function openVideo(url, title, vertical){
   if(!url) return;
   const embedSrc=getEmbedSrc(url);
   const c=document.getElementById('vid-modal-content');
+  document.querySelector('.vid-modal-wrap').classList.toggle('vertical', !!vertical);
   if(embedSrc){ c.innerHTML=`<iframe class="vid-modal-frame" src="${embedSrc}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="${title||'Video'}"></iframe>`; }
   else { c.innerHTML=`<video class="vid-modal-video" src="${url}" controls autoplay playsinline></video>`; }
   document.getElementById('vid-modal-overlay').classList.add('open');
