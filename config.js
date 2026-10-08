@@ -151,7 +151,7 @@ const SITE_CONFIG = {
       photographer: 'Ilaria Serra',
       location: 'Milano',
       photos: [
-        // { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791451810/_MG_0016_rfku5h.jpg' },
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791451810/_MG_0016_rfku5h.jpg' },
       ],
     },
   ],
