@@ -188,6 +188,20 @@ const SITE_CONFIG = {
     director: 'Chiara Aiani',
     thumb: '',
   },
+      {
+    title: 'Kaly',
+    url: 'https://drive.google.com/file/d/1cmVbpkNLQxneZQSoKJQANgb_JxKUyVLB/view?usp=share_link',
+    meta: 'Reel pubblicitario · 2026',
+    director: 'Chiara Aiani',
+    thumb: '',
+  },
+  {
+    title: 'Amiflex',
+    url: 'https://drive.google.com/file/d/1rQiJsYzwWba02y5Bz910BmF6VGMkk19B/view?usp=share_link',
+    meta: 'Video pubblicitario · 2026',
+    director: 'Chiara Aiani',
+    thumb: '',
+  },
   ],
 
 
