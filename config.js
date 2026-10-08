@@ -193,14 +193,15 @@ const SITE_CONFIG = {
     url: 'https://drive.google.com/file/d/1cmVbpkNLQxneZQSoKJQANgb_JxKUyVLB/view?usp=share_link',
     meta: 'Reel pubblicitario · 2026',
     director: 'Chiara Aiani',
-    thumb: '',
+    thumb: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791454413/default_1.8.1_xbvdse.png',
+    vertical: true,
   },
   {
     title: 'Amiflex',
     url: 'https://drive.google.com/file/d/1rQiJsYzwWba02y5Bz910BmF6VGMkk19B/view?usp=share_link',
     meta: 'Video pubblicitario · 2026',
     director: 'Chiara Aiani',
-    thumb: '',
+    thumb: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791454556/default_1.11.1_nugizp.png',
   },
   ],
 
