@@ -143,7 +143,11 @@ const SITE_CONFIG = {
       photographer: 'Massimiliano Montàgano',
       location: 'Milano',
       photos: [
-        // { src: 'https://...' },
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007684/11_08_2026_Chiara1090_tut4jf.jpg' },
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007684/11_08_2026_Chiara0670-1_legoga.jpg' },
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007684/11_08_2026_Chiara1140_w1ulca.jpg' },
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007684/11_08_2026_Chiara0922_asvl2t.jpg' },
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007684/11_08_2026_Chiara0681_1_z27e55.jpg' },
       ],
     },
     {
