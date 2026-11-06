@@ -156,7 +156,7 @@ const SITE_CONFIG = {
       location: 'Milano',
       photos: [
          { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1791451810/_MG_0016_rfku5h.jpg' },
-         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007817/_MG_0178_cdrazj.jpgg' },
+         { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007817/_MG_0178_cdrazj.jpg' },
          { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007818/Artboard_2_kftdna.jpg' },
          { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007817/_MG_0218_relabs.jpg' },
          { src: 'https://res.cloudinary.com/diwejzlyi/image/upload/v1794007818/_MG_0237_frylqg.jpg' },
