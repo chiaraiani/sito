@@ -31,8 +31,8 @@ const SITE_CONFIG = {
 
     // Pannello destro (Video editor) — home
     homeRightEyebrow: 'Servizi',
-    homeRightTitle:   'Video\nEditor',
-    homeRightSub:     'Montaggio · Produzione · Contatti',
+    homeRightTitle:   'Video\nEditor/Colorist',
+    homeRightSub:     'Montaggio · Color · Contatti',
 
     // ─── SEZIONE ATTRICE ───
     actressName:          'Chiara Aiani',
@@ -47,10 +47,10 @@ const SITE_CONFIG = {
     vmBio: '',
 
     // Paragrafo esteso (biografia completa)
-    vmBioExt: 'Ciao! Sono attrice e video editor. Ho studiato editing video a Milano e Arte Drammatica a Venezia e ora ho unito queste arti per poter produrre e avere una maggiore visione dell\'ambiente artistico del settore. Livello EQF5 in digital videomaking e certificazioni Blackmagic.',
+    vmBioExt: 'Ciao! Sono attrice e video editor. Ho studiato editing video a Milano e Arte Drammatica a Venezia e ora ho unito queste arti per poter produrre e avere una maggiore visione dell\'ambiente artistico del settore. Livello EQF5 in digital videomaking e certificazioni Blackmagic. Mi sto specializzando in Color correction e Color grading',
 
     // Tag competenze separati da virgola
-    vmTags: 'Idee,Riprese,Reel,Documentario,Narrativa,Corporate',
+    vmTags: 'Riprese,Montaggio,Color,Documentario,Narrativa,Corporate',
 
     // Statistiche — inserisci testo nella chiave "Num", etichetta in "Lbl"
     // Lascia stat3Num e stat3Lbl vuoti per nascondere la terza statistica
